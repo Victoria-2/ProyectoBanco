@@ -66,8 +66,8 @@ public class Persona {
     //SOBREESCRIBIR EL TO STRING
     @Override
     public String toString() {
-        return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", numTelefono="
-                + numTelefono + ", dni=" + dni + "]";
+        return "\n Informacion de "+nombre+"\nNombre: " + nombre + "\nApellido: " + apellido + "\nDireccion:" + direccion + "\n numTelefono: "
+                + numTelefono + "Dni: " + dni;
     }
 
     //IMPRIMIR

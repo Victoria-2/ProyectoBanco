@@ -1,6 +1,6 @@
 package ar.utn.frbb.tup.entidades.movimientos;
 
-public abstract class Operacion {
+public class Operacion {
     protected String tipoDeOperacion;
 
 

@@ -16,16 +16,27 @@ public class ConsultaDeSaldo extends Operacion {
     
     //metodos
 
-    public /*protected */ double consultarSaldo(CuentaBancaria cuenta){
+    public double simpleConsultaDeSaldo(CuentaBancaria cuenta){
         return cuenta.getSaldo();
+    }
+
+    public double generarConsultaSaldo(/*Movimiento movimiento, */CuentaBancaria cuenta){
+        //this.cuentasAGenerarMovimentos = cuentas/*.getCBU()*/;
+        //ConsultaDeSaldo consulta = new ConsultaDeSaldo();
+        //double consulta = simpleConsultaDeSaldo(cuenta);
+        Movimiento movimiento = new Movimiento(this.tipoDeOperacion, cuenta.getSaldo());
+        //movimiento.setTipoDeMovimiento(this.tipoDeOperacion);
+        //movimiento.setMonto(cuenta.getSaldo());
+        movimiento.guardarMovimiento(cuenta);
+        return movimiento.getMonto();
     }
 
 
     //TO STRING
-    @Override
+   /*  @Override
     public String toString() {
         return super.getTipoDeOperacion();
-    }
+    }*/
     
 
 

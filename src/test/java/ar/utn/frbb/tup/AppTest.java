@@ -7,6 +7,7 @@ import org.junit.Test;
 import ar.utn.frbb.tup.entidades.*;
 import ar.utn.frbb.tup.entidades.movimientos.Movimiento;
 //import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
+import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
 
 /*import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -71,7 +72,7 @@ public class AppTest
        System.out.println(segundaCuenta);
     }*/
 
-    @Test
+    /*@Test
     public void obtencionSaldo(){
         Persona persona4 = new Persona();
         persona4.setNombre("Estela");
@@ -90,15 +91,48 @@ public class AppTest
 
         cuartaCuenta.setSaldo(25.33);
 
-       System.err.println("\n"+cuartaCuenta.getSaldo());
+       System.err.println("\n"+cuartaCuenta.getSaldo());*/
 
        /*ConsultaDeSaldo consultar1 = new ConsultaDeSaldo();
        System.out.println("\n"+consultar1.consultarSaldo(cuartaCuenta));*/
 
-       Movimiento m = new Movimiento(cuartaCuenta);
+       /*Movimiento m = new Movimiento(cuartaCuenta);
        m.generarConsultaSaldo();
-       System.out.println(m); //tal vez seria mejor generar un metodo 'Imprimir()'
+       m.guardarMovimiento();*/
+       //System.out.println(m); //tal vez seria mejor generar un metodo 'Imprimir()'
        //m.toString();
+       /*cuartaCuenta.setMoimientosRealizados(m);
+       m.generarConsultaSaldo();
+       cuartaCuenta.setMoimientosRealizados(m);*/
+        /*System.out.println(cuartaCuenta.getMoimientosRealizados());
+
+        System.out.println(cliente4.getCuentasBancariasCliente());
+
+    }*/
+
+    @Test
+    public void ConsultaDeSaldo2(){
+        Persona persona4 = new Persona();
+        persona4.setNombre("Estela");
+        persona4.setDni(356);
+
+        Direccion dire4 = new Direccion("Alsina", 9, "BB");
+        persona4.setDireccion(dire4);
+
+        Cliente cliente4 = new Cliente(persona4);
+
+        Monedas peso = Monedas.valueOf("PESO_ARGENTINO");
+        TipoDeCuenta corriente = TipoDeCuenta.valueOf("CUENTA_CORRIENTE");
+
+       CuentaBancaria cuartaCuenta =  new CuentaBancaria(cliente4,peso,corriente);
+       //System.out.println(cuartaCuenta);
+
+        cuartaCuenta.setSaldo(25.33);
+        ConsultaDeSaldo saldo = new ConsultaDeSaldo();
+        System.out.println(saldo.generarConsultaSaldo(cuartaCuenta));
+
+        System.out.println(cuartaCuenta.getMovimientosRealizados());
     }
+
     
 }

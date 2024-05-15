@@ -7,13 +7,14 @@ import java.util.Random;
 import ar.utn.frbb.tup.entidades.CuentaBancaria;
 import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
 
-public class Movimiento { //ES SOLO UN REGISTRO
+public class Movimiento { //ES SOLO UN REGISTRO, es como un ticket
     private LocalDate fecha;
     private LocalTime hora;
     private String idOperacion;
-    private Operacion tipoDeMovimiento; //FIJARME MEJOR ESTA, tal vez un string
+    private String tipoDeMovimiento; //FIJARME MEJOR ESTA, tal vez un string
     private double monto;
-    private /*String*/CuentaBancaria cuentasAGenerarMovimentos; // si son dos, la primera es la que deposita y la segunda la q recibe el dinero
+
+    //private /*String*/CuentaBancaria cuentasAGenerarMovimentos; // si son dos, la primera es la que deposita y la segunda la q recibe el dinero
 
     //metodos constructores
     public Movimiento(){
@@ -21,19 +22,21 @@ public class Movimiento { //ES SOLO UN REGISTRO
         generarHoraOperacion();
         generarIdOperacion();
     }
-    public Movimiento(CuentaBancaria cuenta){
+    public Movimiento(/*CuentaBancaria cuenta, */String tipoDeOperacion, double monto){
         generarFechaOperacion();
         generarHoraOperacion();
         generarIdOperacion();
-        this.cuentasAGenerarMovimentos = cuenta;
+        setTipoDeMovimiento(tipoDeOperacion);
+        setMonto(monto);
+        //this.cuentasAGenerarMovimentos = cuenta;
     }
     
 
-    //metodos
+    //metodos 
 
     //GUARDAR MOVIMIENTO
-    private void guardarMovimiento(){
-        //se agrega a la lista de la cuenta este movimiento
+    public void guardarMovimiento(CuentaBancaria cuenta){
+        cuenta.setMovimientosRealizados(this);
     }
 
     //ID OPERACION
@@ -55,21 +58,29 @@ public class Movimiento { //ES SOLO UN REGISTRO
         this.fecha = diaDeHoy;
     }
 
-    //CONSULTAR SALDO
-    public double generarConsultaSaldo(/*CuentaBancaria cuentas*/){
-        //this.cuentasAGenerarMovimentos = cuentas/*.getCBU()*/;
-        ConsultaDeSaldo c = new ConsultaDeSaldo();
-        this.tipoDeMovimiento = c;
-        this.monto = c.consultarSaldo(cuentasAGenerarMovimentos);
-        return this.monto;
+    //TIPO DE MOVIMIENTO
+    public String getTipoDeMovimiento() {
+        return tipoDeMovimiento;
     }
+    public void setTipoDeMovimiento(String tipoDeMovimiento) {
+        this.tipoDeMovimiento = tipoDeMovimiento;
+    }
+
+    //MONTO
+    public double getMonto() {
+        return monto;
+    }
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
 
     //TO STRING
     @Override
     public String toString() {
         return "Movimiento [fecha=" + fecha + ", hora=" + hora + ", tipoDeMovimiento=" + tipoDeMovimiento + ", Monto="
-                + monto + ", idOperacion=" + idOperacion + ", cuentasAGenerarMovimentos=" + cuentasAGenerarMovimentos.getCBU()
-                + "]"; //PENSAR MEJOR EL TO STRING  //tal vez seria mejor generar un metodo 'Imprimir()'
+                + monto + ", idOperacion=" + idOperacion +/*  ", cuentasAGenerarMovimentos=" + cuentasAGenerarMovimentos.getCBU()
+                + */"]"; //PENSAR MEJOR EL TO STRING  //tal vez seria mejor generar un metodo 'Imprimir()'
     }
 
     
