@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import ar.utn.frbb.tup.entidades.*;
 import ar.utn.frbb.tup.entidades.movimientos.Movimiento;
-import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
+//import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
 
 /*import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -95,8 +95,10 @@ public class AppTest
        /*ConsultaDeSaldo consultar1 = new ConsultaDeSaldo();
        System.out.println("\n"+consultar1.consultarSaldo(cuartaCuenta));*/
 
-       Movimiento m = new Movimiento();
-       m.generarConsultaSaldo(cuartaCuenta);
+       Movimiento m = new Movimiento(cuartaCuenta);
+       m.generarConsultaSaldo();
+       System.out.println(m); //tal vez seria mejor generar un metodo 'Imprimir()'
+       //m.toString();
     }
     
 }

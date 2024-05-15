@@ -44,7 +44,7 @@ public class CuentaBancaria {
 
     //metodos
 
-    //GENERAR CBU
+    //CBU
     private String generarCbu(){
         String numerosDelCbu = " ";
         for (int i = 0; i < 4; i++) {
@@ -53,6 +53,9 @@ public class CuentaBancaria {
             numerosDelCbu += numDeCincoEspacios;
         }
         return numerosDelCbu;
+    }
+    public String getCBU(){
+        return this.cbu;
     }
 
     //REALIZAR MOVIMIENTO --no quiero q algo mas fuera de esta cuenta bancaria haga movimientos, por eso private

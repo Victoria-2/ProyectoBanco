@@ -21,5 +21,13 @@ public class ConsultaDeSaldo extends Operacion {
     }
 
 
+    //TO STRING
+    @Override
+    public String toString() {
+        return super.getTipoDeOperacion();
+    }
+    
+
+
     
 }
