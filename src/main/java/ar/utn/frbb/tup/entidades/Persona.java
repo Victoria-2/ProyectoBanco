@@ -15,6 +15,10 @@ public class Persona {
     public Persona(){}
     public Persona(String nombre, String apellido, Direccion direccion, int numTelefono, int dni){
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.numTelefono = numTelefono;
+        this.dni = dni;
     }
 
     //metodos

@@ -177,8 +177,6 @@ public class AppTest
         System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
         System.out.println(sextaCuenta.getMovimientosRealizados());
         
-
-
     }
 
     
