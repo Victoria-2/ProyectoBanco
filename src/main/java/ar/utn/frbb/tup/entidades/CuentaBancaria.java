@@ -14,8 +14,8 @@ import ar.utn.frbb.tup.entidades.movimientos.Movimiento;
 public class CuentaBancaria {
     private Cliente clienteAsociadoCuenta;
     private String cbu; //este es el id -- en vez de 22 num son 20
-    private Monedas moneda;
-    private TipoDeCuenta tipoDeCuenta;
+    private /*Monedas*/ String moneda;
+    private /*TipoDeCuenta*/ String tipoDeCuenta;
     private double saldo;
     private LocalDate fechaApertura;
     private Deque<Movimiento> movimientosRealizados = new ArrayDeque<>(); //me gusta porque puede ser fifo o lifo(!)
@@ -31,7 +31,7 @@ public class CuentaBancaria {
         clienteAsociadoCuenta.setCuentasBancariasCliente(cbu, this);//aca guarda la cuenta ni bien se genera
     }
 
-    public CuentaBancaria(Cliente cliente, Monedas moneda, TipoDeCuenta tipoDeCuenta){
+    public CuentaBancaria(Cliente cliente, /*Moneda*/String moneda, /*TipoDeCuenta*/ String tipoDeCuenta){
         this.clienteAsociadoCuenta = cliente;
         this.cbu = generarCbu();
         this.moneda = moneda;

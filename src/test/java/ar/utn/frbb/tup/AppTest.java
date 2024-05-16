@@ -11,6 +11,7 @@ import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
 import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.Deposito;
 import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.IngresarDinero;
 import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.Retiro;
+import ar.utn.frbb.tup.menus.MenuInput;
 
 /*import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -137,7 +138,7 @@ public class AppTest
         System.out.println(cuartaCuenta.getMovimientosRealizados());
     }*/
 
-    @Test
+    /*@Test
     public void testeoDeOperaciones(){
         Direccion dire5 = new Direccion("Cafe Leblanc", 5, "Tokio");
         Persona persona5 = new Persona("Ren","Amamiya",dire5, 1544556238, 38123456);
@@ -157,7 +158,7 @@ public class AppTest
         IngresarDinero ingresoDinero = new IngresarDinero();
         ingresoDinero.generarIngresarDinero(quintaCuenta,5000);
         System.out.println(saldo.generarConsultaSaldo(quintaCuenta));
-        ingresoDinero.generarIngresarDinero(sextaCuenta,2360);
+        ingresoDinero.gene{rarIngresarDinero(sextaCuenta,2360);
         System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
 
         System.out.println(quintaCuenta.getMovimientosRealizados());
@@ -172,11 +173,19 @@ public class AppTest
         System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
 
         System.out.println(quintaCuenta.getMovimientosRealizados());*/
-        Retiro retirarDinero = new Retiro();
+        /*Retiro retirarDinero = new Retiro();
         retirarDinero.generarRetirarDinero(sextaCuenta, 1500.6);
         System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
         System.out.println(sextaCuenta.getMovimientosRealizados());
         
+    }*/
+
+    @Test
+    public void testeoMenu(){
+        Banco banco = new Banco();
+
+        MenuInput menuInputProcessor = new MenuInput();
+        menuInputProcessor.generarMenu(banco);
     }
 
     

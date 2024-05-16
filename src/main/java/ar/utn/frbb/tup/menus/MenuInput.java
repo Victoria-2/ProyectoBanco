@@ -6,7 +6,7 @@ import ar.utn.frbb.tup.entidades.Persona;
 public class MenuInput extends Menu{
     private boolean menu;
     //constructor
-    MenuInput(){
+    public MenuInput(){
         this.menu = true;
     }
 
@@ -26,7 +26,8 @@ public class MenuInput extends Menu{
 
         while(menu = true){
             System.out.println("Bienveido a la aplicación de Banco "+banco.getNombre()+" !");
-            System.out.println("1. Crear una nueva Cuenta");
+            //System.out.println("0. Mi cuenta");
+            System.out.println("1. Crear una nueva Cuenta Bancaria");
             System.out.println("2. Generar un movimiento");
             System.out.println("3. Invitar a un amigo");
             System.out.println("4. Salir");
@@ -37,11 +38,20 @@ public class MenuInput extends Menu{
 
             switch (opcion) {
                 case 1:
-                    
+                    CuentaBancariaInput cuentaBancaria = new CuentaBancariaInput(); //PRUEBA
+                    cuentaBancaria.generarCuentaBancaria(banco); //PRUEBA
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    ClienteInput clienteYPersona = new ClienteInput();
+                    clienteYPersona.generarCliente(banco);
                     break;
 
                 case 4:
-                    System.out.print("Gracias por confiar en nosotros. Vuelva pronto !!");
+                    System.out.print("\n Gracias por confiar en nosotros. Vuelva pronto !!");
                     menu = false;
                     break;
             

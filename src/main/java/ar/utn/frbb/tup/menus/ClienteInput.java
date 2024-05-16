@@ -14,18 +14,27 @@ public class ClienteInput extends Menu{
 
         System.out.println("Ingrese el nombre del cliente:");
         String nombre = sc.next();
+        sc.nextLine();
         System.out.println("Ingrese el apellido del cliente:");
         String apellido = sc.next();
+        sc.nextLine();
 
         System.out.println("Ingrese la direccion cliente\n Calle:");
         String calle = sc.next();
+        sc.nextLine();
         System.out.println("Numero de calle:");
         int numero = sc.nextInt();
         System.out.println("Localidad:");
-        String localidad = sc.next();
+        String localidad = sc.nextLine();
+        sc.nextLine();
 
-        System.out.println("Ingrese el telefono del cliente:\n Formato: 15xxxxxxx");
-        int numeroTelefono = sc.nextInt();
+        System.out.println("Ingrese el telefono del cliente: (Formato: 15xxxxxxx)");
+        int numeroTelefono = Integer.parseInt(sc.next());
+        //estatura=Float.parseFloat(teclado.nextLine());
+
+        //estatura=Float.parseFloat(teclado.nextLine());
+
+        sc.nextLine();
         System.out.println("Ingrese el DNI del cliente:");
         int dni = sc.nextInt();
 
@@ -33,6 +42,10 @@ public class ClienteInput extends Menu{
         Persona persona = new Persona(nombre,apellido,direccion,numeroTelefono,dni);
         Cliente cliente = new Cliente(persona);
         banco.agregarUsuarios(dni, cliente);
+
+        clearScreen();
+        System.out.println("\n Su cuenta se ha registrado correctamente! Recuerde generar una Cuenta Bancaria para operar");
+        clearScreen(2);
 
         return cliente;
     }

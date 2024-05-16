@@ -8,7 +8,7 @@ public class Banco {
     private HashMap<String, CuentaBancaria> cuentasRegistradas = new HashMap<>();
 
     //metodos constructores
-    Banco(){}
+    public Banco(){}
     Banco(String nombre){
         this.nombre = nombre;
     }
