@@ -5,9 +5,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import ar.utn.frbb.tup.entidades.*;
-import ar.utn.frbb.tup.entidades.movimientos.Movimiento;
+//import ar.utn.frbb.tup.entidades.movimientos.Movimiento;
 //import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
 import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
+import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.Deposito;
+import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.IngresarDinero;
+import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.Retiro;
 
 /*import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -110,7 +113,7 @@ public class AppTest
 
     }*/
 
-    @Test
+    /*@Test
     public void ConsultaDeSaldo2(){
         Persona persona4 = new Persona();
         persona4.setNombre("Estela");
@@ -132,6 +135,50 @@ public class AppTest
         System.out.println(saldo.generarConsultaSaldo(cuartaCuenta));
 
         System.out.println(cuartaCuenta.getMovimientosRealizados());
+    }*/
+
+    @Test
+    public void testeoDeOperaciones(){
+        Direccion dire5 = new Direccion("Cafe Leblanc", 5, "Tokio");
+        Persona persona5 = new Persona("Ren","Amamiya",dire5, 1544556238, 38123456);
+        Cliente cliente5 = new Cliente(persona5);
+        Persona persona6 = new Persona("Francisco","Rodriguez",dire5, 1455693298, 235689741);
+        Cliente cliente6 = new Cliente(persona6);
+
+        Monedas  yen = Monedas.valueOf("YEN");
+        TipoDeCuenta corriente = TipoDeCuenta.valueOf("CAJA_DE_AHORROS");
+
+        CuentaBancaria quintaCuenta = new CuentaBancaria(cliente5, yen, corriente);
+        CuentaBancaria sextaCuenta = new CuentaBancaria(cliente6, yen, corriente);
+
+        ConsultaDeSaldo saldo = new ConsultaDeSaldo();
+        //System.out.println(saldo.generarConsultaSaldo(quintaCuenta));
+
+        IngresarDinero ingresoDinero = new IngresarDinero();
+        ingresoDinero.generarIngresarDinero(quintaCuenta,5000);
+        System.out.println(saldo.generarConsultaSaldo(quintaCuenta));
+        ingresoDinero.generarIngresarDinero(sextaCuenta,2360);
+        System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
+
+        System.out.println(quintaCuenta.getMovimientosRealizados());
+        //System.out.println(sextaCuenta);
+        //System.out.println(sextaCuenta.getSaldo());
+        System.out.println(sextaCuenta.getMovimientosRealizados());
+
+        Deposito hacerDeposito = new Deposito();
+        hacerDeposito.generarDeposito(quintaCuenta, 1000, sextaCuenta);
+
+        /*System.out.println(saldo.generarConsultaSaldo(quintaCuenta));
+        System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
+
+        System.out.println(quintaCuenta.getMovimientosRealizados());*/
+        Retiro retirarDinero = new Retiro();
+        retirarDinero.generarRetirarDinero(sextaCuenta, 1500.6);
+        System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
+        System.out.println(sextaCuenta.getMovimientosRealizados());
+        
+
+
     }
 
     

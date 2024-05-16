@@ -13,7 +13,7 @@ public class Persona {
 
     //metodo constructor
     public Persona(){}
-    Persona(String nombre, String apellido, Direccion direccion, int numTelefono, int dni){
+    public Persona(String nombre, String apellido, Direccion direccion, int numTelefono, int dni){
         this.nombre = nombre;
     }
 

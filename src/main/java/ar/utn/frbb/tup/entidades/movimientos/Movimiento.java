@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.Random;
 
 import ar.utn.frbb.tup.entidades.CuentaBancaria;
-import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
 
 public class Movimiento { //ES SOLO UN REGISTRO, es como un ticket
     private LocalDate fecha;
@@ -17,7 +16,7 @@ public class Movimiento { //ES SOLO UN REGISTRO, es como un ticket
     //private /*String*/CuentaBancaria cuentasAGenerarMovimentos; // si son dos, la primera es la que deposita y la segunda la q recibe el dinero
 
     //metodos constructores
-    public Movimiento(){
+    public Movimiento(CuentaBancaria cuenta){
         generarFechaOperacion();
         generarHoraOperacion();
         generarIdOperacion();

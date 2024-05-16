@@ -24,9 +24,10 @@ public class ConsultaDeSaldo extends Operacion {
         //this.cuentasAGenerarMovimentos = cuentas/*.getCBU()*/;
         //ConsultaDeSaldo consulta = new ConsultaDeSaldo();
         //double consulta = simpleConsultaDeSaldo(cuenta);
-        Movimiento movimiento = new Movimiento(this.tipoDeOperacion, cuenta.getSaldo());
-        //movimiento.setTipoDeMovimiento(this.tipoDeOperacion);
-        //movimiento.setMonto(cuenta.getSaldo());
+        //Movimiento movimiento = new Movimiento(this.tipoDeOperacion, cuenta.getSaldo());}
+        Movimiento movimiento = new Movimiento(cuenta);
+        movimiento.setTipoDeMovimiento(this.tipoDeOperacion);
+        movimiento.setMonto(cuenta.getSaldo());
         movimiento.guardarMovimiento(cuenta);
         return movimiento.getMonto();
     }
