@@ -19,7 +19,7 @@ public class AMBclienteInput extends Menu{
 
     private void bajaCliente(Cliente cliente){
         cliente.bajaCliente();
-        System.out.println("Lamentamos que se vaya :( \nSe ha dado de baja el cliente "+cliente.getNombre()+" "+cliente.getApellido());
+        System.out.println("Lamentamos que se vaya :("+cliente.getNombre()+" "+cliente.getApellido()+"\nSe ha dado de baja el cliente");
     }
 
     private void modificacionCliente(Cliente cliente){
@@ -107,7 +107,7 @@ public class AMBclienteInput extends Menu{
 
                 case 0:
                     clearScreen();
-                    menu = false;
+                    menu2 = false;
                     break;
             
                 default:

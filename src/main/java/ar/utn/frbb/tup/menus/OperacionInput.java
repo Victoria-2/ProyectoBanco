@@ -107,7 +107,7 @@ public class OperacionInput extends Menu {
                     break;
                 
                 case 6:
-                    //System.out.println("En estos momentos no se puede realizar esta operacion. Vuelva a intentarlo mas tarde");
+                    System.out.println("En estos momentos estamos trabajando en mejorar el sistema, si sus cambios no se ven reflejados, estamos en ello. Vuelva a intentarlo mas tarde");
                     AMBclienteInput amb = new AMBclienteInput();
                     amb.menuAMB(cliente.getClienteEncontrado());
 
