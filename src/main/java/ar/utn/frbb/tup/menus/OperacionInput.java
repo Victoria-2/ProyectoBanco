@@ -40,7 +40,7 @@ public class OperacionInput extends Menu {
             System.out.println("3. Realizar una transferencia"); //X
             System.out.println("4. Hacer un deposito"); //X
             System.out.println("5. Retirar dinero"); //X
-            System.out.println("6. Modificar mi cuenta de cliente del banco");
+            System.out.println("6. Operaciones con mi cuenta de cliente del banco");
             System.out.println("7. Consultar operaciones");//X
             System.out.println("0. Volver"); //X
             int opcion = sc.nextInt();
@@ -107,7 +107,10 @@ public class OperacionInput extends Menu {
                     break;
                 
                 case 6:
-                    
+                    //System.out.println("En estos momentos no se puede realizar esta operacion. Vuelva a intentarlo mas tarde");
+                    AMBclienteInput amb = new AMBclienteInput();
+                    amb.menuAMB(cliente.getClienteEncontrado());
+
                     break;
 
                 case 7:

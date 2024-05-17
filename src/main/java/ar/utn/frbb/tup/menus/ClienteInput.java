@@ -19,7 +19,7 @@ public class ClienteInput extends Menu{
         String apellido = sc.next();
         sc.nextLine();
 
-        System.out.println("Ingrese la direccion cliente\n Calle:");
+        System.out.println("Ingrese la direccion cliente \nCalle:");
         String calle = sc.next();
         sc.nextLine();
         System.out.println("Numero de calle:");

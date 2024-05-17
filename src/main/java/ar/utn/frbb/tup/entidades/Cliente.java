@@ -50,7 +50,7 @@ public class Cliente extends Persona {
         /*esto hacerlo con un menu y llamrlo aca */
 
     //BAJA CLIENTE
-    public void BajaCliente(){
+    public void bajaCliente(){
         this.estado = false;
     }
 
