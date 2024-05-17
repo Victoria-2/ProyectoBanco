@@ -17,15 +17,28 @@ public class BusquedaClienteYCuentaBancaria extends Menu{
     //constructores
     BusquedaClienteYCuentaBancaria(){}
 
-    public void buscarCliente(Banco banco){
-        System.out.println("Por cuestiones de seguridad, ingrese su DNI para comenzar la operacion:");
-        int buscarDNI = sc.nextInt();
-        Cliente cliente = (Cliente) (banco.getUsuariosRegistrados()).get(buscarDNI); 
+
+    //getters
+    public Cliente getClienteEncontrado() {
+        return clienteEncontrado;
+    }
+    public CuentaBancaria getCuentaBancariaEncontrada() {
+        return cuentaBancariaEncontrada;
     }
 
-    public void buscarCuentaBancaria(Cliente cliente){
-        System.out.println("Decida desde cual de sus cuentas quiere operar:");
-        HashMap hashmapDeCuentasBancariasCliente = cliente.getCuentasBancariasCliente();
+    //metodos
+    public Cliente buscarCliente(Banco banco, int dni){
+        Cliente cliente = (Cliente) (banco.getUsuariosRegistrados()).get(dni); 
+        clearScreen();
+
+        this.clienteEncontrado = cliente;
+
+        return cliente;
+    }
+
+    public CuentaBancaria buscarCuentaBancaria(){
+        System.out.println("Decida desde cual de las cuentas desea operar:");
+        HashMap hashmapDeCuentasBancariasCliente = clienteEncontrado.getCuentasBancariasCliente();
 
         ArrayList<CuentaBancaria> listaDeCuentasBancariasCliente = new ArrayList<CuentaBancaria>(hashmapDeCuentasBancariasCliente.values());
 
@@ -36,21 +49,12 @@ public class BusquedaClienteYCuentaBancaria extends Menu{
         int opcionCuentaBancaria = sc.nextInt();
         CuentaBancaria seleccionCuentaBancariaAOperar = listaDeCuentasBancariasCliente.get(opcionCuentaBancaria);
 
-        System.out.println(seleccionCuentaBancariaAOperar);
+        //System.out.println(seleccionCuentaBancariaAOperar);
 
+        clearScreen();
 
-       /*for (int i = 0; i < hashmapDeCuentasBancariasCliente.size(); i++) {
-            System.out.println(i + " " + hashmapDeCuentasBancariasCliente.values());
-        }*/
-        //listaDeCuentasBancariasCliente.add(hashmapDeCuentasBancariasCliente.values());
-        //System.out.println(cliente.getCuentasBancariasCliente());
-        /*for (HashMap cuentasBancarias : listaDeCuentasBancariasCliente.values()) {
-            
-        }*/
+        this.cuentaBancariaEncontrada = seleccionCuentaBancariaAOperar;
 
-        //Q ME DEVUELVA LAS CUENTAS DEL CLIENTE Y LUEGO SE ELIGE DESDE CUAL SE REALIZA LA OPERACION Y CHAU(!!!!)
-
-        //CuentaBancaria cuentaBancaria = (CuentaBancaria) (banco.getCuentasRegistradas()).getValue((((CuentaBancaria) banco.getCuentasRegistradas()).getClienteAsociadoCuenta())== cliente);
-        //CuentaBancaria cuenta = (CuentaBancaria) (banco.getCuentasRegistradas()).get(((cliente.getCuentasBancariasCliente()).getValue(cliente)).getCbu());
+        return seleccionCuentaBancariaAOperar;
     }
 }
