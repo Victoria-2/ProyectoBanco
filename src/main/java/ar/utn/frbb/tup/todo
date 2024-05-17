@@ -1,5 +1,8 @@
 cosas para hacer:
 	*AMB- depende q se modifique o q entre, es lo q se modifica. Una a la vez -- hacer en el mismo la opcion de 'dar de baja'
-	*armador/creador de listas - depende que entra, lo apsa a lista
+	*armador/creador de listas - depende que entra, lo apsa a lista -- herramienta
 	*Hacer la lista para los enums y que se guarde bien un enum y no un String
-	*Hacer mini menus para la consulta de saldo y operaciones realizadas asi no tiene una cantidad de segundos delimitada
+	*Hacer mini menus para la consulta de saldo y operaciones realizadas asi no tiene una cantidad de segundos delimitada -- herramienta
+    *Hacer las validaciones que se necesiten -- crear carpeta con 'validaciones'
+
+--> buscar la extension 'TODO Tree', viene con graficos 

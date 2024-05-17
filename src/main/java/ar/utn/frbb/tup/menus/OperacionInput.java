@@ -41,7 +41,7 @@ public class OperacionInput extends Menu {
             System.out.println("4. Hacer un deposito"); //X
             System.out.println("5. Retirar dinero"); //X
             System.out.println("6. Modificar mi cuenta de cliente del banco");
-            System.out.println("7. Consultar operaciones");//si llego, HACER UNA CONSULTA DE todas las OPERACIONES
+            System.out.println("7. Consultar operaciones");//X
             System.out.println("0. Volver"); //X
             int opcion = sc.nextInt();
 
@@ -114,7 +114,7 @@ public class OperacionInput extends Menu {
                     System.out.println("\nOperaciones Realizadas:");
                     System.out.println((cliente.getCuentaBancariaEncontrada()).getMovimientosRealizados());
                     System.out.println();
-                    clearScreen(5);
+                    clearScreen(8);
                     break;
 
                 case 0:
