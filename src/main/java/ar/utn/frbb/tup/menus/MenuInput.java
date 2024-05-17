@@ -24,13 +24,13 @@ public class MenuInput extends Menu{
         ClienteInput persona = new ClienteInput();
         persona.generarCliente(banco);
 
-        while(menu = true){
-            System.out.println("Bienveido a la aplicación de Banco "+banco.getNombre()+" !");
+        while(menu == true){
+            System.out.println("Bienvenido a la aplicacion de Banco "+banco.getNombre()+" !");
             //System.out.println("0. Mi cuenta");
             System.out.println("1. Crear una nueva Cuenta Bancaria");
-            System.out.println("2. Generar un movimiento");
+            System.out.println("2. Realizar una operacion");
             System.out.println("3. Invitar a un amigo");
-            System.out.println("4. Salir");
+            System.out.println("4. Salir");  
             System.out.print("Ingrese su opción (1-4): ");
 
             int opcion = sc.nextInt();
@@ -43,11 +43,13 @@ public class MenuInput extends Menu{
                     break;
 
                 case 2:
+                        OperacionInput operacion = new OperacionInput();
+                        operacion.generarOperacion(banco);
                     break;
 
                 case 3:
-                    ClienteInput clienteYPersona = new ClienteInput();
-                    clienteYPersona.generarCliente(banco);
+                    //ClienteInput clienteYPersona = new ClienteInput();
+                    /*clienteYP*/persona.generarCliente(banco);
                     break;
 
                 case 4:
@@ -57,7 +59,9 @@ public class MenuInput extends Menu{
             
                 default:
                     System.out.println("Opción inválida. Por favor seleccione entre los valores 1 y 4.");
+                    break;
             }
+            
         }
     }
     

@@ -138,7 +138,7 @@ public class AppTest
         System.out.println(cuartaCuenta.getMovimientosRealizados());
     }*/
 
-    /*@Test
+    @Test
     public void testeoDeOperaciones(){
         Direccion dire5 = new Direccion("Cafe Leblanc", 5, "Tokio");
         Persona persona5 = new Persona("Ren","Amamiya",dire5, 1544556238, 38123456);
@@ -149,8 +149,8 @@ public class AppTest
         Monedas  yen = Monedas.valueOf("YEN");
         TipoDeCuenta corriente = TipoDeCuenta.valueOf("CAJA_DE_AHORROS");
 
-        CuentaBancaria quintaCuenta = new CuentaBancaria(cliente5, yen, corriente);
-        CuentaBancaria sextaCuenta = new CuentaBancaria(cliente6, yen, corriente);
+        CuentaBancaria quintaCuenta = new CuentaBancaria(cliente5, "yen", "corriente");
+        CuentaBancaria sextaCuenta = new CuentaBancaria(cliente6, "yen", "corriente");
 
         ConsultaDeSaldo saldo = new ConsultaDeSaldo();
         //System.out.println(saldo.generarConsultaSaldo(quintaCuenta));
@@ -158,7 +158,7 @@ public class AppTest
         IngresarDinero ingresoDinero = new IngresarDinero();
         ingresoDinero.generarIngresarDinero(quintaCuenta,5000);
         System.out.println(saldo.generarConsultaSaldo(quintaCuenta));
-        ingresoDinero.gene{rarIngresarDinero(sextaCuenta,2360);
+        ingresoDinero.generarIngresarDinero(sextaCuenta,2360);
         System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
 
         System.out.println(quintaCuenta.getMovimientosRealizados());
@@ -176,17 +176,20 @@ public class AppTest
         /*Retiro retirarDinero = new Retiro();
         retirarDinero.generarRetirarDinero(sextaCuenta, 1500.6);
         System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
-        System.out.println(sextaCuenta.getMovimientosRealizados());
+        System.out.println(sextaCuenta.getMovimientosRealizados());*/
         
-    }*/
+    }
 
-    @Test
+    /*@Test
     public void testeoMenu(){
         Banco banco = new Banco();
 
         MenuInput menuInputProcessor = new MenuInput();
         menuInputProcessor.generarMenu(banco);
-    }
+    }*/ /*fijarme si cambiando que muestra la terminal se puede usar JUnit 5.9.5 */
+
+    /*PARA SEPARAR: es poner el nombre el archivo con y al final 'testeo' y adentro hacer los test de
+     todas ESA clase*/ /*mvn test-compile test en temrinal*/
 
     
 }

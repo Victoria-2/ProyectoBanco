@@ -4,6 +4,7 @@ import ar.utn.frbb.tup.entidades.Banco;
 import ar.utn.frbb.tup.entidades.Cliente;
 import ar.utn.frbb.tup.entidades.CuentaBancaria;
 import ar.utn.frbb.tup.entidades.Monedas;
+import ar.utn.frbb.tup.entidades.TipoDeCuenta;
 
 public class CuentaBancariaInput extends Menu{
     
@@ -17,14 +18,16 @@ public class CuentaBancariaInput extends Menu{
 
         System.out.println("Con que moneda desea operar?:");
         for (Monedas tipoDeMonedas : Monedas.values()) {
-            System.out.println("\n"+tipoDeMonedas);
+            System.out.println(tipoDeMonedas);
         }
+        System.out.println("\n");
         String monedaElegida = sc.next();
 
         System.out.println("Determine el tipo de cuenta que desea:");
-        for (Monedas tipoDeMonedas : Monedas.values()) {
-            System.out.println("\n"+tipoDeMonedas);
+        for (TipoDeCuenta tipoDeCuenta : TipoDeCuenta.values()) {
+            System.out.println(tipoDeCuenta);
         }
+        System.out.println("\n");
         String tipoCuentaElegida = sc.next();
 
 

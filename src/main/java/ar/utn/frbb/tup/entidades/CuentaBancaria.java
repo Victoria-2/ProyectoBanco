@@ -45,6 +45,11 @@ public class CuentaBancaria {
     }
 
     //metodos
+    
+    //CLIENTE ASOCIADO CUENTA
+    public Cliente getClienteAsociadoCuenta() {
+        return clienteAsociadoCuenta;
+    }
 
     //CBU
     private String generarCbu(){
@@ -57,6 +62,10 @@ public class CuentaBancaria {
         return numerosDelCbu;
     }
     public String getCBU(){
+        return this.cbu;
+    }
+
+    public String getCbu(){
         return this.cbu;
     }
 
@@ -92,9 +101,9 @@ public class CuentaBancaria {
     //TO STRING
     @Override
     public String toString() {
-        return "CuentaBancaria [clienteAsociadoCuenta=" + clienteAsociadoCuenta + ", cbu=" + cbu + ", moneda=" + moneda
+        return /* "CuentaBancaria [clienteAsociadoCuenta=" + clienteAsociadoCuenta + ",*/ "["+"cbu=" + cbu + ", moneda=" + moneda
                 + ", tipoDeCuenta=" + tipoDeCuenta + ", saldo=" + saldo + ", fechaApertura=" + fechaApertura
-                + ", estado=" + estado + "]";
+                + /* ", estado=" + estado +*/ "]";
     }
 
 
