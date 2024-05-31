@@ -7,3 +7,10 @@ cosas para hacer:
     *Hacer las validaciones que se necesiten -- crear carpeta con 'validaciones'
 
 --> buscar la extension 'TODO Tree', viene con graficos 
+---> buscar 'Prettier'
+
+	*Dividir en capas
+	*Hacer verificaciones
+	*Hacer exceptions
+	*Dividir el unit testing en sus correspondientes clases
+	*Hacer unit testing con Spring

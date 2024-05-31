@@ -4,14 +4,17 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import ar.utn.frbb.tup.entidades.*;
-//import ar.utn.frbb.tup.entidades.movimientos.Movimiento;
-//import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
-import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
-import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.Deposito;
-import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.IngresarDinero;
-import ar.utn.frbb.tup.entidades.movimientos.TiposDeOperaciones.Retiro;
-import ar.utn.frbb.tup.menus.MenuInput;
+import ar.utn.frbb.tup.model.Cliente;
+import ar.utn.frbb.tup.model.CuentaBancaria;
+import ar.utn.frbb.tup.model.Direccion;
+import ar.utn.frbb.tup.model.Monedas;
+import ar.utn.frbb.tup.model.Persona;
+import ar.utn.frbb.tup.model.TipoDeCuenta;
+import ar.utn.frbb.tup.presentation.input.MenuInput;
+import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
+import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.Deposito;
+import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.IngresarDinero;
+import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.Retiro;
 
 /*import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

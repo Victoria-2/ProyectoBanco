@@ -1,8 +1,8 @@
 package ar.utn.frbb.tup;
 
-import ar.utn.frbb.tup.entidades.Banco;
-import ar.utn.frbb.tup.menus.CuentaBancariaInput;
-import ar.utn.frbb.tup.menus.MenuInput;
+import ar.utn.frbb.tup.model.Banco;
+import ar.utn.frbb.tup.presentation.input.CuentaBancariaInput;
+import ar.utn.frbb.tup.presentation.input.MenuInput;
 
 /**
  * Hello world!
