@@ -35,7 +35,7 @@ public class BusquedaClienteYCuentaBancaria extends Menu{
         this.clienteEncontrado = cliente;
 
         return cliente;
-    }
+    } 
 
     public CuentaBancaria buscarCuentaBancaria(){
         System.out.println("Decida desde cual de las cuentas desea operar:");
