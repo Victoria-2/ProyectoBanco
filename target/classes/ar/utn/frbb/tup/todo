@@ -9,7 +9,8 @@ cosas para hacer:
 --> buscar la extension 'TODO Tree', viene con graficos 
 ---> buscar 'Prettier'
 
-	*Dividir en capas
+	*Dividir en capas -X
+	*Probar la buena division en capas
 	*Hacer verificaciones
 	*Hacer exceptions
 	*Dividir el unit testing en sus correspondientes clases

@@ -1,6 +1,6 @@
 package ar.utn.frbb.tup;
 
-import ar.utn.frbb.tup.model.Banco;
+import ar.utn.frbb.tup.model.*;
 import ar.utn.frbb.tup.presentation.input.CuentaBancariaInput;
 import ar.utn.frbb.tup.presentation.input.MenuInput;
 

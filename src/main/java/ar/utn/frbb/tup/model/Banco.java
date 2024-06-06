@@ -7,6 +7,7 @@ public class Banco {
     private HashMap<Integer, Cliente> usuariosRegistrados = new HashMap<>();
     private HashMap<String, CuentaBancaria> cuentasRegistradas = new HashMap<>();
 
+    
     //metodos constructores
     public Banco(){}
     Banco(String nombre){
