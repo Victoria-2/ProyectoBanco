@@ -1,11 +1,7 @@
-package ar.utn.frbb.tup.presentation.input;
+package ar.utn.frbb.tup.presentationNO.input;
 
-import ar.utn.frbb.tup.model.Banco;
-import ar.utn.frbb.tup.model.Cliente;
-import ar.utn.frbb.tup.model.CuentaBancaria;
-import ar.utn.frbb.tup.model.Menu;
-import ar.utn.frbb.tup.model.Monedas;
-import ar.utn.frbb.tup.model.TipoDeCuenta;
+import ar.utn.frbb.tup.model.*;
+import ar.utn.frbb.tup.model.TipoMonedas;
 
 public class CuentaBancariaInput extends Menu{
     
@@ -18,7 +14,7 @@ public class CuentaBancariaInput extends Menu{
         //System.out.println(cliente);
 
         System.out.println("Con que moneda desea operar?:");
-        for (Monedas tipoDeMonedas : Monedas.values()) {
+        for (TipoMonedas tipoDeMonedas : TipoMonedas.values()) {
             System.out.println(tipoDeMonedas);
         }
         System.out.println("\n");

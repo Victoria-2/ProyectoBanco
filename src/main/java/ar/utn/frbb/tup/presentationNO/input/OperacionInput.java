@@ -1,20 +1,13 @@
-package ar.utn.frbb.tup.presentation.input;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+package ar.utn.frbb.tup.presentationNO.input;
 
 
 import ar.utn.frbb.tup.model.Banco;
-import ar.utn.frbb.tup.model.Cliente;
-import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.Menu;
 import ar.utn.frbb.tup.persistence.BusquedaClienteYCuentaBancaria;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.IngresarDinero;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.Retiro;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.Transferencia;
+import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
+import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.IngresarDinero;
+import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.Retiro;
+import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.Transferencia;
 
 public class OperacionInput extends Menu {
     private boolean menu;

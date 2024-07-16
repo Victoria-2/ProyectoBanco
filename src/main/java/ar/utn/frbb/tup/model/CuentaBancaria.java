@@ -7,39 +7,39 @@ import java.util.Deque;
 //import java.util.Date;
 import java.util.Random;
 
-import ar.utn.frbb.tup.service.Movimiento;
+import ar.utn.frbb.tup.model.movimientos.Movimiento;
 
 //import org.apache.commons.lang3.time.DateUtils;
 
 public class CuentaBancaria {
-    private Cliente clienteAsociadoCuenta;
+    private Cliente titular;
     private String cbu; //este es el id -- en vez de 22 num son 20
-    private /*Monedas*/ String moneda;
-    private /*TipoDeCuenta*/ String tipoDeCuenta;
+    private TipoMonedas moneda;
+    private TipoDeCuenta tipoCuenta;
     private double saldo;
     private LocalDate fechaApertura;
     private Deque<Movimiento> movimientosRealizados = new ArrayDeque<>(); //me gusta porque puede ser fifo o lifo(!)
-    private boolean estado;
+    //private boolean estado;
 
     //metodos constructores
     public CuentaBancaria(Cliente cliente){
-        this.clienteAsociadoCuenta = cliente;
+        this.titular = cliente;
         this.cbu = generarCbu();
         this.saldo = 0.0;
         this.fechaApertura = generarFechaApertura();
         this.estado = true;
-        clienteAsociadoCuenta.setCuentasBancariasCliente(cbu, this);//aca guarda la cuenta ni bien se genera
+        titular.setCuentasBancariasCliente(cbu, this);//aca guarda la cuenta ni bien se genera
     }
 
     public CuentaBancaria(Cliente cliente, /*Moneda*/String moneda, /*TipoDeCuenta*/ String tipoDeCuenta){
-        this.clienteAsociadoCuenta = cliente;
+        this.titular = cliente;
         this.cbu = generarCbu();
         this.moneda = moneda;
-        this.tipoDeCuenta = tipoDeCuenta;
+        this.tipoCuenta = tipoDeCuenta;
         this.saldo = 0.0;
         this.fechaApertura = generarFechaApertura();
         this.estado = true;
-        clienteAsociadoCuenta.setCuentasBancariasCliente(cbu, this);
+        titular.setCuentasBancariasCliente(cbu, this);
 
         //agregar esta cuenta a la lista de cuentas del cliente
     }
@@ -47,8 +47,8 @@ public class CuentaBancaria {
     //metodos
     
     //CLIENTE ASOCIADO CUENTA
-    public Cliente getClienteAsociadoCuenta() {
-        return clienteAsociadoCuenta;
+    public Cliente getTitular() {
+        return titular;
     }
 
     //CBU
@@ -101,8 +101,8 @@ public class CuentaBancaria {
     //TO STRING
     @Override
     public String toString() {
-        return /* "CuentaBancaria [clienteAsociadoCuenta=" + clienteAsociadoCuenta + ",*/ "["+"cbu=" + cbu + ", moneda=" + moneda
-                + ", tipoDeCuenta=" + tipoDeCuenta + ", saldo=" + saldo + ", fechaApertura=" + fechaApertura
+        return /* "CuentaBancaria [titular=" + titular + ",*/ "["+"cbu=" + cbu + ", moneda=" + moneda
+                + ", tipoCuenta=" + tipoCuenta + ", saldo=" + saldo + ", fechaApertura=" + fechaApertura
                 + /* ", estado=" + estado +*/ "]";
     }
 

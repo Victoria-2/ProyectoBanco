@@ -1,8 +1,8 @@
-package ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones;
+package ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones;
 
 import ar.utn.frbb.tup.model.CuentaBancaria;
-import ar.utn.frbb.tup.service.Movimiento;
-import ar.utn.frbb.tup.service.Operacion;
+import ar.utn.frbb.tup.model.movimientos.Movimiento;
+import ar.utn.frbb.tup.model.movimientos.Operacion;
 
 public class Deposito extends Operacion{
     /*public Deposito(CuentaBancaria cuenta1, double dinero, CuentaBancaria cuenta2){

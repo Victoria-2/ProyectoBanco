@@ -1,4 +1,4 @@
-package ar.utn.frbb.tup.service;
+package ar.utn.frbb.tup.model.movimientos;
 
 public /*static*/ class Operacion {
     protected String tipoDeOperacion;

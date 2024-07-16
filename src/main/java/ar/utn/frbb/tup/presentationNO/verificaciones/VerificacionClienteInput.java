@@ -1,4 +1,4 @@
-package ar.utn.frbb.tup.presentation.verificaciones;
+package ar.utn.frbb.tup.presentationNO.verificaciones;
 
 public abstract class VerificacionClienteInput {
 

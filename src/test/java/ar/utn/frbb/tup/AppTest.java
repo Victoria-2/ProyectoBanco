@@ -2,19 +2,13 @@ package ar.utn.frbb.tup;
 
 import static org.junit.Assert.assertTrue;
 
+import ar.utn.frbb.tup.model.*;
 import org.junit.Test;
 
-import ar.utn.frbb.tup.model.Cliente;
-import ar.utn.frbb.tup.model.CuentaBancaria;
-import ar.utn.frbb.tup.model.Direccion;
-import ar.utn.frbb.tup.model.Monedas;
-import ar.utn.frbb.tup.model.Persona;
-import ar.utn.frbb.tup.model.TipoDeCuenta;
-import ar.utn.frbb.tup.presentation.input.MenuInput;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.Deposito;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.IngresarDinero;
-import ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones.Retiro;
+import ar.utn.frbb.tup.model.TipoMonedas;
+import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
+import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.Deposito;
+import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.IngresarDinero;
 
 /*import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -72,7 +66,7 @@ public class AppTest
 
         Cliente cliente3 = new Cliente(persona3);
 
-        Monedas peso = Monedas.valueOf("PESO_ARGENTINO");
+        TipoMonedas peso = TipoMonedas.valueOf("PESO_ARGENTINO");
         TipoDeCuenta corriente = TipoDeCuenta.valueOf("CUENTA_CORRIENTE");
 
        CuentaBancaria segundaCuenta =  new CuentaBancaria(cliente3,peso,corriente);
@@ -90,7 +84,7 @@ public class AppTest
 
         Cliente cliente4 = new Cliente(persona4);
 
-        Monedas peso = Monedas.valueOf("PESO_ARGENTINO");
+        TipoMonedas peso = TipoMonedas.valueOf("PESO_ARGENTINO");
         TipoDeCuenta corriente = TipoDeCuenta.valueOf("CUENTA_CORRIENTE");
 
        CuentaBancaria cuartaCuenta =  new CuentaBancaria(cliente4,peso,corriente);
@@ -128,7 +122,7 @@ public class AppTest
 
         Cliente cliente4 = new Cliente(persona4);
 
-        Monedas peso = Monedas.valueOf("PESO_ARGENTINO");
+        TipoMonedas peso = TipoMonedas.valueOf("PESO_ARGENTINO");
         TipoDeCuenta corriente = TipoDeCuenta.valueOf("CUENTA_CORRIENTE");
 
        CuentaBancaria cuartaCuenta =  new CuentaBancaria(cliente4,peso,corriente);
@@ -149,7 +143,7 @@ public class AppTest
         Persona persona6 = new Persona("Francisco","Rodriguez",dire5, 1455693298, 235689741);
         Cliente cliente6 = new Cliente(persona6);
 
-        Monedas  yen = Monedas.valueOf("YEN");
+        TipoMonedas yen = TipoMonedas.valueOf("YEN");
         TipoDeCuenta corriente = TipoDeCuenta.valueOf("CAJA_DE_AHORROS");
 
         CuentaBancaria quintaCuenta = new CuentaBancaria(cliente5, "yen", "corriente");

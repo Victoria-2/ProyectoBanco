@@ -2,15 +2,16 @@ package ar.utn.frbb.tup.model;
 
 public class Persona {
     //atributos
-    private String nombre;
-    private String apellido; 
-    private Direccion direccion; //Cuando se llame a direccion, generar el objeto en el menu!!
+    private String nombre; //!
+    private String apellido;  //!
+    private Direccion direccion;
     private int numTelefono;
-    private int dni;
-    /*private char genero;
-    private int nacimiento; //usarlo para chequear si es mayor o no
-    private String email;*/
+    private int dni; //!
+    private String genero;
+    private int nacimiento; //!
+    private String email;
 
+    //-----------A CHEQUEAR
     //metodo constructor
     public Persona(){}
     public Persona(String nombre, String apellido, Direccion direccion, int numTelefono, int dni){
@@ -67,15 +68,10 @@ public class Persona {
         this.dni = dni;
     }
 
-    //SOBREESCRIBIR EL TO STRING
     @Override
     public String toString() {
         return "\n Informacion de "+nombre+"\nNombre: " + nombre + "\nApellido: " + apellido + "\nDireccion:" + direccion + "\n numTelefono: "
                 + numTelefono + "Dni: " + dni;
     }
 
-    //IMPRIMIR
-    /*public String imprimir(){
-        return this.toString();
-    }*/
 }

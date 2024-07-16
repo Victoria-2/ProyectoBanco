@@ -1,4 +1,4 @@
-package ar.utn.frbb.tup.service.movimientos.TiposDeOperaciones;
+package ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones;
 
 import ar.utn.frbb.tup.model.CuentaBancaria;
 

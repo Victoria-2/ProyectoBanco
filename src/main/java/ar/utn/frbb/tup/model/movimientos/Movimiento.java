@@ -1,4 +1,4 @@
-package ar.utn.frbb.tup.service;
+package ar.utn.frbb.tup.model.movimientos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
