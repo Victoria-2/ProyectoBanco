@@ -1,4 +1,7 @@
-package ar.utn.frbb.tup.model;
+package ar.utn.frbb.tup.presentationNO;
+
+import ar.utn.frbb.tup.model.Cliente;
+import ar.utn.frbb.tup.model.CuentaBancaria;
 
 import java.util.HashMap;
 

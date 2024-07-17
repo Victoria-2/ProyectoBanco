@@ -2,8 +2,10 @@ package ar.utn.frbb.tup.presentationNO.input;
 
 import ar.utn.frbb.tup.model.*;
 import ar.utn.frbb.tup.model.TipoMonedas;
+import ar.utn.frbb.tup.presentationNO.Banco;
+import ar.utn.frbb.tup.presentationNO.Menu;
 
-public class CuentaBancariaInput extends Menu{
+public class CuentaBancariaInput extends Menu {
     
     public /*CuentaBancaria*/ void generarCuentaBancaria(Banco banco/*, Cliente cliente*/){
     

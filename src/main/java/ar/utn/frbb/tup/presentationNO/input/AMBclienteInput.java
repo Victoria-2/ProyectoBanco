@@ -2,7 +2,7 @@ package ar.utn.frbb.tup.presentationNO.input;
 
 import ar.utn.frbb.tup.model.Cliente;
 import ar.utn.frbb.tup.model.Direccion;
-import ar.utn.frbb.tup.model.Menu;
+import ar.utn.frbb.tup.presentationNO.Menu;
 
 public class AMBclienteInput extends Menu{
     private boolean menu;

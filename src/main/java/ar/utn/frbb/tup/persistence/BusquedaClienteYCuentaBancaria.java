@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ar.utn.frbb.tup.model.CuentaBancaria;
-import ar.utn.frbb.tup.model.Banco;
+import ar.utn.frbb.tup.presentationNO.Banco;
 import ar.utn.frbb.tup.model.Cliente;
-import ar.utn.frbb.tup.model.Menu;
+import ar.utn.frbb.tup.presentationNO.Menu;
 
 ///import ar.utn.frbb.tup.entidades.Cliente;
 //import ar.utn.frbb.tup.entidades.CuentaBancaria;

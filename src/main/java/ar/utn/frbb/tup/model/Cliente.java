@@ -1,38 +1,67 @@
 package ar.utn.frbb.tup.model;
 
+import ar.utn.frbb.tup.controller.ClienteDto;
+
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Cliente extends Persona {
     private String bancoCliente;
-    private int id;
+    private LocalDate fechaApertura;
     private TipoPersona tipoPersona;
     private Set<CuentaBancaria> cuentasBancariasCliente = new HashSet<>();
 
-    //-----------A CHEQUEAR
-    //metodos constructores
+    //constructores
     public Cliente(){
-        this.id = super.getDni();
+        super();
     }
-
+    public Cliente(ClienteDto clienteDto){
+        super(clienteDto.getNombre(), clienteDto.getApellido(), clienteDto.getDni(), clienteDto.getNacimiento());
+        fechaApertura = LocalDate.now();
+        bancoCliente = clienteDto.getBancoCliente();
+    }
 
     //metodos
 
-    //GUARDAR CUENTAS BANCARIAS
-    public void setCuentasBancariasCliente(String CBU, CuentaBancaria cuentaBancaria){
-        cuentasBancariasCliente.put(CBU, cuentaBancaria);
+    //BANCO CLIENTE
+    public String getBancoCliente() {
+        return bancoCliente;
     }
-    public HashMap getCuentasBancariasCliente(){
-        return cuentasBancariasCliente;
+    public void setBancoCliente(String bancoCliente) {
+        this.bancoCliente = bancoCliente;
     }
 
+    //FECHA APERTURA
+    public LocalDate getFechaApertura() {
+        return fechaApertura;
+    }
+    public void setFechaApertura(LocalDate fechaApertura) {
+        this.fechaApertura = fechaApertura;
+    }
 
-    // TO STRING
-    /*@Override
-    public String toString() {
-        return "Informacion Persona asociada:"+this.personaAsociadaCuenta+"Cliente [id=" + id + ", estado=" + estado + "]";
-    }*/
+    //TIPO PERSONA
+    public TipoPersona getTipoPersona() {
+        return tipoPersona;
+    }
+    public void setTipoPersona(TipoPersona tipoPersona) {
+        this.tipoPersona = tipoPersona;
+    }
 
+    //CUENTAS BANCARIAS
+    public void addCuenta(CuentaBancaria cuenta){
+        this.cuentasBancariasCliente.add(cuenta);
+        cuenta.setTitular(this);
+    }
+
+    public boolean tieneCuenta(TipoDeCuenta tipoDeCuenta, TipoMoneda tipoMoneda){
+        for(CuentaBancaria cuenta : cuentasBancariasCliente){
+            if ( tipoDeCuenta.equals(cuenta.getTipoCuenta()) && tipoMoneda.equals(cuenta.getMoneda())){
+                return true;
+            }
+        }
+        return false;
+    }
     
 }

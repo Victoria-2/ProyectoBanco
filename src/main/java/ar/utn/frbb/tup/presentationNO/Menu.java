@@ -1,4 +1,4 @@
-package ar.utn.frbb.tup.model;
+package ar.utn.frbb.tup.presentationNO;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;

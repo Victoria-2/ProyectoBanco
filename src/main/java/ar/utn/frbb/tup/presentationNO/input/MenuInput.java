@@ -1,7 +1,7 @@
 package ar.utn.frbb.tup.presentationNO.input;
 
-import ar.utn.frbb.tup.model.Banco;
-import ar.utn.frbb.tup.model.Menu;
+import ar.utn.frbb.tup.presentationNO.Banco;
+import ar.utn.frbb.tup.presentationNO.Menu;
 
 public class MenuInput extends Menu{
     private boolean menu;

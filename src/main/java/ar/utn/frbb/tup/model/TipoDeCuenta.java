@@ -1,7 +1,23 @@
 package ar.utn.frbb.tup.model;
 
 public enum TipoDeCuenta {
-    CAJA_DE_AHORROS,
-    CUENTA_CORRIENTE//,
-    //MENOR_DE_EDAD -- derjarlo en duda, q sea entre 13 y 17 como Cuenta DNI
+    CAJA_DE_AHORROS("CA"),
+    CUENTA_CORRIENTE("CC");
+
+    private final String descripcion;
+    TipoDeCuenta(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    public String getDescripcion(){
+        return descripcion;
+    }
+
+    public static TipoDeCuenta fromString(String texto) throws IllegalAccessException {
+        for (TipoDeCuenta tipo : TipoDeCuenta.values()){
+            if(tipo.descripcion.equalsIgnoreCase(texto)){
+                return tipo;
+            }
+        }
+        throw new IllegalAccessException("TipoDeCuenta invalido, "+texto+"no fue encontrado");
+    }
 }
