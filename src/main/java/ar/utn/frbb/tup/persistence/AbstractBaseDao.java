@@ -1,12 +1,17 @@
 package ar.utn.frbb.tup.persistence;
 
 import java.util.HashMap;
-
-import ar.utn.frbb.tup.model.CuentaBancaria;
+import java.util.Map;
 
 public abstract class AbstractBaseDao {
-    protected static HashMap<Integer, HashMap<String, CuentaBancaria> > HoboDataBase = new HashMap<>();
+    protected static Map<String, Map<Long, Object>> tinyDataBase = new HashMap<>();
+    protected abstract  String getEntityType();
 
-    //contructores
+    protected  Map<Long, Object> getInMemoryDatabase(){
+        if(tinyDataBase.get(getEntityType()) == null){
+            tinyDataBase.put(getEntityType(), new HashMap<>());
+        }
+        return tinyDataBase.get(getEntityType());
+    }
     
 }

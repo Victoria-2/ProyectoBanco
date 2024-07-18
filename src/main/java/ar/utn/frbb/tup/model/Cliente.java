@@ -50,11 +50,13 @@ public class Cliente extends Persona {
     }
 
     //CUENTAS BANCARIAS
+    public Set<CuentaBancaria> getCuentasBancariasCliente() {
+        return cuentasBancariasCliente;
+    }
     public void addCuenta(CuentaBancaria cuenta){
         this.cuentasBancariasCliente.add(cuenta);
         cuenta.setTitular(this);
     }
-
     public boolean tieneCuenta(TipoDeCuenta tipoDeCuenta, TipoMoneda tipoMoneda){
         for(CuentaBancaria cuenta : cuentasBancariasCliente){
             if ( tipoDeCuenta.equals(cuenta.getTipoCuenta()) && tipoMoneda.equals(cuenta.getMoneda())){

@@ -3,7 +3,7 @@ package ar.utn.frbb.tup.presentationNO.input;
 
 import ar.utn.frbb.tup.presentationNO.Banco;
 import ar.utn.frbb.tup.presentationNO.Menu;
-import ar.utn.frbb.tup.persistence.BusquedaClienteYCuentaBancaria;
+import ar.utn.frbb.tup.presentationNO.BusquedaClienteYCuentaBancaria;
 import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
 import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.IngresarDinero;
 import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.Retiro;
