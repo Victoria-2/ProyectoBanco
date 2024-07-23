@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class AbstractBaseDao {
-    protected static Map<String, Map<Long, Object>> tinyDataBase = new HashMap<>();
+    protected static Map<String, Map<Integer, Object>> tinyDataBase = new HashMap<>();
     protected abstract  String getEntityType();
 
-    protected  Map<Long, Object> getInMemoryDatabase(){
+    protected  Map<Integer, Object> getInMemoryDatabase(){
         if(tinyDataBase.get(getEntityType()) == null){
             tinyDataBase.put(getEntityType(), new HashMap<>());
         }

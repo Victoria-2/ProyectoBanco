@@ -9,13 +9,14 @@ import java.util.Random;
 
 import ar.utn.frbb.tup.controller.CuentaBancariaDto;
 import ar.utn.frbb.tup.model.movimientos.Movimiento;
+import org.springframework.cglib.core.Local;
 
 //import org.apache.commons.lang3.time.DateUtils;
 
 public class CuentaBancaria {
     private Cliente titular;
     private String cbu;
-    private final LocalDate fechaApertura;
+    private LocalDate fechaApertura;
     private TipoDeCuenta tipoCuenta;
     private TipoMoneda moneda;
     private double saldo;
@@ -62,6 +63,9 @@ public class CuentaBancaria {
     }
     public LocalDate getFechaApertura() {
         return fechaApertura;
+    }
+    public void setFechaApertura(LocalDate fechaApertura){
+        this.fechaApertura = fechaApertura;
     }
 
     //SALDO

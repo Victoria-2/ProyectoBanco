@@ -3,13 +3,10 @@ package ar.utn.frbb.tup.persistence.entity;
 import ar.utn.frbb.tup.model.Cliente;
 import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.TipoPersona;
-import ch.qos.logback.core.net.server.Client;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ClienteEntity extends  BaseEntity{
     private String nombre; //persona
