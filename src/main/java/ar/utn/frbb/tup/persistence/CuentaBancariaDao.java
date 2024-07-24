@@ -2,11 +2,13 @@ package ar.utn.frbb.tup.persistence;
 
 import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.persistence.entity.CuentaBancariaEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CuentaDao extends  AbstractBaseDao {
+@Component
+public class CuentaBancariaDao extends  AbstractBaseDao {
     public CuentaBancaria find(int id){
         if( (getInMemoryDatabase().get(id)) == null){
             return null;
