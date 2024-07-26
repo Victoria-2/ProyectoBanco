@@ -18,7 +18,7 @@ public class CuentaBancariaService {
     CuentaBancariaDao cuentaDao;
 
 
-    public boolean tipoCuentaEstaSoportada(CuentaBancaria cuenta){
+    public boolean tipoCuentaEstaSoportada(CuentaBancaria cuenta){ //A MEJORAR
         if((cuenta.getMoneda() == TipoMoneda.PESO_ARGENTINO) && (cuenta.getTipoCuenta() == TipoDeCuenta.CAJA_DE_AHORROS)){
             return true;
         } else if((cuenta.getMoneda() == TipoMoneda.DOLAR) && (cuenta.getTipoCuenta() == TipoDeCuenta.CAJA_DE_AHORROS)){
@@ -42,9 +42,9 @@ public class CuentaBancariaService {
 
      */
 
-    public void darDeAltaCuenta(CuentaBancaria cuenta, long dniTitular) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException {
-        if(cuentaDao.find(cuenta.getCbu()) != null) { //no entiendo si es el cbu o el dni
-            throw new CuentaAlreadyExistsException("La cuenta " + cuenta.getNumeroCuenta() + " ya existe.");
+    public void darDeAltaCuenta(CuentaBancaria cuenta, int dniTitular) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException, IllegalAccessException {
+        if(cuentaDao.find(cuenta.getTitular().getDni()) != null) { //nes el dni
+            throw new CuentaAlreadyExistsException("La cuenta con el dni " + cuenta.getTitular().getDni() + " ya existe");
         }
 
         //Chequear cuentas soportadas por el banco CA$ CC$ CAU$S
@@ -59,5 +59,7 @@ public class CuentaBancariaService {
     public CuentaBancaria find(int id) {
         return cuentaDao.find(id);
     }
+
+    //private void establecerCuentasSoportadas(){}
 
 }
