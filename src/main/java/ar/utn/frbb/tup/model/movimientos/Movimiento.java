@@ -35,7 +35,7 @@ public class Movimiento { //ES SOLO UN REGISTRO, es como un ticket
 
     //GUARDAR MOVIMIENTO
     public void guardarMovimiento(CuentaBancaria cuenta){
-        cuenta.setMovimientosRealizados(this);
+        //cuenta.setMovimientosRealizados(this);
     }
 
     //ID OPERACION

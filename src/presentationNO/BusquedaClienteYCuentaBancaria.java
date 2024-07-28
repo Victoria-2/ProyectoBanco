@@ -28,7 +28,7 @@ public class BusquedaClienteYCuentaBancaria extends Menu{
     //metodos
     public Cliente buscarCliente(Banco banco, int dni){
         Cliente cliente = (Cliente) (banco.getUsuariosRegistrados()).get(dni); 
-        clearScreen();
+        Menu.clearScreen();
 
         this.clienteEncontrado = cliente;
 
@@ -50,7 +50,7 @@ public class BusquedaClienteYCuentaBancaria extends Menu{
 
         //System.out.println(seleccionCuentaBancariaAOperar);
 
-        clearScreen();
+        Menu.clearScreen();
 
         this.cuentaBancariaEncontrada = seleccionCuentaBancariaAOperar;
 

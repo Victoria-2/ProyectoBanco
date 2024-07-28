@@ -20,7 +20,7 @@ public class Transferencia extends Operacion{
 
         Movimiento movimiento2 = new Movimiento(cuenta2);
         movimiento2.setMonto(dinero);
-        movimiento2.setTipoDeMovimiento("Transferencia recibida de cuenta "+cuenta1.getCBU());
+       // movimiento2.setTipoDeMovimiento("Transferencia recibida de cuenta "+cuenta1.getCBU());
         movimiento2.guardarMovimiento(cuenta2);
     }
     

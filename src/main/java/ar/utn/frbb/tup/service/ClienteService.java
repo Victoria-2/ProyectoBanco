@@ -7,7 +7,9 @@ import ar.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
 import ar.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
 import ar.utn.frbb.tup.persistence.ClienteDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClienteService {
 
     //ALGO PASA QUE TODOS POR ALGUN MOTIVO ME PONEN EL 'throws'

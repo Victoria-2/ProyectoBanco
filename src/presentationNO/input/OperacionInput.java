@@ -46,7 +46,7 @@ public class OperacionInput extends Menu {
                     System.out.println("Su saldo actual de la cuenta"+ (cliente.getCuentaBancariaEncontrada()).getCbu()+" es: "); //poner en que moneda es, hay que generar un get
                     ConsultaDeSaldo consultarSaldo = new ConsultaDeSaldo();
                     System.out.println(consultarSaldo.generarConsultaSaldo(cliente.getCuentaBancariaEncontrada()));
-                    clearScreen(3);
+                    Menu.clearScreen(3);
                     break;
 
                 case 2:
@@ -55,7 +55,7 @@ public class OperacionInput extends Menu {
                     IngresarDinero ingreso = new IngresarDinero();
                     ingreso.generarIngresarDinero(cliente.getCuentaBancariaEncontrada(), dinero);
                     System.out.println("\nSe ha ingresado el dinero correctamente.");
-                    clearScreen(2);
+                    Menu.clearScreen(2);
                     break;
 
                 case 4: //lo dejo igual porque su codigo es igual al de transferencia, dps en capas lo divido bien
@@ -84,7 +84,7 @@ public class OperacionInput extends Menu {
                     Transferencia transferencia = new Transferencia();
                     transferencia.generarTransferencia(cliente.getCuentaBancariaEncontrada(), montoTransferencia, cliente2.getCuentaBancariaEncontrada());
                     System.out.println("\nLa transferencia se ha realizado correctamente");
-                    clearScreen(2);
+                    Menu.clearScreen(2);
                     break;
                 
                 /*case 4:
@@ -99,7 +99,7 @@ public class OperacionInput extends Menu {
                     Retiro retirar = new Retiro();
                     retirar.generarRetirarDinero(cliente.getCuentaBancariaEncontrada(),dineroARetirar);
                     System.out.println("\nSe ha retirado el dinero correctamente.");
-                    clearScreen(2);
+                    Menu.clearScreen(2);
                     break;
                 
                 case 6:
@@ -113,17 +113,17 @@ public class OperacionInput extends Menu {
                     System.out.println("\nOperaciones Realizadas:");
                     System.out.println((cliente.getCuentaBancariaEncontrada()).getMovimientosRealizados());
                     System.out.println();
-                    clearScreen(8);
+                    Menu.clearScreen(8);
                     break;
 
                 case 0:
-                    clearScreen();
+                    Menu.clearScreen();
                     menu = false;
                     break;
             
                 default:
                     System.out.println("Opción inválida. Por favor seleccione entre los valores 0 y 7.");
-                    clearScreen(2);
+                    Menu.clearScreen(2);
                     break;
             }
 

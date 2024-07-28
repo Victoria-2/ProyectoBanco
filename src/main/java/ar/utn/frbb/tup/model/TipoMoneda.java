@@ -1,7 +1,7 @@
 package ar.utn.frbb.tup.model;
 
 public enum TipoMoneda {
-    YEN("JPY"),
+    DOLAR("USD"),
     PESO_ARGENTINO("ARS");
 
     private final String descripcion;

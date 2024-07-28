@@ -1,5 +1,6 @@
 package ar.utn.frbb.tup.service;
 
+import ar.utn.frbb.tup.controller.CuentaBancariaDto;
 import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.exception.CuentaAlreadyExistsException;
 import ar.utn.frbb.tup.model.exception.CuentaNoSoportadaException;
@@ -18,12 +19,12 @@ public class CuentaBancariaService {
     CuentaBancariaDao cuentaDao;
 
 
-    public boolean tipoCuentaEstaSoportada(CuentaBancaria cuenta){ //A MEJORAR
-        if((cuenta.getMoneda() == TipoMoneda.PESO_ARGENTINO) && (cuenta.getTipoCuenta() == TipoDeCuenta.CAJA_DE_AHORROS)){
+    public boolean tipoCuentaEstaSoportada(CuentaBancariaDto cuenta){ //A MEJORAR
+        if((cuenta.getMoneda().equals(TipoMoneda.PESO_ARGENTINO.toString()) && (cuenta.getTipoCuenta().equals(TipoDeCuenta.CAJA_DE_AHORROS.toString())))){
             return true;
-        } else if((cuenta.getMoneda() == TipoMoneda.DOLAR) && (cuenta.getTipoCuenta() == TipoDeCuenta.CAJA_DE_AHORROS)){
+        } else if((cuenta.getMoneda().equals(TipoMoneda.DOLAR.toString()) && (cuenta.getTipoCuenta().equals( TipoDeCuenta.CAJA_DE_AHORROS.toString())))){
             return true;
-        } else return (cuenta.getMoneda() == TipoMoneda.PESO_ARGENTINO) && (cuenta.getTipoCuenta() == TipoDeCuenta.CUENTA_CORRIENTE);
+        } else return (cuenta.getMoneda().equals( TipoMoneda.PESO_ARGENTINO.toString()) && (cuenta.getTipoCuenta().equals( TipoDeCuenta.CUENTA_CORRIENTE.toString())));
     }
 
     /*
@@ -42,18 +43,21 @@ public class CuentaBancariaService {
 
      */
 
-    public void darDeAltaCuenta(CuentaBancaria cuenta, int dniTitular) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException, IllegalAccessException {
-        if(cuentaDao.find(cuenta.getTitular().getDni()) != null) { //nes el dni
-            throw new CuentaAlreadyExistsException("La cuenta con el dni " + cuenta.getTitular().getDni() + " ya existe");
+    public CuentaBancaria darDeAltaCuenta(CuentaBancariaDto cuentaDto) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException, IllegalAccessException {
+        if(cuentaDao.find(cuentaDto.getDniTitular()) != null) { //nes el dni
+            throw new CuentaAlreadyExistsException("La cuenta con el dni " + cuentaDto.getDniTitular() + " ya existe");
         }
 
         //Chequear cuentas soportadas por el banco CA$ CC$ CAU$S
-        if (!tipoCuentaEstaSoportada(cuenta)) {
-            throw new CuentaNoSoportadaException("Ya posee una cuenta del tipo " + cuenta.getTipoCuenta());
+        if (!tipoCuentaEstaSoportada(cuentaDto)) {
+            throw new CuentaNoSoportadaException("Ya posee una cuenta del tipo " + cuentaDto.getTipoCuenta());
         }
 
-        clienteService.agregarCuenta(cuenta, dniTitular);
+        CuentaBancaria cuenta = new CuentaBancaria(cuentaDto);
+
+        clienteService.agregarCuenta(cuenta, cuenta.getTitular().getDni());
         cuentaDao.save(cuenta);
+        return cuenta;
     }
 
     public CuentaBancaria find(int id) {

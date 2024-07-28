@@ -9,6 +9,11 @@ public class CustomApiError {
     private Integer errorCode;
     private String errorMessage;
 
+    public CustomApiError(){}
+    public CustomApiError(String errorMessage){
+        this.errorMessage = errorMessage;
+    }
+
     //getters y setters
     public Integer getErrorCode() {
         return errorCode;
