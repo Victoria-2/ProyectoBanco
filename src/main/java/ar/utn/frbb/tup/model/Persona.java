@@ -15,11 +15,11 @@ public class Persona {
 
     //metodo constructor
     public Persona(){}
-    public Persona(String nombre, String apellido, int dni, LocalDate nacimiento) {
+    public Persona(String nombre, String apellido, int dni, String nacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.nacimiento = nacimiento;
+        this.nacimiento = LocalDate.parse(nacimiento);
     }
     /*public Persona(String apellido, String nombre, Direccion direccion, String numTelefono, int dni, LocalDate nacimiento, String email) {
         this.apellido = apellido;

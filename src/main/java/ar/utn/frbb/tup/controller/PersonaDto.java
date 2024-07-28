@@ -8,17 +8,17 @@ public class PersonaDto {
     //private Direccion direccion;
     //private String numTelefono;
     private int dni; //!
-    private LocalDate nacimiento; //!
+    private String nacimiento; //!
     // private String email;
 
     //metodo constructor
-    public PersonaDto(){}
-    public PersonaDto(String nombre, String apellido, int dni, LocalDate nacimiento) {
+    /*public PersonaDto(){}
+    public PersonaDto(String nombre, String apellido, int dni, String nacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.nacimiento = nacimiento;
-    }
+    }*/
 
     //metodos
     public String getNombre() {
@@ -42,10 +42,10 @@ public class PersonaDto {
         this.dni = dni;
     }
 
-    public LocalDate getNacimiento() {
+    public String getNacimiento() {
         return nacimiento;
     }
-    public void setNacimiento(LocalDate nacimiento) {
+    public void setNacimiento(String nacimiento) {
         this.nacimiento = nacimiento;
     }
 }

@@ -4,7 +4,7 @@ import ar.utn.frbb.tup.model.TipoPersona;
 
 public class ClienteDto extends PersonaDto{
     private String bancoCliente;
-    private TipoPersona tipoPersona;
+    private String tipoPersona;
 
     //metodos
     public String getBancoCliente() {
@@ -14,10 +14,10 @@ public class ClienteDto extends PersonaDto{
         this.bancoCliente = bancoCliente;
     }
 
-    public TipoPersona getTipoPersona() {
+    public String getTipoPersona() {
         return tipoPersona;
     }
-    public void setTipoPersona(TipoPersona tipoPersona) {
+    public void setTipoPersona(String tipoPersona) {
         this.tipoPersona = tipoPersona;
     }
 

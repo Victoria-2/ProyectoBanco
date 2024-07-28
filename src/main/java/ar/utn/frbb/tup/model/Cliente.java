@@ -3,7 +3,6 @@ package ar.utn.frbb.tup.model;
 import ar.utn.frbb.tup.controller.ClienteDto;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 

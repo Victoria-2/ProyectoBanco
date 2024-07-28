@@ -2,9 +2,7 @@ package ar.utn.frbb.tup.model;
 
 public enum TipoMoneda {
     YEN("JPY"),
-    PESO_ARGENTINO("ARS"),
-    DOLAR("USD"),
-    EURO("EUR");
+    PESO_ARGENTINO("ARS");
 
     private final String descripcion;
     TipoMoneda(String descripcion) {
@@ -20,6 +18,6 @@ public enum TipoMoneda {
                 return tipo;
             }
         }
-        throw new IllegalAccessException("TipoMoneda invalido, "+texto+"no fue encontrado");
+        throw new IllegalAccessException("TipoMoneda invalido, "+texto+" no fue encontrado");
     }
 }
