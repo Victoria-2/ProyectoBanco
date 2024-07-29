@@ -1,17 +1,9 @@
 package ar.utn.frbb.tup.model;
 
 import java.time.LocalDate;
-import java.util.ArrayDeque;
-import java.util.Deque;
-//import java.util.Calendar;
-//import java.util.Date;
 import java.util.Random;
 
 import ar.utn.frbb.tup.controller.CuentaBancariaDto;
-import ar.utn.frbb.tup.model.movimientos.Movimiento;
-import org.springframework.cglib.core.Local;
-
-//import org.apache.commons.lang3.time.DateUtils;
 
 public class CuentaBancaria {
     private Cliente titular;
@@ -28,8 +20,11 @@ public class CuentaBancaria {
         this.saldo = 0.0;
     }
     public CuentaBancaria(CuentaBancariaDto cuentaBancariaDto){
+        this.tipoCuenta = TipoDeCuenta.fromString(cuentaBancariaDto.getTipoCuenta());
+        this.moneda = TipoMoneda.fromString(cuentaBancariaDto.getMoneda());
         this.fechaApertura = generarFechaApertura();
-        //aca hay algo de tipo cuenta (??
+        this.saldo = 0.0;
+        this.cbu = generarCbu();
     }
 
     //-----------------------------------
@@ -83,7 +78,6 @@ public class CuentaBancaria {
     }
     public void setTipoCuenta(TipoDeCuenta tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
-        //aca habia puesto el profe un return, pero creo que era para hacer sets uno atras del otro
     }
 
     //MONEDA

@@ -13,7 +13,7 @@ public class ClienteValidator {
     }
 
     private void validateTipoPersona(ClienteDto clienteDto){
-        if(!"F".equals(clienteDto.getTipoPersona()) || (!"J".equals(clienteDto.getTipoPersona()))){
+        if(!"F".equals(clienteDto.getTipoPersona()) && (!"J".equals(clienteDto.getTipoPersona()))){
             throw new IllegalArgumentException("El tipo de persona "+clienteDto.getTipoPersona()+" no es aceptado"); //no se si hay que hacer un toString para que lo muestre
         }
     }

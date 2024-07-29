@@ -12,12 +12,12 @@ public enum TipoDeCuenta {
         return descripcion;
     }
 
-    public static TipoDeCuenta fromString(String texto) throws IllegalAccessException {
+    public static TipoDeCuenta fromString(String texto) {
         for (TipoDeCuenta tipo : TipoDeCuenta.values()){
             if(tipo.descripcion.equalsIgnoreCase(texto)){
                 return tipo;
             }
         }
-        throw new IllegalAccessException("TipoDeCuenta invalido, "+texto+"no fue encontrado");
+        throw new IllegalArgumentException("TipoDeCuenta invalido, "+texto+"no fue encontrado");
     }
 }

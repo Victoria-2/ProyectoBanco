@@ -13,6 +13,10 @@ public class CustomApiError {
     public CustomApiError(String errorMessage){
         this.errorMessage = errorMessage;
     }
+    public CustomApiError(String errorMessage, Integer errorCode){
+        this.errorMessage = errorMessage;
+        this.errorCode = errorCode;
+    }
 
     //getters y setters
     public Integer getErrorCode() {

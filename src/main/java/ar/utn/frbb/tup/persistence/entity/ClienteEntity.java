@@ -29,7 +29,7 @@ public class ClienteEntity extends  BaseEntity{
         addCuentasCliente(cliente);
     }
 
-    public Cliente toCliente() throws IllegalAccessException { //MANEJAR LA EXCEPCION EN ALGUN LUGAR!!
+    public Cliente toCliente() { //MANEJAR LA EXCEPCION EN ALGUN LUGAR!!
         Cliente cliente = new Cliente();
         cliente.setNombre(this.nombre);
         cliente.setApellido(this.apellido);

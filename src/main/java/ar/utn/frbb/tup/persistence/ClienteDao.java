@@ -12,7 +12,7 @@ public class ClienteDao extends  AbstractBaseDao{
     @Autowired
     CuentaBancariaDao cuentaBancariaDao;
 
-    public Cliente find(int dni, boolean loadComplete) throws IllegalAccessException {
+    public Cliente find(int dni, boolean loadComplete) {
         if(getInMemoryDatabase().get(dni) == null){
             return null;
         }

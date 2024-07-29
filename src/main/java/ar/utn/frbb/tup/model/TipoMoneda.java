@@ -12,12 +12,12 @@ public enum TipoMoneda {
         return descripcion;
     }
 
-    public static TipoMoneda fromString(String texto) throws IllegalAccessException {
+    public static TipoMoneda fromString(String texto){
         for (TipoMoneda tipo : TipoMoneda.values()){
             if(tipo.descripcion.equalsIgnoreCase(texto)){
                 return tipo;
             }
         }
-        throw new IllegalAccessException("TipoMoneda invalido, "+texto+" no fue encontrado");
+        throw new IllegalArgumentException("TipoMoneda invalido, "+texto+" no fue encontrado");
     }
 }

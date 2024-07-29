@@ -5,13 +5,10 @@ import java.time.Period;
 
 public class Persona {
     //atributos
-    private String nombre; //!
-    private String apellido;  //!
-    //private Direccion direccion;
-    //private String numTelefono;
-    private int dni; //!
-    private LocalDate nacimiento; //!
-   // private String email;
+    private String nombre;
+    private String apellido;
+    private int dni;
+    private LocalDate nacimiento;
 
     //metodo constructor
     public Persona(){}
@@ -21,15 +18,6 @@ public class Persona {
         this.dni = dni;
         this.nacimiento = LocalDate.parse(nacimiento);
     }
-    /*public Persona(String apellido, String nombre, Direccion direccion, String numTelefono, int dni, LocalDate nacimiento, String email) {
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.numTelefono = numTelefono;
-        this.dni = dni;
-        this.nacimiento = nacimiento;
-        this.email = email;
-    }*/
 
     //metodos
     public String getNombre() {
@@ -46,20 +34,6 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    /*public String getNumTelefono() {
-        return numTelefono;
-    }
-    public void setNumTelefono(String numTelefono) {
-        this.numTelefono = numTelefono;
-    }
-
-    public Direccion getDireccion() {
-        return direccion;
-    }
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
-    }*/
-
     public int getDni() {
         return dni;
     }
@@ -74,21 +48,6 @@ public class Persona {
         this.nacimiento = nacimiento;
     }
 
-    /*public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }*/
-
-    //TO STRING
-    /*@Override
-    public String toString() {
-        return "\n Informacion de "+nombre+"\nNombre: " + nombre + "\nApellido: " + apellido + "\nDireccion:" + direccion + "\n numTelefono: "
-                + numTelefono + "Dni: " + dni;
-    }*/
-
-    //EDAD
     public int getEdad() {
         LocalDate fechaHoy = LocalDate.now();
         Period edad = Period.between(nacimiento, fechaHoy);

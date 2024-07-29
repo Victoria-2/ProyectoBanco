@@ -2,13 +2,9 @@ package ar.utn.frbb.tup;
 
 import static org.junit.Assert.assertTrue;
 
-import ar.utn.frbb.tup.model.*;
 import org.junit.Test;
 
 import ar.utn.frbb.tup.model.TipoMonedas;
-import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.ConsultaDeSaldo;
-import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.Deposito;
-import ar.utn.frbb.tup.model.movimientos.TiposDeOperaciones.IngresarDinero;
 
 /*import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +13,7 @@ import static org.junit.Assert.assertTrue;*/
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class PrimerAppTest
 {
     /*@Test
     public void shouldAnswerWithTrue()
@@ -67,7 +63,7 @@ public class AppTest
         Cliente cliente3 = new Cliente(persona3);
 
         TipoMonedas peso = TipoMonedas.valueOf("PESO_ARGENTINO");
-        TipoDeCuenta corriente = TipoDeCuenta.valueOf("CUENTA_CORRIENTE");
+        TipoDeCuentaTest corriente = TipoDeCuentaTest.valueOf("CUENTA_CORRIENTE");
 
        CuentaBancaria segundaCuenta =  new CuentaBancaria(cliente3,peso,corriente);
        System.out.println(segundaCuenta);
@@ -85,7 +81,7 @@ public class AppTest
         Cliente cliente4 = new Cliente(persona4);
 
         TipoMonedas peso = TipoMonedas.valueOf("PESO_ARGENTINO");
-        TipoDeCuenta corriente = TipoDeCuenta.valueOf("CUENTA_CORRIENTE");
+        TipoDeCuentaTest corriente = TipoDeCuentaTest.valueOf("CUENTA_CORRIENTE");
 
        CuentaBancaria cuartaCuenta =  new CuentaBancaria(cliente4,peso,corriente);
        System.out.println(cuartaCuenta);
@@ -123,7 +119,7 @@ public class AppTest
         Cliente cliente4 = new Cliente(persona4);
 
         TipoMonedas peso = TipoMonedas.valueOf("PESO_ARGENTINO");
-        TipoDeCuenta corriente = TipoDeCuenta.valueOf("CUENTA_CORRIENTE");
+        TipoDeCuentaTest corriente = TipoDeCuentaTest.valueOf("CUENTA_CORRIENTE");
 
        CuentaBancaria cuartaCuenta =  new CuentaBancaria(cliente4,peso,corriente);
        //System.out.println(cuartaCuenta);
@@ -135,6 +131,7 @@ public class AppTest
         System.out.println(cuartaCuenta.getMovimientosRealizados());
     }*/
 
+    /*
     @Test
     public void testeoDeOperaciones(){
         Direccion dire5 = new Direccion("Cafe Leblanc", 5, "Tokio");
@@ -144,7 +141,7 @@ public class AppTest
         Cliente cliente6 = new Cliente(persona6);
 
         TipoMonedas yen = TipoMonedas.valueOf("YEN");
-        TipoDeCuenta corriente = TipoDeCuenta.valueOf("CAJA_DE_AHORROS");
+        TipoDeCuentaTest corriente = TipoDeCuentaTest.valueOf("CAJA_DE_AHORROS");
 
         CuentaBancaria quintaCuenta = new CuentaBancaria(cliente5, "yen", "corriente");
         CuentaBancaria sextaCuenta = new CuentaBancaria(cliente6, "yen", "corriente");
@@ -173,17 +170,16 @@ public class AppTest
         /*Retiro retirarDinero = new Retiro();
         retirarDinero.generarRetirarDinero(sextaCuenta, 1500.6);
         System.out.println(saldo.generarConsultaSaldo(sextaCuenta));
-        System.out.println(sextaCuenta.getMovimientosRealizados());*/
-        
+        System.out.println(sextaCuenta.getMovimientosRealizados());
     }
 
-    /*@Test
+    @Test
     public void testeoMenu(){
         Banco banco = new Banco();
 
         MenuInput menuInputProcessor = new MenuInput();
         menuInputProcessor.generarMenu(banco);
-    }*/ /*fijarme si cambiando que muestra la terminal se puede usar JUnit 5.9.5 */
+    } /*fijarme si cambiando que muestra la terminal se puede usar JUnit 5.9.5 */
 
     /*PARA SEPARAR: es poner el nombre el archivo con y al final 'testeo' y adentro hacer los test de
      todas ESA clase*/ /*mvn test-compile test en temrinal*/

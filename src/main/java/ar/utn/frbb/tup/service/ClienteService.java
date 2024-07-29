@@ -12,27 +12,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClienteService {
 
-    //ALGO PASA QUE TODOS POR ALGUN MOTIVO ME PONEN EL 'throws'
-    @Autowired //no se si esto esta bien -- CAMBIADO
+    @Autowired
     ClienteDao clienteDao;
 
-    public Cliente darDeAltaCliente(ClienteDto clienteDto) throws IllegalAccessException, ClienteAlreadyExistsException { //MANEJAR EL IllAccExp
+    public Cliente darDeAltaCliente(ClienteDto clienteDto) throws  ClienteAlreadyExistsException {
         Cliente cliente = new Cliente(clienteDto);
-        validatorAlta(cliente); //FIJARME SI TENGO QUE PONER UN IF, tipo, si lo guarda igual o no
+        validatorAlta(cliente);
         clienteDao.save(cliente);
         return cliente;
     }
 
-    public void agregarCuenta(CuentaBancaria cuentaBancaria, int dni) throws IllegalAccessException, TipoCuentaAlreadyExistsException {
+    public void agregarCuenta(CuentaBancaria cuentaBancaria, int dni) throws TipoCuentaAlreadyExistsException {
         Cliente titular = buscarClientePorDni(dni);
-        cuentaBancaria.setTitular(titular); //REDUNDANTE, YA TIENE LA CUENTA UN TITULAR (?
-        validatorAgregarCuenta(titular, cuentaBancaria); // de vuelta, no se si hay que poner un if y devolver un bool
+        cuentaBancaria.setTitular(titular);
+        validatorAgregarCuenta(titular, cuentaBancaria);
 
         titular.addCuenta(cuentaBancaria);
         clienteDao.save(titular);
     }
 
-    public Cliente buscarClientePorDni(int dni) throws IllegalAccessException{ //! LA EXCEPCION
+    public Cliente buscarClientePorDni(int dni) {
         Cliente cliente = clienteDao.find(dni, true);
         if(cliente == null){
             throw  new IllegalArgumentException("El cliente solicitado no existe");
@@ -40,14 +39,13 @@ public class ClienteService {
         return cliente;
     }
 
-
-    private void validatorAlta(Cliente cliente) throws IllegalAccessException, ClienteAlreadyExistsException {
+    private void validatorAlta(Cliente cliente) throws ClienteAlreadyExistsException {
         if(clienteDao.find(cliente.getDni(), false) != null){
-            throw  new ClienteAlreadyExistsException("Ya existe el cliente"+cliente.getDni());
+            throw new ClienteAlreadyExistsException("Ya existe el cliente"+cliente.getDni());
         }
 
-        if(cliente.getEdad() < 18){ //queda medio medio igual xq creo que con lo de las url's se pierde
-            throw new IllegalAccessException("El cliente debe ser mayor de edad(18) para poder tener una cuenta bancaria");
+        if(cliente.getEdad() < 18){
+            throw new IllegalArgumentException("El cliente debe ser mayor de edad(18) para poder tener una cuenta bancaria");
         }
     }
     private  void validatorAgregarCuenta(Cliente titular, CuentaBancaria cuentaTitular) throws TipoCuentaAlreadyExistsException {

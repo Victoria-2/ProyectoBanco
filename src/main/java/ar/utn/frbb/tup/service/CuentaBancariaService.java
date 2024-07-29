@@ -43,7 +43,7 @@ public class CuentaBancariaService {
 
      */
 
-    public CuentaBancaria darDeAltaCuenta(CuentaBancariaDto cuentaDto) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException, IllegalAccessException {
+    public CuentaBancaria darDeAltaCuenta(CuentaBancariaDto cuentaDto) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException {
         if(cuentaDao.find(cuentaDto.getDniTitular()) != null) { //nes el dni
             throw new CuentaAlreadyExistsException("La cuenta con el dni " + cuentaDto.getDniTitular() + " ya existe");
         }

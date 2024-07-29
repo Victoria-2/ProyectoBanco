@@ -1,10 +1,13 @@
 package ar.utn.frbb.tup.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum TipoPersona {
     PERSONA_FISICA("F"),
     PERSONA_JURIDICA("J");
 
-    private final String descripcion;
+    private String descripcion;
     TipoPersona(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -12,12 +15,12 @@ public enum TipoPersona {
         return descripcion;
     }
 
-    public static TipoPersona fromString(String texto) throws IllegalAccessException {
+    public static TipoPersona fromString(String texto) {
         for (TipoPersona tipo : TipoPersona.values()){
             if(tipo.descripcion.equalsIgnoreCase(texto)){
                 return tipo;
             }
         }
-        throw new IllegalAccessException("TipoPersona invalido, "+texto+"no fue encontrado");
+        throw new IllegalArgumentException("TipoPersona invalido, "+texto+" no fue encontrado");
     }
 }

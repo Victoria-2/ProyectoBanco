@@ -7,12 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class App {
     public static void main( String[] args )
     {
-        /*Banco banco = new Banco();
-
-        MenuInput menuInputProcessor = new MenuInput();
-        menuInputProcessor.generarMenu(banco);*/
-
         SpringApplication.run(App.class, args);
-
     }
 }
