@@ -1,7 +1,6 @@
 package ar.utn.frbb.tup.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TipoPersona {
     PERSONA_FISICA("F"),

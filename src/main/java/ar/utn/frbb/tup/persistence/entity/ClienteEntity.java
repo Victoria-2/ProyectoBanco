@@ -15,7 +15,7 @@ public class ClienteEntity extends  BaseEntity{
     private LocalDate nacimiento; //persona
     private String bancoCliente;
     private LocalDate fechaApertura;
-    private TipoPersona tipoPersona;
+    private String tipoPersona;
     private List<String> cuentas = new ArrayList<>();
 
     public ClienteEntity(Cliente cliente) {
@@ -25,11 +25,11 @@ public class ClienteEntity extends  BaseEntity{
         this.nacimiento = cliente.getNacimiento();
         this.bancoCliente = cliente.getBancoCliente();
         this.fechaApertura = cliente.getFechaApertura();
-        this.tipoPersona = cliente.getTipoPersona();
+        this.tipoPersona = cliente.getTipoPersona() != null ? cliente.getTipoPersona().getDescripcion() : null;
         addCuentasCliente(cliente);
     }
 
-    public Cliente toCliente() { //MANEJAR LA EXCEPCION EN ALGUN LUGAR!!
+    public Cliente toCliente() {
         Cliente cliente = new Cliente();
         cliente.setNombre(this.nombre);
         cliente.setApellido(this.apellido);

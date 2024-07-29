@@ -18,6 +18,6 @@ public enum TipoDeCuenta {
                 return tipo;
             }
         }
-        throw new IllegalArgumentException("TipoDeCuenta invalido, "+texto+"no fue encontrado");
+        throw new IllegalArgumentException("TipoDeCuenta invalido, "+texto+" no fue encontrado");
     }
 }

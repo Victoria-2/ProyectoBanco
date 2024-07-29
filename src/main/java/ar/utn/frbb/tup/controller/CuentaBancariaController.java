@@ -21,9 +21,9 @@ public class CuentaBancariaController {
     @Autowired
     public CuentaBancariaValidator cuentaValidator;
 
-    @PostMapping //MANEJAR LAS EXCEPCIONES EN OTRO LADO, SE ESTAN ARRASTRANDO!
-    public CuentaBancaria crearCuenta(@RequestBody CuentaBancariaDto cuentaDto) throws CuentaNoSoportadaException, TipoCuentaAlreadyExistsException, CuentaAlreadyExistsException, IllegalAccessException {
-        CuentaBancariaValidator.validate(cuentaDto);
-        return cuentaService.darDeAltaCuenta(cuentaDto);
+    @PostMapping
+    public CuentaBancaria crearCuenta(@RequestBody CuentaBancariaDto cuentaBancariaDto) throws CuentaNoSoportadaException, TipoCuentaAlreadyExistsException, CuentaAlreadyExistsException {
+        CuentaBancariaValidator.validate(cuentaBancariaDto);
+        return cuentaService.darDeAltaCuenta(cuentaBancariaDto);
     }
 }

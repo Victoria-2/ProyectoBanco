@@ -19,7 +19,7 @@ public class CuentaBancaria {
         this.fechaApertura = generarFechaApertura();
         this.saldo = 0.0;
     }
-    public CuentaBancaria(CuentaBancariaDto cuentaBancariaDto){
+    public CuentaBancaria(CuentaBancariaDto cuentaBancariaDto){ //fijarme para ver is hay q poner el titular aca o no
         this.tipoCuenta = TipoDeCuenta.fromString(cuentaBancariaDto.getTipoCuenta());
         this.moneda = TipoMoneda.fromString(cuentaBancariaDto.getMoneda());
         this.fechaApertura = generarFechaApertura();
