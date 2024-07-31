@@ -41,9 +41,9 @@ public class CuentaBancaria {
     //CBU
     private String generarCbu(){
         String numerosDelCbu = " ";
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
             Random numeroRandom = new Random();
-            String numDeCincoEspacios = String.format("%04d", numeroRandom.nextInt(10001));
+            String numDeCincoEspacios = String.format("%05d", numeroRandom.nextInt(10001));
             numerosDelCbu += numDeCincoEspacios;
         }
         return numerosDelCbu;

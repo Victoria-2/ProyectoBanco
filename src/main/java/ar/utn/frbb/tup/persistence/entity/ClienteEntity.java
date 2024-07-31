@@ -33,12 +33,11 @@ public class ClienteEntity extends  BaseEntity{
         Cliente cliente = new Cliente();
         cliente.setNombre(this.nombre);
         cliente.setApellido(this.apellido);
-        cliente.setDni(this.getId());
+        cliente.setDni(this.getId()); //tal vez un super.getId???
         cliente.setNacimiento(this.nacimiento);
         cliente.setBancoCliente(this.bancoCliente);
         cliente.setFechaApertura(this.fechaApertura);
         cliente.setTipoPersona(TipoPersona.fromString(String.valueOf(this.tipoPersona)));
-        //por algun motivo no pasa las cuentas??? Es xq las busca dps??
         return cliente;
     }
 

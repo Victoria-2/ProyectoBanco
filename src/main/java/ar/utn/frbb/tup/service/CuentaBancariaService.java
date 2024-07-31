@@ -20,11 +20,11 @@ public class CuentaBancariaService {
 
 
     public boolean tipoCuentaEstaSoportada(CuentaBancariaDto cuenta){ //A MEJORAR
-        if((cuenta.getMoneda().equals(TipoMoneda.PESO_ARGENTINO.toString()) && (cuenta.getTipoCuenta().equals(TipoDeCuenta.CAJA_DE_AHORROS.toString())))){
+        if((cuenta.getMoneda().equals(TipoMoneda.PESO_ARGENTINO.getDescripcion()) && (cuenta.getTipoCuenta().equals(TipoDeCuenta.CAJA_DE_AHORROS.getDescripcion())))){
             return true;
-        } else if((cuenta.getMoneda().equals(TipoMoneda.DOLAR.toString()) && (cuenta.getTipoCuenta().equals( TipoDeCuenta.CAJA_DE_AHORROS.toString())))){
+        } else if((cuenta.getMoneda().equals(TipoMoneda.DOLAR.getDescripcion()) && (cuenta.getTipoCuenta().equals( TipoDeCuenta.CAJA_DE_AHORROS.getDescripcion())))){
             return true;
-        } else return (cuenta.getMoneda().equals( TipoMoneda.PESO_ARGENTINO.toString()) && (cuenta.getTipoCuenta().equals( TipoDeCuenta.CUENTA_CORRIENTE.toString())));
+        } else return (cuenta.getMoneda().equals( TipoMoneda.PESO_ARGENTINO.getDescripcion()) && (cuenta.getTipoCuenta().equals( TipoDeCuenta.CUENTA_CORRIENTE.getDescripcion())));
     }
 
     /*
@@ -55,7 +55,7 @@ public class CuentaBancariaService {
 
         CuentaBancaria cuenta = new CuentaBancaria(cuentaDto);
 
-        clienteService.agregarCuenta(cuenta, cuenta.getTitular().getDni());
+        clienteService.agregarCuenta(cuenta, cuentaDto.getDniTitular());
         cuentaDao.save(cuenta);
         return cuenta;
     }

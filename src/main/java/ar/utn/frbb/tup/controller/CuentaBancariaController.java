@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static ar.utn.frbb.tup.controller.validator.CuentaBancariaValidator.validate;
+
 @RestController
 @RequestMapping("/cuenta")
 public class CuentaBancariaController {
@@ -23,7 +25,7 @@ public class CuentaBancariaController {
 
     @PostMapping
     public CuentaBancaria crearCuenta(@RequestBody CuentaBancariaDto cuentaBancariaDto) throws CuentaNoSoportadaException, TipoCuentaAlreadyExistsException, CuentaAlreadyExistsException {
-        CuentaBancariaValidator.validate(cuentaBancariaDto);
+        validate(cuentaBancariaDto);
         return cuentaService.darDeAltaCuenta(cuentaBancariaDto);
     }
 }
