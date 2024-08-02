@@ -1,12 +1,17 @@
 package ar.utn.frbb.tup.model;
 
 import ar.utn.frbb.tup.controller.ClienteDto;
+import ar.utn.frbb.tup.persistence.ClienteDao;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Cliente extends Persona {
+    @Autowired
+    ClienteDao clienteDao;
+
     private String bancoCliente;
     private LocalDate fechaApertura;
     private TipoPersona tipoPersona;
@@ -53,8 +58,8 @@ public class Cliente extends Persona {
         return cuentasBancariasCliente;
     }
     public void addCuenta(CuentaBancaria cuenta){
-        this.cuentasBancariasCliente.add(cuenta);
         cuenta.setTitular(this);
+        this.cuentasBancariasCliente.add(cuenta);
     }
     public boolean tieneCuenta(TipoDeCuenta tipoDeCuenta, TipoMoneda tipoMoneda){
         for(CuentaBancaria cuenta : cuentasBancariasCliente){

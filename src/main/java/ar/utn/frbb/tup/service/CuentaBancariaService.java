@@ -56,7 +56,6 @@ public class CuentaBancariaService {
         CuentaBancaria cuenta = new CuentaBancaria(cuentaDto);
 
         clienteService.agregarCuenta(cuenta, cuentaDto.getDniTitular());
-        cuentaDao.save(cuenta);
         return cuenta;
     }
 

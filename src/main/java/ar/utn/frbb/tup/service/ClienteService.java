@@ -6,6 +6,7 @@ import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
 import ar.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
 import ar.utn.frbb.tup.persistence.ClienteDao;
+import ar.utn.frbb.tup.persistence.entity.ClienteEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,13 @@ public class ClienteService {
 
     public Cliente buscarClientePorDni(int dni) {
         Cliente cliente = clienteDao.find(dni, true);
+        if(cliente == null){
+            throw  new IllegalArgumentException("El cliente solicitado no existe");
+        }
+        return cliente;
+    }
+    public Cliente buscarSoloClientePorDni(int dni) {
+        Cliente cliente = clienteDao.find(dni, false);
         if(cliente == null){
             throw  new IllegalArgumentException("El cliente solicitado no existe");
         }

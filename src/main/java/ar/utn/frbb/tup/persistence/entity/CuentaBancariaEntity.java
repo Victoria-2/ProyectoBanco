@@ -16,7 +16,7 @@ public class CuentaBancariaEntity extends BaseEntity{
     private double saldo;
 
     public CuentaBancariaEntity(CuentaBancaria cuenta){
-        super(Integer.parseInt(cuenta.getCbu()));
+        super(cuenta.getCbu());
         this.titular = cuenta.getTitular().getDni();
         this.fechaApertura = cuenta.getFechaApertura();
         this.tipoCuenta = cuenta.getTipoCuenta().getDescripcion(); //es mas conveniente y facil para la base de datos pasarlo a string que un enum
@@ -26,7 +26,6 @@ public class CuentaBancariaEntity extends BaseEntity{
 
     public CuentaBancaria toCuentaBancaria(){
         CuentaBancaria cuenta = new CuentaBancaria();
-        //cuenta.setTitular(); // NO ENTIENDO XQ NO PASA EL TITULAR ?????!!! xq tiene el id q es el del titular
         cuenta.setSaldo(this.saldo);
         cuenta.setFechaApertura(this.fechaApertura);
         cuenta.setTipoCuenta(TipoDeCuenta.fromString(String.valueOf(this.tipoCuenta)));
