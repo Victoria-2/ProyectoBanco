@@ -1,5 +1,6 @@
 package ar.utn.frbb.tup.persistence;
 
+import ar.utn.frbb.tup.model.Prestamo;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,5 +10,7 @@ public class PrestamoDao extends AbstractBaseDao{
         return "PRESTAMO";
     }
 
-    public void almacenarDatosPrestamo(){}
+    public Prestamo almacenarDatosPrestamo(Prestamo prestamo){
+
+    }
 }
