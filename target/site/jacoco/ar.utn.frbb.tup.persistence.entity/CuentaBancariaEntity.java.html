@@ -17,7 +17,7 @@ public class CuentaBancariaEntity extends BaseEntity{
 
     public CuentaBancariaEntity(CuentaBancaria cuenta){
 <span class="nc" id="L19">        super(cuenta.getCbu());</span>
-<span class="nc" id="L20">        this.titular = cuenta.getTitular().getDni();</span>
+<span class="nc" id="L20">        this.titular = cuenta.getTitular();</span>
 <span class="nc" id="L21">        this.fechaApertura = cuenta.getFechaApertura();</span>
 <span class="nc" id="L22">        this.tipoCuenta = cuenta.getTipoCuenta().getDescripcion(); //es mas conveniente y facil para la base de datos pasarlo a string que un enum</span>
 <span class="nc" id="L23">        this.moneda = cuenta.getMoneda().getDescripcion();</span>

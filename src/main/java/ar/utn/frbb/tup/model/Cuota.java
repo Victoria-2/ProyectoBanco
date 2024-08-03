@@ -4,6 +4,11 @@ public class Cuota {
     private int cuotaNro;
     private double monto;
 
+    public Cuota(int cuotaNro, double monto){
+        this.cuotaNro = cuotaNro;
+        this.monto = monto;
+    }
+
     public int getCuotaNro() {
         return cuotaNro;
     }
@@ -17,4 +22,5 @@ public class Cuota {
     public void setMonto(double monto) {
         this.monto = monto;
     }
+
 }

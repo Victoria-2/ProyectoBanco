@@ -33,7 +33,7 @@ public class ClienteEntity extends  BaseEntity{
         Cliente cliente = new Cliente();
         cliente.setNombre(this.nombre);
         cliente.setApellido(this.apellido);
-        cliente.setDni(super.getId()); //tal vez un super.getId???
+        cliente.setDni(super.getId());
         cliente.setNacimiento(this.nacimiento);
         cliente.setBancoCliente(this.bancoCliente);
         cliente.setFechaApertura(this.fechaApertura);

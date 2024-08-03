@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Prestamo {
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private long numeroCliente;
+    private Long numeroCliente;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int plazoMeses;
+    private Integer plazoMeses;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private double montoPrestamo;
+    private Double montoPrestamo;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String moneda;
 
@@ -20,8 +20,8 @@ public class Prestamo {
     private String mensaje;
     private List<Cuota> planPagos = new ArrayList<>();
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private double interesMensual;
+    @JsonInclude(JsonInclude.Include.NON_NULL) //EN DUDA
+    private Double interesTotal;
 
     public Prestamo(){}
     public Prestamo(PrestamoDto prestamoDto) {
@@ -76,14 +76,29 @@ public class Prestamo {
     public List<Cuota> getPlanPagos() {
         return planPagos;
     }
-    public void addPlanPagos(Cuota cuota) {
+    public void setPlanPagos(List<Cuota> planPagos) {
+        this.planPagos = planPagos;
+    }
+    public void addCuota(Cuota cuota) {
         planPagos.add(cuota);
     }
 
-    public double getInteresMensual() {
-        return interesMensual;
+    public double getInteresTotal() {
+        return interesTotal;
     }
-    public void setInteresMensual(Double interesMensual) {
-        this.interesMensual = interesMensual;
+    public void setInteresTotal(Double interesTotal) {
+        this.interesTotal = interesTotal;
     }
+
+    public Prestamo toOutput(){
+        this.setNumeroCliente(null);
+        this.setPlazoMeses(null);
+        this.setMontoPrestamo(null);
+        this.setMoneda(null);
+        this.setInteresTotal(null);
+        return this;
+    }
+
+    //toConsulta
+
 }

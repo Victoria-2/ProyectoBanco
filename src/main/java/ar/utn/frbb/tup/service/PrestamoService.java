@@ -1,16 +1,25 @@
 package ar.utn.frbb.tup.service;
 
 import ar.utn.frbb.tup.controller.PrestamoDto;
+import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.Prestamo;
+import ar.utn.frbb.tup.model.TipoDeCuenta;
+import ar.utn.frbb.tup.model.TipoMoneda;
 import ar.utn.frbb.tup.model.exception.PrestamoNoOtorgadoException;
 import ar.utn.frbb.tup.persistence.PrestamoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PrestamoService {
     @Autowired
     ClienteService clienteService;
+
+    @Autowired
+    CuentaBancariaService cuentaService;
 
     @Autowired
     PrestamoDao prestamoDao;
@@ -21,25 +30,31 @@ public class PrestamoService {
 
         prestamo.setEstado(calcularScoring(prestamo.getNumeroCliente()));
         establecerMensajeScoring(prestamo);
+        prestamo.setInteresTotal(calculaIntereses(prestamo.getMontoPrestamo(), 5));
+        CuotaService.generarCuotas(prestamo);
 
-
-
-        //actualizarCuentaCliente(cbu, prestamo.getMonto);
+        cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMonto);
         prestamoDao.almacenarDatosPrestamo(prestamo);
 
-        toOutput(prestamo);
-        return prestamo;
+        return prestamo.toOutput();
 
     }
 
-    //HACER LAS VALIDACIONES TMBN, tal vez seria mejor separarlo o no se (? (en realidad lso cheuqeos pueden estar todos en el mismo)
     private double calculaIntereses(double monto, int valorInteres){
-
-        return 0.0;
+        return monto * ((double) valorInteres /12);
     }
 
-    private double calcularMontoCuota(double monto, int plazoMeses){
-        return monto / plazoMeses;
+    private String findCuentaPermitida(int dni, String moneda){
+        List<CuentaBancaria> cuentas = new ArrayList<CuentaBancaria>();
+        cuentas.addAll(clienteService.getCuentasCliente(dni));
+
+        String cbu = null;
+        for (CuentaBancaria c : cuentas){
+            if (c.getTipoCuenta().equals(TipoDeCuenta.CAJA_DE_AHORROS) && c.getMoneda().equals(TipoMoneda.fromString(moneda))){
+                cbu = c.getCbu();
+            }
+        }
+        return cbu;
     }
 
     private String calcularScoring(Long dni){
@@ -66,15 +81,8 @@ public class PrestamoService {
         }
         //validar q el tipo de moneda exista tmbn
         //VERIFICAR SI EL CLIENTE TIENE UNA CUENTA CON LA MONEDA QUE SE ESTA PIDIENDO
+        // verificar q la cuenta sea CA
+        //verificar q el cliente no tenga mas de 3 prestamos al mismo tiempo
     } //FALTAN VARIAS
-
-    public void toOutput(Prestamo prestamo){
-        prestamo.setNumeroCliente(null);
-        prestamo.setPlazoMeses(null);
-        prestamo.setMontoPrestamo(null);
-        prestamo.setMoneda(null);
-        prestamo.setInteresMensual(null);
-    }
-
 
 }

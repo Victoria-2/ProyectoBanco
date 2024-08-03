@@ -12,7 +12,7 @@ import ar.utn.frbb.tup.model.TipoMoneda;
 import ar.utn.frbb.tup.model.TipoDeCuenta;
 
 @Component
-<span class="nc" id="L15">public class CuentaBancariaService {</span>
+<span class="fc" id="L15">public class CuentaBancariaService {</span>
     @Autowired
     ClienteService clienteService;
     @Autowired
@@ -27,43 +27,30 @@ import ar.utn.frbb.tup.model.TipoDeCuenta;
 <span class="nc bnc" id="L27" title="All 4 branches missed.">        } else return (cuenta.getMoneda().equals( TipoMoneda.PESO_ARGENTINO.getDescripcion()) &amp;&amp; (cuenta.getTipoCuenta().equals( TipoDeCuenta.CUENTA_CORRIENTE.getDescripcion())));</span>
     }
 
-    /*
-    public boolean tipoCuentaEstaSoportada(CuentaBancaria cuenta) {
-        EnumSet&lt;TipoDeCuenta&gt; cuentasSoportadas = EnumSet.noneOf(TipoDeCuenta.class);
-
-        if (cuenta.getMoneda() == TipoMoneda.PESO_ARGENTINO) {
-            cuentasSoportadas.add(TipoDeCuenta.CAJA_DE_AHORROS);
-            cuentasSoportadas.add(TipoDeCuenta.CUENTA_CORRIENTE);
-        } else if (cuenta.getMoneda() == TipoMoneda.DOLAR) {
-            cuentasSoportadas.add(TipoDeCuenta.CAJA_DE_AHORROS);
-        }
-
-        return cuentasSoportadas.contains(cuenta.getTipoCuenta());
-    }
-
-     */
-
     public CuentaBancaria darDeAltaCuenta(CuentaBancariaDto cuentaDto) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException {
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if(cuentaDao.find(cuentaDto.getDniTitular()) != null) { //nes el dni</span>
-<span class="nc" id="L48">            throw new CuentaAlreadyExistsException(&quot;La cuenta con el dni &quot; + cuentaDto.getDniTitular() + &quot; ya existe&quot;);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if(cuentaDao.find(cuentaDto.getDniTitular()) != null) { //nes el dni</span>
+<span class="nc" id="L32">            throw new CuentaAlreadyExistsException(&quot;La cuenta con el dni &quot; + cuentaDto.getDniTitular() + &quot; ya existe&quot;);</span>
         }
 
         //Chequear cuentas soportadas por el banco CA$ CC$ CAU$S
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (!tipoCuentaEstaSoportada(cuentaDto)) {</span>
-<span class="nc" id="L53">            throw new CuentaNoSoportadaException(&quot;Ya posee una cuenta del tipo &quot; + cuentaDto.getTipoCuenta());</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (!tipoCuentaEstaSoportada(cuentaDto)) {</span>
+<span class="nc" id="L37">            throw new CuentaNoSoportadaException(&quot;Ya posee una cuenta del tipo &quot; + cuentaDto.getTipoCuenta());</span>
         }
 
-<span class="nc" id="L56">        CuentaBancaria cuenta = new CuentaBancaria(cuentaDto);</span>
+<span class="nc" id="L40">        CuentaBancaria cuenta = new CuentaBancaria(cuentaDto);</span>
 
-<span class="nc" id="L58">        clienteService.agregarCuenta(cuenta, cuentaDto.getDniTitular());</span>
-<span class="nc" id="L59">        return cuenta;</span>
+<span class="nc" id="L42">        clienteService.agregarCuenta(cuenta, cuentaDto.getDniTitular());</span>
+<span class="nc" id="L43">        return cuenta;</span>
     }
 
     public CuentaBancaria find(int id) {
-<span class="nc" id="L63">        return cuentaDao.find(id);</span>
+<span class="fc" id="L47">        return cuentaDao.find(id);</span>
     }
 
-    //private void establecerCuentasSoportadas(){}
+    public void actualizarCuentaCliente(String cbu, double montoPrestamo){
+<span class="fc" id="L51">        CuentaBancaria cuentaCliente = find(Integer.parseInt(cbu));</span>
+<span class="fc" id="L52">        cuentaCliente.setSaldo(cuentaCliente.getSaldo() + montoPrestamo);</span>
+<span class="fc" id="L53">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

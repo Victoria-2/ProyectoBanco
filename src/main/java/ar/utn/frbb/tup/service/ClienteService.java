@@ -34,7 +34,7 @@ public class ClienteService {
 
         titular.addCuenta(cuentaBancaria);
         cuentaBancariaDao.save(cuentaBancaria);
-        //clienteDao.save(titular);
+        clienteDao.save(titular);
     }
 
     public Cliente buscarClientePorDni(int dni) {

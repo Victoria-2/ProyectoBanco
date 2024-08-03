@@ -1,9 +1,51 @@
 package ar.utn.frbb.tup.persistence.entity;
 
+import ar.utn.frbb.tup.model.Cuota;
+import ar.utn.frbb.tup.model.Prestamo;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrestamoEntity extends BaseEntity{
-    public PrestamoEntity(int id) {
-        super(id);
+    private Long numeroCliente;
+    private Integer plazoMeses;
+    private Double montoPrestamo;
+    private String moneda;
+    private String estado;
+    private String mensaje;
+    private List<Cuota> planPagos;
+    private Double interesTotal;
+
+    public PrestamoEntity(Prestamo prestamo) {
+        super((int)prestamo.getNumeroCliente());
+        this.plazoMeses = prestamo.getPlazoMeses();
+        this.montoPrestamo = prestamo.getMontoPrestamo();
+        this.moneda = prestamo.getMoneda();
+        this.estado = prestamo.getEstado();
+        this.mensaje = prestamo.getMensaje();
+        List<Cuota> planPagos = new ArrayList<>();
+        addCuotasPrestamo(prestamo);
+        this.interesTotal = prestamo.getInteresTotal();
     }
 
-    //hay que hacer un .toOutput y pasar nada mas el mensaje, las cuotas y el estado, q el resto quede null
+    public Prestamo toPrestamo(){
+        Prestamo prestamo = new Prestamo();
+        prestamo.setNumeroCliente(this.numeroCliente);
+        prestamo.setPlazoMeses(this.plazoMeses);
+        prestamo.setMontoPrestamo(this.montoPrestamo);
+        prestamo.setMoneda(this.moneda);
+        prestamo.setEstado(this.estado);
+        prestamo.setMensaje(this.mensaje);
+        prestamo.setPlanPagos(this.planPagos);
+        prestamo.setInteresTotal(this.interesTotal);
+        return prestamo;
+    }
+
+    private void addCuotasPrestamo(Prestamo prestamo){
+        if (prestamo.getPlanPagos() != null && !prestamo.getPlanPagos().isEmpty()){
+            planPagos.addAll(prestamo.getPlanPagos());
+        }
+    }
+
+
 }

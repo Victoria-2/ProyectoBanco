@@ -58,7 +58,7 @@ public class Cliente extends Persona {
 <span class="nc" id="L58">        return cuentasBancariasCliente;</span>
     }
     public void addCuenta(CuentaBancaria cuenta){
-<span class="nc" id="L61">        cuenta.setTitular(this);</span>
+<span class="nc" id="L61">        cuenta.setTitular(this.getDni());</span>
 <span class="nc" id="L62">        this.cuentasBancariasCliente.add(cuenta);</span>
 <span class="nc" id="L63">    }</span>
     public boolean tieneCuenta(TipoDeCuenta tipoDeCuenta, TipoMoneda tipoMoneda){

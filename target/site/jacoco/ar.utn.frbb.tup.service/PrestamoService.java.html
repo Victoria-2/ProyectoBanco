@@ -1,24 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrestamoService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoBanco</a> &gt; <a href="index.source.html" class="el_package">ar.utn.frbb.tup.service</a> &gt; <span class="el_source">PrestamoService.java</span></div><h1>PrestamoService.java</h1><pre class="source lang-java linenums">package ar.utn.frbb.tup.service;
 
 import ar.utn.frbb.tup.controller.PrestamoDto;
+import ar.utn.frbb.tup.model.CuentaBancaria;
+import ar.utn.frbb.tup.model.Prestamo;
+import ar.utn.frbb.tup.model.exception.PrestamoNoOtorgadoException;
+import ar.utn.frbb.tup.persistence.PrestamoDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-<span class="nc" id="L7">public class PrestamoService {</span>
+<span class="nc" id="L12">public class PrestamoService {</span>
+    @Autowired
+    ClienteService clienteService;
 
-    //HACER LAS VALIDACIONES TMBN, tal vez seria mejor separarlo o no se (? (en realidad lso cheuqeos pueden estar todos en el mismo)
-    /*public double calculaIntereses(PrestamoDto prestamoDto){
-        double monto= prestamoDto.getMontoPrestamo();
+    @Autowired
+    CuentaBancariaService cuentaService;
 
-        return
+    @Autowired
+    PrestamoDao prestamoDao;
+
+    public Prestamo pedirPrestamo(PrestamoDto prestamoDto) throws PrestamoNoOtorgadoException {
+<span class="nc" id="L23">        Prestamo prestamo = new Prestamo(prestamoDto);</span>
+<span class="nc" id="L24">        validator(prestamo);</span>
+
+<span class="nc" id="L26">        prestamo.setEstado(calcularScoring(prestamo.getNumeroCliente()));</span>
+<span class="nc" id="L27">        establecerMensajeScoring(prestamo);</span>
+<span class="nc" id="L28">        prestamo.setInteresTotal(calculaIntereses(prestamo.getMontoPrestamo(), 5));</span>
+<span class="nc" id="L29">        CuotaService.generarCuotas(prestamo);</span>
+
+        //cuentaService.actualizarCuentaCliente(cbu, prestamo.getMonto);
+        //prestamoDao.almacenarDatosPrestamo(prestamo);
+
+<span class="nc" id="L34">        return prestamo.toOutput();</span>
+
     }
 
-    public double calcularMontoCuota(){
+    //HACER LAS VALIDACIONES TMBN, tal vez seria mejor separarlo o no se (? (en realidad lso cheuqeos pueden estar todos en el mismo)
+    private double calculaIntereses(double monto, int valorInteres){
+<span class="nc" id="L40">        return monto * ((double) valorInteres /12);</span>
+    }
 
-    }*/
 
-    //que las validaciones sean, en plan, que no se pueda retir mas de x cantidad o algo asi
-    //verificar que el cliente exista
-    //verificar el scoring
+
+    private String calcularScoring(Long dni){
+<span class="nc" id="L46">        String scoring = ScoreCrediticioService.verificaScore(dni);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (scoring.equals(&quot;ERROR&quot;)){</span>
+<span class="nc" id="L48">            return &quot;RECHAZADO&quot;;</span>
+        }
+<span class="nc" id="L50">        return &quot;APROBADO&quot;;</span>
+    }
+    private void establecerMensajeScoring(Prestamo prestamo){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (prestamo.getEstado().equals(&quot;RECHAZADO&quot;)){</span>
+<span class="nc" id="L54">            prestamo.setMensaje(&quot;No posee el scoring suficiente para pedir un prestamo de este tipo&quot;);</span>
+        }
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(prestamo.getEstado().equals(&quot;APROBADO&quot;)){</span>
+<span class="nc" id="L57">            prestamo.setMensaje(&quot;El monto del prestamo fue acreditado a su cuenta&quot;);</span>
+        }
+<span class="nc" id="L59">    }</span>
+
+    public void validator(Prestamo prestamo) throws PrestamoNoOtorgadoException {
+<span class="nc" id="L62">        clienteService.buscarSoloClientePorDni((int) prestamo.getNumeroCliente()); //A TESTEAR, igual q el otro pero esta en false</span>
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (prestamo.getMontoPrestamo() &gt;= 6000000){</span>
+<span class="nc" id="L65">            throw new PrestamoNoOtorgadoException(&quot;El monto a solicitar es mayor al que se le puede ofrecer en este momento&quot;);</span>
+        }
+        //validar q el tipo de moneda exista tmbn
+        //VERIFICAR SI EL CLIENTE TIENE UNA CUENTA CON LA MONEDA QUE SE ESTA PIDIENDO
+        //verificar q el cliente no tenga mas de 3 prestamos al mismo tiempo
+<span class="nc" id="L70">    } //FALTAN VARIAS</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
