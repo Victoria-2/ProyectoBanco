@@ -1,1 +1,15 @@
-C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\AppTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\model\TipoDeCuentaTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\CuentaBancariaDtoTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\service\ClienteServiceTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\ClienteDtoTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\model\TipoPersonaTest2.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\service\CuentaBancariaServiceTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\handler\CustomApiErrorTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\service\ScoreCrediticioServiceTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\PrimerAppTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\ClienteControllerTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\validator\ClienteValidatorTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\CuentaBancariaControllerTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\validator\CuentaBancariaValidatorTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\PersonaDtoTest.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\test\java\ar\utn\frbb\tup\controller\handler\TupResponseEntityTest.java

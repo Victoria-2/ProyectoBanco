@@ -6,7 +6,7 @@ import java.util.Random;
 import ar.utn.frbb.tup.controller.CuentaBancariaDto;
 
 public class CuentaBancaria {
-    private Cliente titular;
+    private int titular;
     private String cbu;
     private LocalDate fechaApertura;
     private TipoDeCuenta tipoCuenta;
@@ -31,10 +31,10 @@ public class CuentaBancaria {
     //metodos
     
     //TITULAR
-    public Cliente getTitular() {
+    public int getTitular() {
         return titular;
     }
-    public void setTitular(Cliente titular){
+    public void setTitular(int titular){
         this.titular = titular;
     }
 

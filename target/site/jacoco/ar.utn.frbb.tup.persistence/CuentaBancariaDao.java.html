@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CuentaBancariaDao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoBanco</a> &gt; <a href="index.source.html" class="el_package">ar.utn.frbb.tup.persistence</a> &gt; <span class="el_source">CuentaBancariaDao.java</span></div><h1>CuentaBancariaDao.java</h1><pre class="source lang-java linenums">package ar.utn.frbb.tup.persistence;
+
+import ar.utn.frbb.tup.model.CuentaBancaria;
+import ar.utn.frbb.tup.persistence.entity.CuentaBancariaEntity;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+<span class="nc" id="L11">public class CuentaBancariaDao extends  AbstractBaseDao {</span>
+    public CuentaBancaria find(int id){
+<span class="nc bnc" id="L13" title="All 2 branches missed.">        if( (getInMemoryDatabase().get(id)) == null){</span>
+<span class="nc" id="L14">            return null;</span>
+        }
+<span class="nc" id="L16">        return ((CuentaBancariaEntity)getInMemoryDatabase().get(id)).toCuentaBancaria();//busca y agarra la entidad y la pasa a una cuenta</span>
+    }
+
+    public void save(CuentaBancaria cuenta){
+<span class="nc" id="L20">        CuentaBancariaEntity entidadCB = new CuentaBancariaEntity(cuenta);</span>
+<span class="nc" id="L21">        getInMemoryDatabase().put(entidadCB.getTitular(), entidadCB);</span>
+<span class="nc" id="L22">    }</span>
+
+    public List&lt;CuentaBancaria&gt; getCuentasByCliente(Integer dni){
+<span class="nc" id="L25">        List&lt;CuentaBancaria&gt; cuentasCliente = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        for (Object valor : getInMemoryDatabase().values()){</span>
+<span class="nc" id="L28">            CuentaBancariaEntity cuenta = (CuentaBancariaEntity) valor;</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if(cuenta.getTitular().equals(dni)){</span>
+<span class="nc" id="L30">                cuentasCliente.add(cuenta.toCuentaBancaria());</span>
+            }
+<span class="nc" id="L32">        }</span>
+
+<span class="nc" id="L34">        return cuentasCliente;</span>
+    }
+
+    @Override
+    protected String getEntityType() {
+<span class="nc" id="L39">        return &quot;Cuenta&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

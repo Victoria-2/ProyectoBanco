@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Persona.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoBanco</a> &gt; <a href="index.source.html" class="el_package">ar.utn.frbb.tup.model</a> &gt; <span class="el_source">Persona.java</span></div><h1>Persona.java</h1><pre class="source lang-java linenums">package ar.utn.frbb.tup.model;
+
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Persona {
+    //atributos
+    private String nombre;
+    private String apellido;
+    private int dni;
+    private LocalDate nacimiento;
+
+    //metodo constructor
+<span class="nc" id="L14">    public Persona(){}</span>
+<span class="fc" id="L15">    public Persona(String nombre, String apellido, int dni, String nacimiento) {</span>
+<span class="fc" id="L16">        this.nombre = nombre;</span>
+<span class="fc" id="L17">        this.apellido = apellido;</span>
+<span class="fc" id="L18">        this.dni = dni;</span>
+<span class="fc" id="L19">        this.nacimiento = LocalDate.parse(nacimiento);</span>
+<span class="fc" id="L20">    }</span>
+
+    //metodos
+    public String getNombre() {
+<span class="nc" id="L24">        return nombre;</span>
+    }
+    public void setNombre(String nombre) {
+<span class="nc" id="L27">        this.nombre = nombre;</span>
+<span class="nc" id="L28">    }</span>
+
+    public String getApellido() {
+<span class="nc" id="L31">        return apellido;</span>
+    }
+    public void setApellido(String apellido) {
+<span class="nc" id="L34">        this.apellido = apellido;</span>
+<span class="nc" id="L35">    }</span>
+
+    public int getDni() {
+<span class="fc" id="L38">        return dni;</span>
+    }
+    public void setDni(int dni) {
+<span class="nc" id="L41">        this.dni = dni;</span>
+<span class="nc" id="L42">    }</span>
+
+    public LocalDate getNacimiento() {
+<span class="nc" id="L45">        return nacimiento;</span>
+    }
+    public void setNacimiento(LocalDate nacimiento) {
+<span class="nc" id="L48">        this.nacimiento = nacimiento;</span>
+<span class="nc" id="L49">    }</span>
+
+    public int getEdad() {
+<span class="fc" id="L52">        LocalDate fechaHoy = LocalDate.now();</span>
+<span class="fc" id="L53">        Period edad = Period.between(nacimiento, fechaHoy);</span>
+<span class="fc" id="L54">        return edad.getYears();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

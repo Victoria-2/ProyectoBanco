@@ -6,15 +6,19 @@ import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
 import ar.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
 import ar.utn.frbb.tup.persistence.ClienteDao;
-import ar.utn.frbb.tup.persistence.entity.ClienteEntity;
+import ar.utn.frbb.tup.persistence.CuentaBancariaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class ClienteService {
 
     @Autowired
     ClienteDao clienteDao;
+
+    @Autowired
+    CuentaBancariaDao cuentaBancariaDao;
 
     public Cliente darDeAltaCliente(ClienteDto clienteDto) throws  ClienteAlreadyExistsException {
         Cliente cliente = new Cliente(clienteDto);
@@ -25,11 +29,12 @@ public class ClienteService {
 
     public void agregarCuenta(CuentaBancaria cuentaBancaria, int dni) throws TipoCuentaAlreadyExistsException {
         Cliente titular = buscarClientePorDni(dni);
-        cuentaBancaria.setTitular(titular);
+        cuentaBancaria.setTitular(titular.getDni());
         validatorAgregarCuenta(titular, cuentaBancaria);
 
         titular.addCuenta(cuentaBancaria);
-        clienteDao.save(titular);
+        cuentaBancariaDao.save(cuentaBancaria);
+        //clienteDao.save(titular);
     }
 
     public Cliente buscarClientePorDni(int dni) {
@@ -45,6 +50,10 @@ public class ClienteService {
             throw  new IllegalArgumentException("El cliente solicitado no existe");
         }
         return cliente;
+    }
+
+    public List<CuentaBancaria> getCuentasCliente(Integer dni){
+        return cuentaBancariaDao.getCuentasByCliente(dni);
     }
 
     private void validatorAlta(Cliente cliente) throws ClienteAlreadyExistsException {

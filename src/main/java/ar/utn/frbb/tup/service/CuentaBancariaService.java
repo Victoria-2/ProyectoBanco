@@ -27,22 +27,6 @@ public class CuentaBancariaService {
         } else return (cuenta.getMoneda().equals( TipoMoneda.PESO_ARGENTINO.getDescripcion()) && (cuenta.getTipoCuenta().equals( TipoDeCuenta.CUENTA_CORRIENTE.getDescripcion())));
     }
 
-    /*
-    public boolean tipoCuentaEstaSoportada(CuentaBancaria cuenta) {
-        EnumSet<TipoDeCuenta> cuentasSoportadas = EnumSet.noneOf(TipoDeCuenta.class);
-
-        if (cuenta.getMoneda() == TipoMoneda.PESO_ARGENTINO) {
-            cuentasSoportadas.add(TipoDeCuenta.CAJA_DE_AHORROS);
-            cuentasSoportadas.add(TipoDeCuenta.CUENTA_CORRIENTE);
-        } else if (cuenta.getMoneda() == TipoMoneda.DOLAR) {
-            cuentasSoportadas.add(TipoDeCuenta.CAJA_DE_AHORROS);
-        }
-
-        return cuentasSoportadas.contains(cuenta.getTipoCuenta());
-    }
-
-     */
-
     public CuentaBancaria darDeAltaCuenta(CuentaBancariaDto cuentaDto) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException {
         if(cuentaDao.find(cuentaDto.getDniTitular()) != null) { //nes el dni
             throw new CuentaAlreadyExistsException("La cuenta con el dni " + cuentaDto.getDniTitular() + " ya existe");
@@ -63,6 +47,9 @@ public class CuentaBancariaService {
         return cuentaDao.find(id);
     }
 
-    //private void establecerCuentasSoportadas(){}
+    public void actualizarCuentaCliente(String cbu, double montoPrestamo){
+        CuentaBancaria cuentaCliente = find(Integer.parseInt(cbu));
+        cuentaCliente.setSaldo(cuentaCliente.getSaldo() + montoPrestamo);
+    }
 
 }

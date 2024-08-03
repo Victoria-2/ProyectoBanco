@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteEntity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoBanco</a> &gt; <a href="index.source.html" class="el_package">ar.utn.frbb.tup.persistence.entity</a> &gt; <span class="el_source">ClienteEntity.java</span></div><h1>ClienteEntity.java</h1><pre class="source lang-java linenums">package ar.utn.frbb.tup.persistence.entity;
+
+import ar.utn.frbb.tup.model.Cliente;
+import ar.utn.frbb.tup.model.CuentaBancaria;
+import ar.utn.frbb.tup.model.TipoPersona;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ClienteEntity extends  BaseEntity{
+    private String nombre; //persona
+    private String apellido;  //persona
+    //private int dni; //persona -- no es necesario xq el id es el DNI
+    private LocalDate nacimiento; //persona
+    private String bancoCliente;
+    private LocalDate fechaApertura;
+    private String tipoPersona;
+<span class="nc" id="L19">    private List&lt;String&gt; cuentas = new ArrayList&lt;&gt;();</span>
+
+    public ClienteEntity(Cliente cliente) {
+<span class="nc" id="L22">        super(cliente.getDni());</span>
+<span class="nc" id="L23">        this.nombre = cliente.getNombre();</span>
+<span class="nc" id="L24">        this.apellido = cliente.getApellido();</span>
+<span class="nc" id="L25">        this.nacimiento = cliente.getNacimiento();</span>
+<span class="nc" id="L26">        this.bancoCliente = cliente.getBancoCliente();</span>
+<span class="nc" id="L27">        this.fechaApertura = cliente.getFechaApertura();</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        this.tipoPersona = cliente.getTipoPersona() != null ? cliente.getTipoPersona().getDescripcion() : null;</span>
+<span class="nc" id="L29">        addCuentasCliente(cliente);</span>
+<span class="nc" id="L30">    }</span>
+
+    public Cliente toCliente() {
+<span class="nc" id="L33">        Cliente cliente = new Cliente();</span>
+<span class="nc" id="L34">        cliente.setNombre(this.nombre);</span>
+<span class="nc" id="L35">        cliente.setApellido(this.apellido);</span>
+<span class="nc" id="L36">        cliente.setDni(super.getId()); //tal vez un super.getId???</span>
+<span class="nc" id="L37">        cliente.setNacimiento(this.nacimiento);</span>
+<span class="nc" id="L38">        cliente.setBancoCliente(this.bancoCliente);</span>
+<span class="nc" id="L39">        cliente.setFechaApertura(this.fechaApertura);</span>
+<span class="nc" id="L40">        cliente.setTipoPersona(TipoPersona.fromString(String.valueOf(this.tipoPersona)));</span>
+<span class="nc" id="L41">        return cliente;</span>
+    }
+
+    private void addCuentasCliente(Cliente cliente){
+<span class="nc bnc" id="L45" title="All 4 branches missed.">        if (cliente.getCuentasBancariasCliente() != null &amp;&amp; !cliente.getCuentasBancariasCliente().isEmpty()) {</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (CuentaBancaria c: cliente.getCuentasBancariasCliente()) {</span>
+<span class="nc" id="L47">                cuentas.add(c.getCbu());</span>
+<span class="nc" id="L48">            }</span>
+        }
+<span class="nc" id="L50">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

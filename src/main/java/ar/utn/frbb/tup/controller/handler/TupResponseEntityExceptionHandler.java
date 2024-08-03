@@ -1,6 +1,7 @@
 package ar.utn.frbb.tup.controller.handler;
 
 import ar.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
+import ar.utn.frbb.tup.model.exception.PrestamoNoOtorgadoException;
 import ar.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
 import jakarta.annotation.Nullable;
 import org.springframework.http.HttpHeaders;
@@ -33,6 +34,15 @@ public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHa
     protected ResponseEntity<Object> handleValidatorAlta(Exception ex, WebRequest request){
         CustomApiError error = new CustomApiError(ex.getMessage(), 409);
         return  handleExceptionInternal(ex,error,new HttpHeaders(),HttpStatus.CONFLICT ,request);
+    }
+
+    @ExceptionHandler(value = {PrestamoNoOtorgadoException.class})
+    protected ResponseEntity<Object> handlePrestamoError(Exception ex, WebRequest request){
+        String exceptionMessage = ex.getMessage();
+        CustomApiError error = new CustomApiError();
+        error.setErrorCode(564);
+        error.setErrorMessage(exceptionMessage);
+        return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
     }
 
     @Override

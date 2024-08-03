@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CuentaBancariaDao extends  AbstractBaseDao {
+public class CuentaBancariaDao extends AbstractBaseDao {
     public CuentaBancaria find(int id){
         if( (getInMemoryDatabase().get(id)) == null){
             return null;
