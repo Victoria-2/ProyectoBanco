@@ -9,21 +9,26 @@ public class CuotaService {
 
     public static void generarCuotas(Prestamo prestamo){
         double mensualidad = calcularMontoCuota(prestamo);;
-        int random = generarRandom();
+        int random = generarRandomCantCuotas(prestamo.getPlazoMeses()); //CHEQUEAR Q NO SEA MAYOR A LA CANT DE CUOTAS Q SE PIDEN
 
-        for (int i = 1; i < random; i++) {
+        for (int i = 1; i <= random; i++) {
             Cuota cuota = new Cuota(i, mensualidad);
             prestamo.addCuota(cuota);
         }
     }
 
-    private static int generarRandom(){
+    private static int generarRandomCantCuotas(int cantCuotas){
         Random random = new Random(System.currentTimeMillis());
         int intRandom = random.nextInt(6);
         if(intRandom == 0){
-            generarRandom();
+            generarRandomCantCuotas(cantCuotas);
         }
-        return intRandom;
+
+        if(cantCuotas > intRandom){ //xq no quiero q salga q esta pagado
+            return intRandom;
+        }
+
+        return generarRandomCantCuotas(cantCuotas);
     }
 
     private static double calcularMontoCuota(Prestamo prestamo){ //TAL VEZ ES PARA CUOTA MAS Q SERVICE

@@ -1,8 +1,8 @@
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\entity\CuentaBancariaEntity.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\TipoMoneda.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\controller\PersonaDto.java
-C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\entity\MovimientoEntity.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\TipoDeCuenta.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\Cuota.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\ClienteDao.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\controller\ClienteDto.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\Persona.java
@@ -17,6 +17,9 @@ C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\ut
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\service\CuentaBancariaService.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\entity\ClienteEntity.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\Cliente.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\exception\PrestamoNoOtorgadoException.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\controller\validator\PrestamoValidator.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\entity\PrestamoEntity.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\controller\handler\TupResponseEntityExceptionHandler.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\controller\handler\CustomApiError.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\service\ClienteService.java
@@ -29,7 +32,9 @@ C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\ut
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\exception\TipoCuentaAlreadyExistsException.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\AbstractBaseDao.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\entity\BaseEntity.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\persistence\PrestamoDao.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\controller\CuentaBancariaController.java
+C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\service\CuotaService.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\controller\PrestamoController.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\model\exception\ClienteAlreadyExistsException.java
 C:\Users\devry\Escritorio\Uni\2024\Lab III\TP2\ProyectoBanco\src\main\java\ar\utn\frbb\tup\service\ScoreCrediticioService.java

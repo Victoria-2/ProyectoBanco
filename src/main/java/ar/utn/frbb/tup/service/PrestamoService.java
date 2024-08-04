@@ -1,6 +1,7 @@
 package ar.utn.frbb.tup.service;
 
 import ar.utn.frbb.tup.controller.PrestamoDto;
+import ar.utn.frbb.tup.controller.PrestamoOutput;
 import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.Prestamo;
 import ar.utn.frbb.tup.model.TipoDeCuenta;
@@ -24,19 +25,20 @@ public class PrestamoService {
     @Autowired
     PrestamoDao prestamoDao;
 
-    public Prestamo pedirPrestamo(PrestamoDto prestamoDto) throws PrestamoNoOtorgadoException {
+    public PrestamoOutput pedirPrestamo(PrestamoDto prestamoDto) throws PrestamoNoOtorgadoException {
         Prestamo prestamo = new Prestamo(prestamoDto);
         validator(prestamo);
 
         prestamo.setEstado(calcularScoring(prestamo.getNumeroCliente()));
         establecerMensajeScoring(prestamo);
         prestamo.setInteresTotal(calculaIntereses(prestamo.getMontoPrestamo(), 5));
-        CuotaService.generarCuotas(prestamo);
+        CuotaService.generarCuotas(prestamo); //SI ES RECHAZADO NO DEBERIA DE GENERAR LAS CUOTAS !!!
 
-        cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMonto);
+        //cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMontoPrestamo());
         prestamoDao.almacenarDatosPrestamo(prestamo);
 
-        return prestamo.toOutput();
+        //return prestamo.toOutput();
+        return prestamo.output();
 
     }
 
@@ -75,6 +77,7 @@ public class PrestamoService {
 
     public void validator(Prestamo prestamo) throws PrestamoNoOtorgadoException {
         clienteService.buscarSoloClientePorDni((int) prestamo.getNumeroCliente()); //A TESTEAR, igual q el otro pero esta en false
+        //me olvide poner el if x si lo encontraba o no
 
         if (prestamo.getMontoPrestamo() >= 6000000){
             throw new PrestamoNoOtorgadoException("El monto a solicitar es mayor al que se le puede ofrecer en este momento");

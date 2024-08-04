@@ -18,7 +18,7 @@ public class PrestamoController {
     PrestamoService prestamoService;
 
     @PostMapping
-    public Prestamo solicitarPrestamo(@RequestBody PrestamoDto prestamoDto) throws PrestamoNoOtorgadoException {
+    public PrestamoOutput solicitarPrestamo(@RequestBody PrestamoDto prestamoDto) throws PrestamoNoOtorgadoException {
         PrestamoValidator.validate(prestamoDto);
         return prestamoService.pedirPrestamo(prestamoDto);
     }

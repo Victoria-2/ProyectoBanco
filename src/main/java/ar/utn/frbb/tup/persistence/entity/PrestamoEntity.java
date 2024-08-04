@@ -13,7 +13,7 @@ public class PrestamoEntity extends BaseEntity{
     private String moneda;
     private String estado;
     private String mensaje;
-    private List<Cuota> planPagos;
+    private List<Cuota> planPagos = new ArrayList<>();
     private Double interesTotal;
 
     public PrestamoEntity(Prestamo prestamo) {
@@ -23,7 +23,6 @@ public class PrestamoEntity extends BaseEntity{
         this.moneda = prestamo.getMoneda();
         this.estado = prestamo.getEstado();
         this.mensaje = prestamo.getMensaje();
-        List<Cuota> planPagos = new ArrayList<>();
         addCuotasPrestamo(prestamo);
         this.interesTotal = prestamo.getInteresTotal();
     }

@@ -1,4 +1,5 @@
 ar\utn\frbb\tup\controller\handler\CustomApiErrorTest.class
+ar\utn\frbb\tup\model\PrestamoTest.class
 ar\utn\frbb\tup\service\ClienteServiceTest.class
 ar\utn\frbb\tup\controller\CuentaBancariaControllerTest.class
 ar\utn\frbb\tup\service\ScoreCrediticioServiceTest.class
