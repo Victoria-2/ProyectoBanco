@@ -1,10 +1,10 @@
 package ar.utn.frbb.tup.persistence;
 
-import ar.utn.frbb.tup.model.CuentaBancaria;
 import ar.utn.frbb.tup.model.Prestamo;
 import ar.utn.frbb.tup.persistence.entity.PrestamoEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -14,8 +14,18 @@ public class PrestamoDao extends AbstractBaseDao{
         getInMemoryDatabase().put(prestamoEntity.getId(), prestamoEntity);
     }
 
-    /*public List<CuentaBancaria> getPrestamosByCliente(Integer dni) {
-    }*/
+    public List<Prestamo> getPrestamosByCliente(Integer dni) {
+        List<Prestamo> prestamosCliente = new ArrayList<Prestamo>();
+
+        for (Object valor : getInMemoryDatabase().values()){
+            PrestamoEntity prestamo = (PrestamoEntity) valor;
+            if(prestamo.getId() == dni){
+                prestamosCliente.add(prestamo.toPrestamo());
+            }
+        }
+
+        return prestamosCliente;
+    }
 
     @Override
     protected String getEntityType() {

@@ -1,11 +1,7 @@
 package ar.utn.frbb.tup.service;
 
+import ar.utn.frbb.tup.model.*;
 import ar.utn.frbb.tup.controller.PrestamoDto;
-import ar.utn.frbb.tup.controller.PrestamoOutput;
-import ar.utn.frbb.tup.model.CuentaBancaria;
-import ar.utn.frbb.tup.model.Prestamo;
-import ar.utn.frbb.tup.model.TipoDeCuenta;
-import ar.utn.frbb.tup.model.TipoMoneda;
 import ar.utn.frbb.tup.model.exception.PrestamoNoOtorgadoException;
 import ar.utn.frbb.tup.persistence.PrestamoDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +27,21 @@ public class PrestamoService {
 
         prestamo.setEstado(calcularScoring(prestamo.getNumeroCliente()));
         establecerMensajeScoring(prestamo);
+        if(prestamo.getEstado().equals("RECHAZADO")){
+            PrestamoOutput prestamoOut = new PrestamoOutput();
+            return prestamoOut.output(prestamo);
+        }
+
+
         prestamo.setInteresTotal(calculaIntereses(prestamo.getMontoPrestamo(), 5));
         CuotaService.generarCuotas(prestamo); //SI ES RECHAZADO NO DEBERIA DE GENERAR LAS CUOTAS !!!
 
-        //cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMontoPrestamo());
+        cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMontoPrestamo());
         prestamoDao.almacenarDatosPrestamo(prestamo);
 
         //return prestamo.toOutput();
-        return prestamo.output();
+        PrestamoOutput prestamoOut = new PrestamoOutput();
+        return prestamoOut.output(prestamo);
 
     }
 
@@ -57,7 +60,7 @@ public class PrestamoService {
             }
         }
         return cbu;
-    }
+    } //FALTA ENCONTRAR EL ERROR CON EL CBU
 
     private String calcularScoring(Long dni){
         String scoring = ScoreCrediticioService.verificaScore(dni);
@@ -87,5 +90,25 @@ public class PrestamoService {
         // verificar q la cuenta sea CA
         //verificar q el cliente no tenga mas de 3 prestamos al mismo tiempo
     } //FALTAN VARIAS
+
+    //--------------------
+    public PrestamoConsulta pedirConsultaPrestamos(long dni){
+        PrestamoConsulta prestamoConsulta = new PrestamoConsulta(dni);
+
+        List<Prestamo> prestamosCliente = getPrestamosCliente((int) dni);
+        for (Prestamo p : prestamosCliente) {
+            PrestamoConsultaOutput prestamoConsultaOutput = new PrestamoConsultaOutput(p);
+            prestamoConsulta.addPrestamos(prestamoConsultaOutput);
+        }
+
+        return prestamoConsulta; //por algun motivo nada mas retorna el ultimo (?? -- ES XQ NO SOLUCIONE LO DE ALMACENAR LA INFO CON EL CBU
+    }
+
+    public List<Prestamo> getPrestamosCliente(int dni){
+        return prestamoDao.getPrestamosByCliente(dni);
+    }
+
+
+
 
 }

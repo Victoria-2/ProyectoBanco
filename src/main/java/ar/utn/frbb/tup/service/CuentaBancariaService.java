@@ -52,8 +52,9 @@ public class CuentaBancariaService {
 
 
     public void actualizarCuentaCliente(String cbu, double montoPrestamo){
-        CuentaBancaria cuentaCliente = find(Integer.parseInt(cbu));
+        CuentaBancaria cuentaCliente = cuentaDao.find(Integer.parseInt(cbu.trim()));
         cuentaCliente.setSaldo(cuentaCliente.getSaldo() + montoPrestamo);
+
     }
 
 }

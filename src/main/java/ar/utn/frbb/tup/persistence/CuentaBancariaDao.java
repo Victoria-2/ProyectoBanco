@@ -9,11 +9,19 @@ import java.util.List;
 
 @Component
 public class CuentaBancariaDao extends AbstractBaseDao {
+
     public CuentaBancaria find(int id){
         if( (getInMemoryDatabase().get(id)) == null){
             return null;
         }
         return ((CuentaBancariaEntity)getInMemoryDatabase().get(id)).toCuentaBancaria();//busca y agarra la entidad y la pasa a una cuenta
+    }
+
+    public CuentaBancaria findCbu(String cbu){
+        if( (getInMemoryDatabase().get(cbu)) == null){
+            return null;
+        }
+        return ((CuentaBancariaEntity)getInMemoryDatabase().get(cbu)).toCuentaBancaria();//busca y agarra la entidad y la pasa a una cuenta
     }
 
     public void save(CuentaBancaria cuenta){

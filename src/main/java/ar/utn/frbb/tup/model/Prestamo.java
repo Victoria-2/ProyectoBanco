@@ -1,10 +1,7 @@
 package ar.utn.frbb.tup.model;
 
 import ar.utn.frbb.tup.controller.PrestamoDto;
-import ar.utn.frbb.tup.controller.PrestamoOutput;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,14 +99,6 @@ public class Prestamo {
         this.setInteresTotal(null);
         return this;
     } //POR EL MOMENTO NO SE PUDO
-
-    public PrestamoOutput output(){
-        PrestamoOutput prestamoOutput = new PrestamoOutput();
-        prestamoOutput.setEstado(this.estado);
-        prestamoOutput.setMensaje(this.mensaje);
-        prestamoOutput.setPlanPagos(this.planPagos);
-        return prestamoOutput;
-    }
 
     //toConsulta
 
