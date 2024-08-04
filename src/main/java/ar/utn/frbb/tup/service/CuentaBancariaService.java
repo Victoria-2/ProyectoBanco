@@ -52,7 +52,7 @@ public class CuentaBancariaService {
 
 
     public void actualizarCuentaCliente(String cbu, double montoPrestamo){
-        CuentaBancaria cuentaCliente = cuentaDao.find(Integer.parseInt(cbu.trim()));
+        CuentaBancaria cuentaCliente = cuentaDao.find(Integer.parseInt(cbu.trim())); //POR ALGUN MOTIVO SIEMPRE TERMINA SIENDO NUL??
         cuentaCliente.setSaldo(cuentaCliente.getSaldo() + montoPrestamo);
 
     }

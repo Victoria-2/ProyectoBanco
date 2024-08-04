@@ -1,5 +1,7 @@
 package ar.utn.frbb.tup.service;
 
+import ar.utn.frbb.tup.controller.PrestamoConsultaDto;
+import ar.utn.frbb.tup.controller.PrestamoOutputDto;
 import ar.utn.frbb.tup.model.*;
 import ar.utn.frbb.tup.controller.PrestamoDto;
 import ar.utn.frbb.tup.model.exception.PrestamoNoOtorgadoException;
@@ -21,28 +23,23 @@ public class PrestamoService {
     @Autowired
     PrestamoDao prestamoDao;
 
-    public PrestamoOutput pedirPrestamo(PrestamoDto prestamoDto) throws PrestamoNoOtorgadoException {
+    public PrestamoOutputDto pedirPrestamo(PrestamoDto prestamoDto) throws PrestamoNoOtorgadoException {
         Prestamo prestamo = new Prestamo(prestamoDto);
         validator(prestamo);
 
         prestamo.setEstado(calcularScoring(prestamo.getNumeroCliente()));
         establecerMensajeScoring(prestamo);
         if(prestamo.getEstado().equals("RECHAZADO")){
-            PrestamoOutput prestamoOut = new PrestamoOutput();
-            return prestamoOut.output(prestamo);
+            return output(prestamo);
         }
 
-
         prestamo.setInteresTotal(calculaIntereses(prestamo.getMontoPrestamo(), 5));
-        CuotaService.generarCuotas(prestamo); //SI ES RECHAZADO NO DEBERIA DE GENERAR LAS CUOTAS !!!
-
-        cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMontoPrestamo());
+        CuotaService.generarCuotas(prestamo);
+        //cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMontoPrestamo());
         prestamoDao.almacenarDatosPrestamo(prestamo);
 
+        return output(prestamo);
         //return prestamo.toOutput();
-        PrestamoOutput prestamoOut = new PrestamoOutput();
-        return prestamoOut.output(prestamo);
-
     }
 
     private double calculaIntereses(double monto, int valorInteres){
@@ -77,6 +74,9 @@ public class PrestamoService {
             prestamo.setMensaje("El monto del prestamo fue acreditado a su cuenta");
         }
     }
+    private PrestamoOutputDto output(Prestamo prestamo){
+        return new PrestamoOutputDto(prestamo);
+    }
 
     public void validator(Prestamo prestamo) throws PrestamoNoOtorgadoException {
         clienteService.buscarSoloClientePorDni((int) prestamo.getNumeroCliente()); //A TESTEAR, igual q el otro pero esta en false
@@ -92,23 +92,37 @@ public class PrestamoService {
     } //FALTAN VARIAS
 
     //--------------------
-    public PrestamoConsulta pedirConsultaPrestamos(long dni){
-        PrestamoConsulta prestamoConsulta = new PrestamoConsulta(dni);
+    public PrestamoConsultaDto pedirConsultaPrestamos(long dni){
+        PrestamoConsultaDto consulta = new PrestamoConsultaDto(dni);
 
         List<Prestamo> prestamosCliente = getPrestamosCliente((int) dni);
         for (Prestamo p : prestamosCliente) {
-            PrestamoConsultaOutput prestamoConsultaOutput = new PrestamoConsultaOutput(p);
-            prestamoConsulta.addPrestamos(prestamoConsultaOutput);
+            PrestamoConsultaDto.PrestamoConsultaCliente prestamoCliente = new PrestamoConsultaDto.PrestamoConsultaCliente(p);
+            prestamoCliente.setPagosRealizados(calcularPagosRealizados(p.getPlanPagos()));
+            prestamoCliente.setSaldoRestante(calcularSaldoRestante(p, prestamoCliente.getPagosRealizados()));
+            consulta.addPrestamos(prestamoCliente);
         }
 
-        return prestamoConsulta; //por algun motivo nada mas retorna el ultimo (?? -- ES XQ NO SOLUCIONE LO DE ALMACENAR LA INFO CON EL CBU
+        return consulta; //por algun motivo nada mas retorna el ultimo (?? -- ES XQ NO SOLUCIONE LO DE ALMACENAR LA INFO CON EL CBU
     }
 
-    public List<Prestamo> getPrestamosCliente(int dni){
+    private List<Prestamo> getPrestamosCliente(int dni){
         return prestamoDao.getPrestamosByCliente(dni);
     }
 
+    private int calcularPagosRealizados(List<Cuota> cuotasPrestamo){
+        int cantCuotas = 0;
+        for (Cuota cuota : cuotasPrestamo) {
+            cantCuotas =+ 1;
+        }
+        return cantCuotas;
+    }
+    private double calcularSaldoRestante(Prestamo prestamo, int pagosRealizados){
+        double saldoTotal = prestamo.getMontoPrestamo() + prestamo.getInteresTotal();
+        double saldoActual = ( prestamo.getPlanPagos().get(0).getMonto() ) * pagosRealizados;
 
+        return saldoTotal - saldoActual;
 
+    }
 
 }

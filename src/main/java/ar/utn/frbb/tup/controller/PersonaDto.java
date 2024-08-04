@@ -3,22 +3,11 @@ package ar.utn.frbb.tup.controller;
 import java.time.LocalDate;
 
 public class PersonaDto {
-    private String nombre; //!
-    private String apellido;  //!
-    //private Direccion direccion;
-    //private String numTelefono;
-    private int dni; //!
-    private String nacimiento; //!
-    // private String email;
+    private String nombre;
+    private String apellido;
+    private int dni;
+    private String nacimiento;
 
-    //metodo constructor
-    /*public PersonaDto(){}
-    public PersonaDto(String nombre, String apellido, int dni, String nacimiento) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.nacimiento = nacimiento;
-    }*/
 
     //metodos
     public String getNombre() {

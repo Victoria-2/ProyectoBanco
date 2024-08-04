@@ -98,9 +98,6 @@ public class Prestamo {
         this.setMoneda(null);
         this.setInteresTotal(null);
         return this;
-    } //POR EL MOMENTO NO SE PUDO
-
-    //toConsulta
-
+    } //en el testeo unitario funciona, pero con Postman no
 
 }
