@@ -10,18 +10,11 @@ import java.util.List;
 @Component
 public class CuentaBancariaDao extends AbstractBaseDao {
 
-    public CuentaBancaria find(int id){ //no se q es lo q no encuentra cuando busca la cuenta aca
+    public CuentaBancaria find(int id){
         if( (getInMemoryDatabase().get(id)) == null){
             return null;
         }
         return ((CuentaBancariaEntity)getInMemoryDatabase().get(id)).toCuentaBancaria();//busca y agarra la entidad y la pasa a una cuenta
-    }
-
-    public CuentaBancaria findCbu(String cbu){
-        if( (getInMemoryDatabase().get(cbu)) == null){
-            return null;
-        }
-        return ((CuentaBancariaEntity)getInMemoryDatabase().get(cbu)).toCuentaBancaria();//busca y agarra la entidad y la pasa a una cuenta
     }
 
     public void save(CuentaBancaria cuenta){
@@ -33,9 +26,13 @@ public class CuentaBancariaDao extends AbstractBaseDao {
         List<CuentaBancaria> cuentasCliente = new ArrayList<>();
 
         for (Object valor : getInMemoryDatabase().values()){
-            CuentaBancariaEntity cuenta = (CuentaBancariaEntity) valor;
-            if(cuenta.getTitular().equals(dni)){
-                cuentasCliente.add(cuenta.toCuentaBancaria());
+            if(valor.getClass().equals(CuentaBancariaEntity.class)){
+                CuentaBancariaEntity cuenta = (CuentaBancariaEntity) valor;
+                if(cuenta.getTitular().equals(dni)){
+                    CuentaBancaria cuentaB =  cuenta.toCuentaBancaria();
+                    cuentaB.setTitular(dni);
+                    cuentasCliente.add(cuentaB);
+                }
             }
         }
 

@@ -8,7 +8,7 @@ import java.util.Random;
 public class CuotaService {
 
     public static void generarCuotas(Prestamo prestamo){
-        double mensualidad = calcularMontoCuota(prestamo);;
+        double mensualidad = calcularMontoCuota(prestamo);
         int random = generarRandomCantCuotas(prestamo.getPlazoMeses());
 
         for (int i = 1; i < random; i++) {
@@ -18,14 +18,11 @@ public class CuotaService {
     }
 
     private static int generarRandomCantCuotas(int cantCuotas){
-        Random random = new Random(System.currentTimeMillis());
-        int intRandom = random.nextInt(6);
-        if(intRandom == 0){
-            return generarRandomCantCuotas(cantCuotas);
-        }
-        if(cantCuotas < intRandom){ //xq no quiero q salga q esta pagado
-            return generarRandomCantCuotas(cantCuotas);
-        }
+        int intRandom = 0;
+        do{
+            Random random = new Random(System.currentTimeMillis());
+            intRandom = random.nextInt(6);
+        } while (intRandom == 0 && intRandom > cantCuotas);
         return intRandom;
     }
 

@@ -44,6 +44,7 @@ public class ClienteService {
         }
         return cliente;
     }
+
     public Cliente buscarSoloClientePorDni(int dni) {
         Cliente cliente = clienteDao.find(dni, false);
         if(cliente == null){

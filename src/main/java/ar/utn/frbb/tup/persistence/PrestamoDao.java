@@ -18,9 +18,11 @@ public class PrestamoDao extends AbstractBaseDao{
         List<Prestamo> prestamosCliente = new ArrayList<Prestamo>();
 
         for (Object valor : getInMemoryDatabase().values()){
-            PrestamoEntity prestamo = (PrestamoEntity) valor;
-            if(prestamo.getId() == dni){
-                prestamosCliente.add(prestamo.toPrestamo());
+            if (valor.getClass().equals(PrestamoEntity.class)){
+                PrestamoEntity prestamo = (PrestamoEntity) valor;
+                if(prestamo.getId() == dni){
+                    prestamosCliente.add(prestamo.toPrestamo());
+                }
             }
         }
 

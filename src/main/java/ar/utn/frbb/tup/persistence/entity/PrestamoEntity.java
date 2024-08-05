@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrestamoEntity extends BaseEntity{
-    private Long numeroCliente;
     private Integer plazoMeses;
     private Double montoPrestamo;
     private String moneda;
@@ -29,7 +28,7 @@ public class PrestamoEntity extends BaseEntity{
 
     public Prestamo toPrestamo(){
         Prestamo prestamo = new Prestamo();
-        prestamo.setNumeroCliente(this.numeroCliente);
+        prestamo.setNumeroCliente((long)super.getId());
         prestamo.setPlazoMeses(this.plazoMeses);
         prestamo.setMontoPrestamo(this.montoPrestamo);
         prestamo.setMoneda(this.moneda);
@@ -41,7 +40,7 @@ public class PrestamoEntity extends BaseEntity{
     }
 
     private void addCuotasPrestamo(Prestamo prestamo){
-        if (prestamo.getPlanPagos() != null && !prestamo.getPlanPagos().isEmpty()){
+        if (prestamo.getPlanPagos() != null && !(prestamo.getPlanPagos().isEmpty())){
             planPagos.addAll(prestamo.getPlanPagos());
         }
     }

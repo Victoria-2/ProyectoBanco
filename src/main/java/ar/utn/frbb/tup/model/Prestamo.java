@@ -20,7 +20,7 @@ public class Prestamo {
     private String mensaje;
     private List<Cuota> planPagos = new ArrayList<>();
 
-    @JsonInclude(JsonInclude.Include.NON_NULL) //EN DUDA
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Double interesTotal;
 
     public Prestamo(){}

@@ -2,6 +2,7 @@ package ar.utn.frbb.tup.service;
 
 import ar.utn.frbb.tup.controller.CuentaBancariaDto;
 import ar.utn.frbb.tup.model.CuentaBancaria;
+import ar.utn.frbb.tup.model.Prestamo;
 import ar.utn.frbb.tup.model.exception.CuentaAlreadyExistsException;
 import ar.utn.frbb.tup.model.exception.CuentaNoSoportadaException;
 import ar.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
@@ -31,7 +32,7 @@ public class CuentaBancariaService {
     }
 
     public CuentaBancaria darDeAltaCuenta(CuentaBancariaDto cuentaDto) throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, CuentaNoSoportadaException {
-        if(cuentaDao.find(cuentaDto.getDniTitular()) != null) { //nes el dni
+        if(cuentaDao.find(cuentaDto.getDniTitular()) != null) { //es el dni
             throw new CuentaAlreadyExistsException("La cuenta con el dni " + cuentaDto.getDniTitular() + " ya existe");
         }
 
@@ -51,9 +52,16 @@ public class CuentaBancariaService {
     }
 
 
-    public void actualizarCuentaCliente(String cbu, double montoPrestamo){
-        CuentaBancaria cuentaCliente = cuentaDao.find(Integer.parseInt(cbu.trim())); //POR ALGUN MOTIVO SIEMPRE TERMINA SIENDO NUL??
-        cuentaCliente.setSaldo(cuentaCliente.getSaldo() + montoPrestamo);
+    public void actualizarCuentaCliente(Prestamo prestamo){
+        List<CuentaBancaria> cuentas = clienteService.getCuentasCliente((int)prestamo.getNumeroCliente());
+
+        for (CuentaBancaria c : cuentas){
+            if (c.getTipoCuenta().equals(TipoDeCuenta.CAJA_DE_AHORROS) && c.getMoneda().equals(TipoMoneda.fromString(prestamo.getMoneda()))){
+                double saldoActualizado = c.getSaldo()+ prestamo.getMontoPrestamo();
+                c.setSaldo(saldoActualizado);
+                cuentaDao.save(c);
+            }
+        }
 
     }
 

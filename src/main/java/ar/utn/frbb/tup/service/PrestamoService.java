@@ -35,7 +35,7 @@ public class PrestamoService {
 
         prestamo.setInteresTotal(calculaIntereses(prestamo.getMontoPrestamo(), 5));
         CuotaService.generarCuotas(prestamo);
-        //cuentaService.actualizarCuentaCliente( (findCuentaPermitida((int)prestamo.getNumeroCliente(), prestamo.getMoneda())) , prestamo.getMontoPrestamo());
+        cuentaService.actualizarCuentaCliente(prestamo);
         prestamoDao.almacenarDatosPrestamo(prestamo);
 
         return output(prestamo);
@@ -45,19 +45,6 @@ public class PrestamoService {
     private double calculaIntereses(double monto, int valorInteres){
         return monto * ((double) valorInteres /12);
     }
-
-    private String findCuentaPermitida(int dni, String moneda){
-        List<CuentaBancaria> cuentas = new ArrayList<CuentaBancaria>();
-        cuentas.addAll(clienteService.getCuentasCliente(dni));
-
-        String cbu = null;
-        for (CuentaBancaria c : cuentas){
-            if (c.getTipoCuenta().equals(TipoDeCuenta.CAJA_DE_AHORROS) && c.getMoneda().equals(TipoMoneda.fromString(moneda))){
-                cbu = c.getCbu();
-            }
-        }
-        return cbu;
-    } //FALTA ENCONTRAR EL ERROR CON EL CBU
 
     private String calcularScoring(Long dni){
         String scoring = ScoreCrediticioService.verificaScore(dni);
@@ -78,24 +65,41 @@ public class PrestamoService {
         return new PrestamoOutputDto(prestamo);
     }
 
+    private CuentaBancaria getCuentaPermitida(int dni, String moneda){
+        List<CuentaBancaria> cuentas = new ArrayList<CuentaBancaria>();
+        cuentas.addAll(clienteService.getCuentasCliente(dni));
+
+        for (CuentaBancaria c : cuentas){
+            if (c.getTipoCuenta().equals(TipoDeCuenta.CAJA_DE_AHORROS) && c.getMoneda().equals(TipoMoneda.fromString(moneda))){
+                return c;
+            }
+        }
+        return null;
+    }
     public void validator(Prestamo prestamo) throws PrestamoNoOtorgadoException {
-        clienteService.buscarSoloClientePorDni((int) prestamo.getNumeroCliente()); //A TESTEAR, igual q el otro pero esta en false
-        //me olvide poner el if x si lo encontraba o no
+        if ((getCuentaPermitida((int) prestamo.getNumeroCliente(), prestamo.getMoneda())) == null){
+            throw new PrestamoNoOtorgadoException("No posee una cuenta que sea Caja de Ahorros, o una Caja de Ahorros en esa moneda");
+        }
 
         if (prestamo.getMontoPrestamo() >= 6000000){
             throw new PrestamoNoOtorgadoException("El monto a solicitar es mayor al que se le puede ofrecer en este momento");
         }
-        //validar q el tipo de moneda exista tmbn
-        //VERIFICAR SI EL CLIENTE TIENE UNA CUENTA CON LA MONEDA QUE SE ESTA PIDIENDO
-        // verificar q la cuenta sea CA
-        //verificar q el cliente no tenga mas de 3 prestamos al mismo tiempo
-    } //FALTAN VARIAS
+
+        if( (getPrestamosCliente((int)prestamo.getNumeroCliente())).size() > 3 ){
+            throw new PrestamoNoOtorgadoException("Es deudor de 3 prestamos. Finalice el pago de los mencionados antes de solicitar otro prestamo");
+        }
+
+    }
 
     //--------------------
-    public PrestamoConsultaDto pedirConsultaPrestamos(long dni){
+    public PrestamoConsultaDto pedirConsultaPrestamos(long dni) {
         PrestamoConsultaDto consulta = new PrestamoConsultaDto(dni);
 
         List<Prestamo> prestamosCliente = getPrestamosCliente((int) dni);
+        if(prestamosCliente.isEmpty() || prestamosCliente.get(0) == null){
+            throw new IllegalArgumentException("El cliente "+dni+" no ha pedido prestamos");
+        }
+
         for (Prestamo p : prestamosCliente) {
             PrestamoConsultaDto.PrestamoConsultaCliente prestamoCliente = new PrestamoConsultaDto.PrestamoConsultaCliente(p);
             prestamoCliente.setPagosRealizados(calcularPagosRealizados(p.getPlanPagos()));
@@ -113,13 +117,16 @@ public class PrestamoService {
     private int calcularPagosRealizados(List<Cuota> cuotasPrestamo){
         int cantCuotas = 0;
         for (Cuota cuota : cuotasPrestamo) {
-            cantCuotas =+ 1;
+            cantCuotas = cantCuotas + 1;
         }
         return cantCuotas;
     }
-    private double calcularSaldoRestante(Prestamo prestamo, int pagosRealizados){
+    private double calcularSaldoRestante(Prestamo prestamo, int pagosRealizados) {
         double saldoTotal = prestamo.getMontoPrestamo() + prestamo.getInteresTotal();
-        double saldoActual = ( prestamo.getPlanPagos().get(0).getMonto() ) * pagosRealizados;
+        double saldoActual = 0;
+        if (pagosRealizados != 0) {
+            saldoActual = (prestamo.getPlanPagos().get(0).getMonto()) * pagosRealizados;
+        }
 
         return saldoTotal - saldoActual;
 

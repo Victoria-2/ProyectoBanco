@@ -40,7 +40,7 @@ public class CuentaBancaria {
 
     //CBU
     private String generarCbu(){
-        String numerosDelCbu = " ";
+        String numerosDelCbu = "";
         for (int i = 0; i < 2; i++) {
             Random numeroRandom = new Random();
             String numDeCincoEspacios = String.format("%05d", numeroRandom.nextInt(10001));

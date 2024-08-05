@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
 @ControllerAdvice
 public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {TipoCuentaAlreadyExistsException.class, IllegalArgumentException.class})
@@ -21,12 +22,10 @@ public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHa
         return  handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler(value = {IllegalStateException.class})
+    @ExceptionHandler(value = {IllegalStateException.class, PrestamosNotFoundException.class})
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request){
-        String exceptionMessage = ex.getMessage();
-        CustomApiError error = new CustomApiError();
+        CustomApiError error = new CustomApiError(ex.getMessage());
         error.setErrorCode(1234);
-        error.setErrorMessage(exceptionMessage);
         return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND,request);
     }
 
@@ -44,6 +43,7 @@ public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHa
         error.setErrorMessage(exceptionMessage);
         return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);
     }
+
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode status, WebRequest request){

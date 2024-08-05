@@ -34,7 +34,7 @@ public class CuentaBancariaServiceTest {
         CuentaBancaria cuentaMock = mock(CuentaBancaria.class);
         when(cuentaDao.find(1234567890)).thenReturn(cuentaMock);
         when(cuentaMock.getSaldo()).thenReturn(122.30);
-        cuentaBancariaService.actualizarCuentaCliente("1234567890",1000.0);
+        //cuentaBancariaService.actualizarCuentaCliente("1234567890",1000.0);
 
         verify(cuentaMock).setSaldo(1122.30);
         verify(cuentaDao).find(1234567890);

@@ -1,9 +1,15 @@
 package ar.utn.frbb.tup.controller;
 
+import jakarta.validation.constraints.NotNull;
+
 public class PrestamoDto {
+    @NotNull(message = "Debe ingresar el numero del cliente")
     private long numeroCliente;
+    @NotNull(message = "Debe ingresar el plazo en el que desea pagar")
     private int plazoMeses;
+    @NotNull(message = "Debe establecer el monto a solicitar")
     private double montoPrestamo;
+    @NotNull(message = "Debe establecer la moneda del prestamo")
     private String moneda;
 
     public long getNumeroCliente() {
