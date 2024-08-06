@@ -26,7 +26,7 @@ class PrestamoConsultaDtoTest {
 
     @Test
     void prestamoConsultaDtoContructor(){
-        PrestamoConsultaDto prestamoConsultaDto = new PrestamoConsultaDto(45423402L);
+        PrestamoConsultaDto prestamoConsultaDto = new PrestamoConsultaDto(12345678L);
 
         List<PrestamoConsultaCliente> prestamosCliente = new ArrayList<PrestamoConsultaCliente>();
 
@@ -35,7 +35,7 @@ class PrestamoConsultaDtoTest {
         List<Cuota> cuotasLista = new ArrayList<Cuota>(List.of(cuota1, cuota2));
 
         Prestamo prestamo = new Prestamo();
-        prestamo.setNumeroCliente(45423402L);
+        prestamo.setNumeroCliente(12345678L);
         prestamo.setPlazoMeses(3);
         prestamo.setMontoPrestamo(150.3);
         prestamo.setMoneda("ARS");

@@ -29,7 +29,7 @@ public class ClienteValidatorTest {
         //ClienteDto clienteDtoMock = mock(ClienteDto.class);
         ClienteDto clienteDto = new ClienteDto();
         clienteDto.setTipoPersona("F");
-        clienteDto.setNacimiento("2003-12-25");
+        clienteDto.setNacimiento("1993-01-15");
         //verify(clienteValidator, times(1)).validateTipoMoneda(clienteDto); //no me deja hacerlo porque es estatico
         assertDoesNotThrow(() -> clienteValidator.validate(clienteDto));
     }
@@ -44,7 +44,7 @@ public class ClienteValidatorTest {
     @Test
     void validateFechaNacimientoException(){
         ClienteDto clienteDto = new ClienteDto();
-        clienteDto.setNacimiento("25-12-2003");
+        clienteDto.setNacimiento("1993-01-15");
         assertThrows(IllegalArgumentException.class, () -> clienteValidator.validate(clienteDto));
 
     }

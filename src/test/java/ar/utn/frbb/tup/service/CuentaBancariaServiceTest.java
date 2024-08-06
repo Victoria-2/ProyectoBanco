@@ -43,7 +43,7 @@ public class CuentaBancariaServiceTest {
     public void actualizarCuentaClienteTest() throws InstantiationException, IllegalAccessException {
         Prestamo prestamo = new Prestamo();
         prestamo.setMoneda(TipoMoneda.PESO_ARGENTINO.getDescripcion());
-        prestamo.setNumeroCliente(45423402L);
+        prestamo.setNumeroCliente(12345678L);
         prestamo.setMontoPrestamo(1000.0);
 
         CuentaBancaria cuentaMock = mock(CuentaBancaria.class);

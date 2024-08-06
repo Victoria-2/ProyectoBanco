@@ -29,7 +29,7 @@ class PrestamoControllerTest {
     @BeforeEach
     public void prestamoDtoSetting(){
 
-        prestamoDto.setNumeroCliente(45423402L);
+        prestamoDto.setNumeroCliente(12345678L);
         prestamoDto.setPlazoMeses(36);
         prestamoDto.setMontoPrestamo(4568.31);
         prestamoDto.setMoneda("ARS");
@@ -54,7 +54,7 @@ class PrestamoControllerTest {
 
     @Test
     void retonarPrestamosCliente() {
-        long clienteDni = 45423402L;
+        long clienteDni = 412345678L;
         PrestamoConsultaDto prestamoConsultaDtoMock = mock(PrestamoConsultaDto.class);
         Mockito.when(prestamoService.pedirConsultaPrestamos(clienteDni)).thenReturn(prestamoConsultaDtoMock);
 
