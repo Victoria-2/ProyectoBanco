@@ -8,35 +8,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-<span class="nc" id="L11">public class CuentaBancariaDao extends AbstractBaseDao {</span>
+<span class="fc" id="L11">public class CuentaBancariaDao extends AbstractBaseDao {</span>
+
     public CuentaBancaria find(int id){
-<span class="nc bnc" id="L13" title="All 2 branches missed.">        if( (getInMemoryDatabase().get(id)) == null){</span>
-<span class="nc" id="L14">            return null;</span>
+<span class="nc bnc" id="L14" title="All 2 branches missed.">        if( (getInMemoryDatabase().get(id)) == null){</span>
+<span class="nc" id="L15">            return null;</span>
         }
-<span class="nc" id="L16">        return ((CuentaBancariaEntity)getInMemoryDatabase().get(id)).toCuentaBancaria();//busca y agarra la entidad y la pasa a una cuenta</span>
+<span class="nc" id="L17">        return ((CuentaBancariaEntity)getInMemoryDatabase().get(id)).toCuentaBancaria();//busca y agarra la entidad y la pasa a una cuenta</span>
     }
 
     public void save(CuentaBancaria cuenta){
-<span class="nc" id="L20">        CuentaBancariaEntity entidadCB = new CuentaBancariaEntity(cuenta);</span>
-<span class="nc" id="L21">        getInMemoryDatabase().put(entidadCB.getTitular(), entidadCB);</span>
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L21">        CuentaBancariaEntity entidadCB = new CuentaBancariaEntity(cuenta);</span>
+<span class="nc" id="L22">        getInMemoryDatabase().put(entidadCB.getTitular(), entidadCB);</span>
+<span class="nc" id="L23">    }</span>
 
     public List&lt;CuentaBancaria&gt; getCuentasByCliente(Integer dni){
-<span class="nc" id="L25">        List&lt;CuentaBancaria&gt; cuentasCliente = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L26">        List&lt;CuentaBancaria&gt; cuentasCliente = new ArrayList&lt;&gt;();</span>
 
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        for (Object valor : getInMemoryDatabase().values()){</span>
-<span class="nc" id="L28">            CuentaBancariaEntity cuenta = (CuentaBancariaEntity) valor;</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">            if(cuenta.getTitular().equals(dni)){</span>
-<span class="nc" id="L30">                cuentasCliente.add(cuenta.toCuentaBancaria());</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (Object valor : getInMemoryDatabase().values()){</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if(valor.getClass().equals(CuentaBancariaEntity.class)){</span>
+<span class="nc" id="L30">                CuentaBancariaEntity cuenta = (CuentaBancariaEntity) valor;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                if(cuenta.getTitular().equals(dni)){</span>
+<span class="nc" id="L32">                    CuentaBancaria cuentaB =  cuenta.toCuentaBancaria();</span>
+<span class="nc" id="L33">                    cuentaB.setTitular(dni);</span>
+<span class="nc" id="L34">                    cuentasCliente.add(cuentaB);</span>
+                }
             }
-<span class="nc" id="L32">        }</span>
+<span class="nc" id="L37">        }</span>
 
-<span class="nc" id="L34">        return cuentasCliente;</span>
+<span class="nc" id="L39">        return cuentasCliente;</span>
     }
 
     @Override
     protected String getEntityType() {
-<span class="nc" id="L39">        return &quot;Cuenta&quot;;</span>
+<span class="nc" id="L44">        return &quot;Cuenta&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -15,7 +15,7 @@ public class PrestamoDto {
     public long getNumeroCliente() {
         return numeroCliente;
     }
-    public void setNumeroCliente(long numeroCliente) {
+    public void setNumeroCliente(Long numeroCliente) {
         this.numeroCliente = numeroCliente;
     }
 

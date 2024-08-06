@@ -38,38 +38,39 @@ import java.util.List;
 <span class="nc" id="L38">    }</span>
 
     public Cliente buscarClientePorDni(int dni) {
-<span class="nc" id="L41">        Cliente cliente = clienteDao.find(dni, true);</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if(cliente == null){</span>
-<span class="nc" id="L43">            throw  new IllegalArgumentException(&quot;El cliente solicitado no existe&quot;);</span>
+<span class="fc" id="L41">        Cliente cliente = clienteDao.find(dni, true);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if(cliente == null){</span>
+<span class="fc" id="L43">            throw  new IllegalArgumentException(&quot;El cliente solicitado no existe&quot;);</span>
         }
-<span class="nc" id="L45">        return cliente;</span>
+<span class="fc" id="L45">        return cliente;</span>
     }
+
     public Cliente buscarSoloClientePorDni(int dni) {
-<span class="nc" id="L48">        Cliente cliente = clienteDao.find(dni, false);</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">        if(cliente == null){</span>
-<span class="nc" id="L50">            throw  new IllegalArgumentException(&quot;El cliente solicitado no existe&quot;);</span>
+<span class="nc" id="L49">        Cliente cliente = clienteDao.find(dni, false);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if(cliente == null){</span>
+<span class="nc" id="L51">            throw  new IllegalArgumentException(&quot;El cliente solicitado no existe&quot;);</span>
         }
-<span class="nc" id="L52">        return cliente;</span>
+<span class="nc" id="L53">        return cliente;</span>
     }
 
     public List&lt;CuentaBancaria&gt; getCuentasCliente(Integer dni){
-<span class="nc" id="L56">        return cuentaBancariaDao.getCuentasByCliente(dni);</span>
+<span class="nc" id="L57">        return cuentaBancariaDao.getCuentasByCliente(dni);</span>
     }
 
     private void validatorAlta(Cliente cliente) throws ClienteAlreadyExistsException {
-<span class="pc bpc" id="L60" title="1 of 2 branches missed.">        if(clienteDao.find(cliente.getDni(), false) != null){</span>
-<span class="nc" id="L61">            throw new ClienteAlreadyExistsException(&quot;Ya existe el cliente&quot;+cliente.getDni());</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if(clienteDao.find(cliente.getDni(), false) != null){</span>
+<span class="fc" id="L62">            throw new ClienteAlreadyExistsException(&quot;Ya existe el cliente&quot;+cliente.getDni());</span>
         }
 
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if(cliente.getEdad() &lt; 18){</span>
-<span class="nc" id="L65">            throw new IllegalArgumentException(&quot;El cliente debe ser mayor de edad(18) para poder tener una cuenta bancaria&quot;);</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        if(cliente.getEdad() &lt; 18){</span>
+<span class="nc" id="L66">            throw new IllegalArgumentException(&quot;El cliente debe ser mayor de edad(18) para poder tener una cuenta bancaria&quot;);</span>
         }
-<span class="fc" id="L67">    }</span>
+<span class="fc" id="L68">    }</span>
     private  void validatorAgregarCuenta(Cliente titular, CuentaBancaria cuentaTitular) throws TipoCuentaAlreadyExistsException {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if(titular.tieneCuenta(cuentaTitular.getTipoCuenta(), cuentaTitular.getMoneda())){</span>
-<span class="nc" id="L70">            throw new TipoCuentaAlreadyExistsException(&quot;El cliente ya posee una cuenta de ese tipo y moneda&quot;);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if(titular.tieneCuenta(cuentaTitular.getTipoCuenta(), cuentaTitular.getMoneda())){</span>
+<span class="nc" id="L71">            throw new TipoCuentaAlreadyExistsException(&quot;El cliente ya posee una cuenta de ese tipo y moneda&quot;);</span>
         }
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L73">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

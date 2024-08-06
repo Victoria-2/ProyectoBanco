@@ -15,12 +15,12 @@ public class Cliente extends Persona {
     private String bancoCliente;
     private LocalDate fechaApertura;
     private TipoPersona tipoPersona;
-<span class="pc" id="L18">    private Set&lt;CuentaBancaria&gt; cuentasBancariasCliente = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L18">    private Set&lt;CuentaBancaria&gt; cuentasBancariasCliente = new HashSet&lt;&gt;();</span>
 
     //constructores
     public Cliente(){
-<span class="nc" id="L22">        super();</span>
-<span class="nc" id="L23">    }</span>
+<span class="fc" id="L22">        super();</span>
+<span class="fc" id="L23">    }</span>
     public Cliente(ClienteDto clienteDto){
 <span class="fc" id="L25">        super(clienteDto.getNombre(), clienteDto.getApellido(), clienteDto.getDni(), clienteDto.getNacimiento());</span>
 <span class="fc" id="L26">        fechaApertura = LocalDate.now();</span>
@@ -50,8 +50,8 @@ public class Cliente extends Persona {
 <span class="nc" id="L50">        return tipoPersona;</span>
     }
     public void setTipoPersona(TipoPersona tipoPersona) {
-<span class="nc" id="L53">        this.tipoPersona = tipoPersona;</span>
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L53">        this.tipoPersona = tipoPersona;</span>
+<span class="fc" id="L54">    }</span>
 
     //CUENTAS BANCARIAS
     public Set&lt;CuentaBancaria&gt; getCuentasBancariasCliente() {

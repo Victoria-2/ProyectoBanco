@@ -22,7 +22,7 @@ public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHa
         return  handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler(value = {IllegalStateException.class, PrestamosNotFoundException.class})
+    @ExceptionHandler(value = {IllegalStateException.class})
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request){
         CustomApiError error = new CustomApiError(ex.getMessage());
         error.setErrorCode(1234);

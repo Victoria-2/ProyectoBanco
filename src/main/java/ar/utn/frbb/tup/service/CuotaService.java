@@ -17,7 +17,7 @@ public class CuotaService {
         }
     }
 
-    private static int generarRandomCantCuotas(int cantCuotas){
+    static int generarRandomCantCuotas(int cantCuotas){
         int intRandom = 0;
         do{
             Random random = new Random(System.currentTimeMillis());
@@ -26,7 +26,7 @@ public class CuotaService {
         return intRandom;
     }
 
-    private static double calcularMontoCuota(Prestamo prestamo){ //TAL VEZ ES PARA CUOTA MAS Q SERVICE
+    static double calcularMontoCuota(Prestamo prestamo){
         return ( prestamo.getMontoPrestamo() + prestamo.getInteresTotal() ) / prestamo.getPlazoMeses();
     }
 }

@@ -42,7 +42,7 @@ public class PrestamoService {
         //return prestamo.toOutput();
     }
 
-    private double calculaIntereses(double monto, int valorInteres){
+    double calculaIntereses(double monto, int valorInteres){
         return monto * ((double) valorInteres /12);
     }
 
@@ -95,22 +95,24 @@ public class PrestamoService {
     public PrestamoConsultaDto pedirConsultaPrestamos(long dni) {
         PrestamoConsultaDto consulta = new PrestamoConsultaDto(dni);
 
-        List<Prestamo> prestamosCliente = getPrestamosCliente((int) dni);
+        List<Prestamo> prestamosCliente = getPrestamosCliente((int) dni); //
         if(prestamosCliente.isEmpty() || prestamosCliente.get(0) == null){
             throw new IllegalArgumentException("El cliente "+dni+" no ha pedido prestamos");
         }
 
+        List<PrestamoConsultaCliente> prestamos = new ArrayList<PrestamoConsultaCliente>();
         for (Prestamo p : prestamosCliente) {
-            PrestamoConsultaDto.PrestamoConsultaCliente prestamoCliente = new PrestamoConsultaDto.PrestamoConsultaCliente(p);
+            PrestamoConsultaCliente prestamoCliente = new PrestamoConsultaCliente(p);
             prestamoCliente.setPagosRealizados(calcularPagosRealizados(p.getPlanPagos()));
             prestamoCliente.setSaldoRestante(calcularSaldoRestante(p, prestamoCliente.getPagosRealizados()));
-            consulta.addPrestamos(prestamoCliente);
+            prestamos.add(prestamoCliente);
         }
+        consulta.setPrestamos(prestamos);
 
-        return consulta; //por algun motivo nada mas retorna el ultimo (?? -- ES XQ NO SOLUCIONE LO DE ALMACENAR LA INFO CON EL CBU
+        return consulta;
     }
 
-    private List<Prestamo> getPrestamosCliente(int dni){
+    List<Prestamo> getPrestamosCliente(int dni){
         return prestamoDao.getPrestamosByCliente(dni);
     }
 

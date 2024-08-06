@@ -15,12 +15,12 @@ public class CuentaBancariaValidator {
     }
 
 
-    private static void validateTipoMoneda(CuentaBancariaDto cuentaDto){
+    protected static void validateTipoMoneda(CuentaBancariaDto cuentaDto){
         if( (!"ARS".equals(cuentaDto.getMoneda())) && (!"USD".equals(cuentaDto.getMoneda()))) {
             throw new IllegalArgumentException("La moneda: "+cuentaDto.getMoneda()+" no soportada");
         }
     }
-    private static void validateTipoCuenta(CuentaBancariaDto cuentaDto){
+    protected static void validateTipoCuenta(CuentaBancariaDto cuentaDto){
         if((!"CA".equals(cuentaDto.getTipoCuenta())) && (!"CC".equals(cuentaDto.getTipoCuenta()))){
             throw  new IllegalArgumentException("La cuenta del tipo "+cuentaDto.getTipoCuenta()+"no es soportada");
         }

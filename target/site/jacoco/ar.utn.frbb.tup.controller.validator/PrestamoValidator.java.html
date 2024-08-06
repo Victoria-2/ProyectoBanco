@@ -4,13 +4,16 @@ import ar.utn.frbb.tup.controller.PrestamoDto;
 
 <span class="nc" id="L5">public class PrestamoValidator {</span>
     public static void validate(PrestamoDto prestamoDto){
-<span class="nc" id="L7">        validateMonto(prestamoDto.getMontoPrestamo());</span>
-<span class="nc" id="L8">    }</span>
+<span class="fc" id="L7">        validateMonto(prestamoDto.getMontoPrestamo());</span>
+<span class="fc" id="L8">    }</span>
 
     private static void validateMonto(double monto){
-<span class="nc bnc" id="L11" title="All 2 branches missed.">        if (monto &lt; 0){</span>
-<span class="nc" id="L12">            throw new IllegalArgumentException(&quot;Debe establecer un monto en positivo&quot;);</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (monto &lt; 0){</span>
+<span class="fc" id="L12">            throw new IllegalArgumentException(&quot;Debe establecer un monto en positivo&quot;);</span>
         }
-<span class="nc" id="L14">    }</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if (monto == 0){</span>
+<span class="fc" id="L15">            throw new IllegalArgumentException(&quot;Debe establecer cuanto va a pedir&quot;);</span>
+        }
+<span class="fc" id="L17">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

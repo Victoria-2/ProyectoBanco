@@ -6,23 +6,23 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-<span class="nc" id="L9">public class ClienteValidator {</span>
+<span class="fc" id="L9">public class ClienteValidator {</span>
     public void validate(ClienteDto clienteDto){
-<span class="nc" id="L11">        validateTipoPersona(clienteDto);</span>
-<span class="nc" id="L12">        validateFechaNacimiento(clienteDto);</span>
-<span class="nc" id="L13">    }</span>
+<span class="fc" id="L11">        validateTipoPersona(clienteDto);</span>
+<span class="fc" id="L12">        validateFechaNacimiento(clienteDto);</span>
+<span class="fc" id="L13">    }</span>
 
     private void validateTipoPersona(ClienteDto clienteDto){
-<span class="nc bnc" id="L16" title="All 4 branches missed.">        if(!&quot;F&quot;.equals(clienteDto.getTipoPersona()) &amp;&amp; (!&quot;J&quot;.equals(clienteDto.getTipoPersona()))){</span>
-<span class="nc" id="L17">            throw new IllegalArgumentException(&quot;El tipo de persona &quot;+clienteDto.getTipoPersona()+&quot; no es aceptado&quot;); //no se si hay que hacer un toString para que lo muestre</span>
+<span class="pc bpc" id="L16" title="1 of 4 branches missed.">        if(!&quot;F&quot;.equals(clienteDto.getTipoPersona()) &amp;&amp; (!&quot;J&quot;.equals(clienteDto.getTipoPersona()))){</span>
+<span class="fc" id="L17">            throw new IllegalArgumentException(&quot;El tipo de persona &quot;+clienteDto.getTipoPersona()+&quot; no es aceptado&quot;);</span>
         }
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L19">    }</span>
     private void validateFechaNacimiento(ClienteDto clienteDto){
         try{
-<span class="nc" id="L22">            LocalDate.parse(clienteDto.getNacimiento());</span>
+<span class="fc" id="L22">            LocalDate.parse(clienteDto.getNacimiento());</span>
 <span class="nc" id="L23">        } catch (Exception e){</span>
 <span class="nc" id="L24">            throw new IllegalArgumentException(&quot;Fecha de nacimiento con el formato erroneo&quot;);</span>
-<span class="nc" id="L25">        }</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L25">        }</span>
+<span class="fc" id="L26">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

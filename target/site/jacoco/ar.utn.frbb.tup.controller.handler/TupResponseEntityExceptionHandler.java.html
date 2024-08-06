@@ -13,37 +13,37 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
 @ControllerAdvice
-<span class="nc" id="L17">public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {</span>
+<span class="nc" id="L18">public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {</span>
     @ExceptionHandler(value = {TipoCuentaAlreadyExistsException.class, IllegalArgumentException.class})
     protected  ResponseEntity&lt;Object&gt; handleMateriaNotFound(Exception ex, WebRequest request){
-<span class="nc" id="L20">        CustomApiError error = new CustomApiError(ex.getMessage());</span>
-<span class="nc" id="L21">        return  handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);</span>
+<span class="nc" id="L21">        CustomApiError error = new CustomApiError(ex.getMessage());</span>
+<span class="nc" id="L22">        return  handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);</span>
     }
 
     @ExceptionHandler(value = {IllegalStateException.class})
     protected ResponseEntity&lt;Object&gt; handleConflict(RuntimeException ex, WebRequest request){
-<span class="nc" id="L26">        String exceptionMessage = ex.getMessage();</span>
-<span class="nc" id="L27">        CustomApiError error = new CustomApiError();</span>
+<span class="nc" id="L27">        CustomApiError error = new CustomApiError(ex.getMessage());</span>
 <span class="nc" id="L28">        error.setErrorCode(1234);</span>
-<span class="nc" id="L29">        error.setErrorMessage(exceptionMessage);</span>
-<span class="nc" id="L30">        return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND,request);</span>
+<span class="nc" id="L29">        return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND,request);</span>
     }
 
     @ExceptionHandler(value = {ClienteAlreadyExistsException.class})
     protected ResponseEntity&lt;Object&gt; handleValidatorAlta(Exception ex, WebRequest request){
-<span class="nc" id="L35">        CustomApiError error = new CustomApiError(ex.getMessage(), 409);</span>
-<span class="nc" id="L36">        return  handleExceptionInternal(ex,error,new HttpHeaders(),HttpStatus.CONFLICT ,request);</span>
+<span class="nc" id="L34">        CustomApiError error = new CustomApiError(ex.getMessage(), 409);</span>
+<span class="nc" id="L35">        return  handleExceptionInternal(ex,error,new HttpHeaders(),HttpStatus.CONFLICT ,request);</span>
     }
 
     @ExceptionHandler(value = {PrestamoNoOtorgadoException.class})
     protected ResponseEntity&lt;Object&gt; handlePrestamoError(Exception ex, WebRequest request){
-<span class="nc" id="L41">        String exceptionMessage = ex.getMessage();</span>
-<span class="nc" id="L42">        CustomApiError error = new CustomApiError();</span>
-<span class="nc" id="L43">        error.setErrorCode(564);</span>
-<span class="nc" id="L44">        error.setErrorMessage(exceptionMessage);</span>
-<span class="nc" id="L45">        return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);</span>
+<span class="nc" id="L40">        String exceptionMessage = ex.getMessage();</span>
+<span class="nc" id="L41">        CustomApiError error = new CustomApiError();</span>
+<span class="nc" id="L42">        error.setErrorCode(564);</span>
+<span class="nc" id="L43">        error.setErrorMessage(exceptionMessage);</span>
+<span class="nc" id="L44">        return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST,request);</span>
     }
+
 
     @Override
     protected ResponseEntity&lt;Object&gt; handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode status, WebRequest request){

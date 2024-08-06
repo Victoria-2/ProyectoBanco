@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ar.utn.frbb.tup.controller.PrestamoConsultaDtoTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.234 s - in ar.utn.frbb.tup.controller.PrestamoConsultaDtoTest

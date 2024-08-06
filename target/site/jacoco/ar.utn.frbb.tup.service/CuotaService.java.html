@@ -8,26 +8,26 @@ import java.util.Random;
 <span class="nc" id="L8">public class CuotaService {</span>
 
     public static void generarCuotas(Prestamo prestamo){
-<span class="nc" id="L11">        double mensualidad = calcularMontoCuota(prestamo);;</span>
-<span class="nc" id="L12">        int random = generarRandom();</span>
+<span class="fc" id="L11">        double mensualidad = calcularMontoCuota(prestamo);</span>
+<span class="fc" id="L12">        int random = generarRandomCantCuotas(prestamo.getPlazoMeses());</span>
 
-<span class="nc bnc" id="L14" title="All 2 branches missed.">        for (int i = 1; i &lt; random; i++) {</span>
-<span class="nc" id="L15">            Cuota cuota = new Cuota(i, mensualidad);</span>
-<span class="nc" id="L16">            prestamo.addCuota(cuota);</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        for (int i = 1; i &lt; random; i++) {</span>
+<span class="fc" id="L15">            Cuota cuota = new Cuota(i, mensualidad);</span>
+<span class="fc" id="L16">            prestamo.addCuota(cuota);</span>
         }
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L18">    }</span>
 
-    private static int generarRandom(){
-<span class="nc" id="L21">        Random random = new Random(System.currentTimeMillis());</span>
-<span class="nc" id="L22">        int intRandom = random.nextInt(6);</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">        if(intRandom == 0){</span>
-<span class="nc" id="L24">            generarRandom();</span>
-        }
-<span class="nc" id="L26">        return intRandom;</span>
+    static int generarRandomCantCuotas(int cantCuotas){
+<span class="fc" id="L21">        int intRandom = 0;</span>
+        do{
+<span class="fc" id="L23">            Random random = new Random(System.currentTimeMillis());</span>
+<span class="fc" id="L24">            intRandom = random.nextInt(6);</span>
+<span class="pc bpc" id="L25" title="3 of 4 branches missed.">        } while (intRandom == 0 &amp;&amp; intRandom &gt; cantCuotas);</span>
+<span class="fc" id="L26">        return intRandom;</span>
     }
 
-    private static double calcularMontoCuota(Prestamo prestamo){ //TAL VEZ ES PARA CUOTA MAS Q SERVICE
-<span class="nc" id="L30">        return ( prestamo.getMontoPrestamo() + prestamo.getInteresTotal() ) / prestamo.getPlazoMeses();</span>
+    static double calcularMontoCuota(Prestamo prestamo){
+<span class="fc" id="L30">        return ( prestamo.getMontoPrestamo() + prestamo.getInteresTotal() ) / prestamo.getPlazoMeses();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

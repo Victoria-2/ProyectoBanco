@@ -20,7 +20,7 @@ public class Prestamo {
     private String mensaje;
 <span class="pc" id="L21">    private List&lt;Cuota&gt; planPagos = new ArrayList&lt;&gt;();</span>
 
-    @JsonInclude(JsonInclude.Include.NON_NULL) //EN DUDA
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Double interesTotal;
 
 <span class="fc" id="L26">    public Prestamo(){}</span>
@@ -32,69 +32,73 @@ public class Prestamo {
 <span class="nc" id="L32">    }</span>
 
     public long getNumeroCliente() {
-<span class="nc" id="L35">        return numeroCliente;</span>
+<span class="fc" id="L35">        return numeroCliente;</span>
     }
     public void setNumeroCliente(Long numeroCliente) {
 <span class="fc" id="L38">        this.numeroCliente = numeroCliente;</span>
 <span class="fc" id="L39">    }</span>
 
     public int getPlazoMeses() {
-<span class="nc" id="L42">        return plazoMeses;</span>
+<span class="fc" id="L42">        return plazoMeses;</span>
     }
     public void setPlazoMeses(Integer plazoMeses) {
 <span class="fc" id="L45">        this.plazoMeses = plazoMeses;</span>
 <span class="fc" id="L46">    }</span>
 
     public double getMontoPrestamo() {
-<span class="nc" id="L49">        return montoPrestamo;</span>
+<span class="fc" id="L49">        return montoPrestamo;</span>
     }
     public void setMontoPrestamo(Double montoPrestamo) {
 <span class="fc" id="L52">        this.montoPrestamo = montoPrestamo;</span>
 <span class="fc" id="L53">    }</span>
 
     public String getMoneda() {
-<span class="nc" id="L56">        return moneda;</span>
+<span class="fc" id="L56">        return moneda;</span>
     }
     public void setMoneda(String moneda) {
 <span class="fc" id="L59">        this.moneda = moneda;</span>
 <span class="fc" id="L60">    }</span>
 
     public String getEstado() {
-<span class="nc" id="L63">        return estado;</span>
+<span class="fc" id="L63">        return estado;</span>
     }
     public void setEstado(String estado) {
 <span class="fc" id="L66">        this.estado = estado;</span>
 <span class="fc" id="L67">    }</span>
 
+
     public String getMensaje() {
-<span class="nc" id="L70">        return mensaje;</span>
+<span class="fc" id="L71">        return mensaje;</span>
     }
     public void setMensaje(String mensaje) {
-<span class="fc" id="L73">        this.mensaje = mensaje;</span>
-<span class="fc" id="L74">    }</span>
+<span class="fc" id="L74">        this.mensaje = mensaje;</span>
+<span class="fc" id="L75">    }</span>
 
     public List&lt;Cuota&gt; getPlanPagos() {
-<span class="nc" id="L77">        return planPagos;</span>
+<span class="fc" id="L78">        return planPagos;</span>
     }
+    public void setPlanPagos(List&lt;Cuota&gt; planPagos) {
+<span class="fc" id="L81">        this.planPagos = planPagos;</span>
+<span class="fc" id="L82">    }</span>
     public void addCuota(Cuota cuota) {
-<span class="fc" id="L80">        planPagos.add(cuota);</span>
-<span class="fc" id="L81">    }</span>
+<span class="fc" id="L84">        planPagos.add(cuota);</span>
+<span class="fc" id="L85">    }</span>
 
     public double getInteresTotal() {
-<span class="nc" id="L84">        return interesTotal;</span>
+<span class="fc" id="L88">        return interesTotal;</span>
     }
     public void setInteresTotal(Double interesTotal) {
-<span class="fc" id="L87">        this.interesTotal = interesTotal;</span>
-<span class="fc" id="L88">    }</span>
+<span class="fc" id="L91">        this.interesTotal = interesTotal;</span>
+<span class="fc" id="L92">    }</span>
 
     public Prestamo toOutput(){
-<span class="fc" id="L91">        this.setNumeroCliente(null);</span>
-<span class="fc" id="L92">        this.setPlazoMeses(null);</span>
-<span class="fc" id="L93">        this.setMontoPrestamo(null);</span>
-<span class="fc" id="L94">        this.setMoneda(null);</span>
-<span class="fc" id="L95">        this.setInteresTotal(null);</span>
-<span class="fc" id="L96">        return this;</span>
-    }
+<span class="fc" id="L95">        this.setNumeroCliente(null);</span>
+<span class="fc" id="L96">        this.setPlazoMeses(null);</span>
+<span class="fc" id="L97">        this.setMontoPrestamo(null);</span>
+<span class="fc" id="L98">        this.setMoneda(null);</span>
+<span class="fc" id="L99">        this.setInteresTotal(null);</span>
+<span class="fc" id="L100">        return this;</span>
+    } //en el testeo unitario funciona, pero con Postman no
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

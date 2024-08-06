@@ -14,7 +14,7 @@ public class PrestamoDao extends AbstractBaseDao{
         getInMemoryDatabase().put(prestamoEntity.getId(), prestamoEntity);
     }
 
-    public List<Prestamo> getPrestamosByCliente(Integer dni) {
+    public List<Prestamo> getPrestamosByCliente(int dni) {
         List<Prestamo> prestamosCliente = new ArrayList<Prestamo>();
 
         for (Object valor : getInMemoryDatabase().values()){

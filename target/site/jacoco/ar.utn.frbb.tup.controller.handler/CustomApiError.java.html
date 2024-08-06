@@ -3,34 +3,36 @@
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.Map;
+
 @JsonIgnoreProperties(ignoreUnknown = true) //no acepta cosas que no esten definidas
 @JsonInclude(JsonInclude.Include.NON_NULL) //no acepta null
 public class CustomApiError {
     private Integer errorCode;
     private String errorMessage;
 
-<span class="nc" id="L12">    public CustomApiError(){}</span>
-<span class="nc" id="L13">    public CustomApiError(String errorMessage){</span>
-<span class="nc" id="L14">        this.errorMessage = errorMessage;</span>
-<span class="nc" id="L15">    }</span>
-<span class="nc" id="L16">    public CustomApiError(String errorMessage, Integer errorCode){</span>
-<span class="nc" id="L17">        this.errorMessage = errorMessage;</span>
-<span class="nc" id="L18">        this.errorCode = errorCode;</span>
-<span class="nc" id="L19">    }</span>
+<span class="nc" id="L14">    public CustomApiError(){}</span>
+<span class="nc" id="L15">    public CustomApiError(String errorMessage){</span>
+<span class="nc" id="L16">        this.errorMessage = errorMessage;</span>
+<span class="nc" id="L17">    }</span>
+<span class="nc" id="L18">    public CustomApiError(String errorMessage, Integer errorCode){</span>
+<span class="nc" id="L19">        this.errorMessage = errorMessage;</span>
+<span class="nc" id="L20">        this.errorCode = errorCode;</span>
+<span class="nc" id="L21">    }</span>
 
     //getters y setters
     public Integer getErrorCode() {
-<span class="nc" id="L23">        return errorCode;</span>
+<span class="nc" id="L25">        return errorCode;</span>
     }
     public void setErrorCode(Integer errorCode) {
-<span class="nc" id="L26">        this.errorCode = errorCode;</span>
-<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">        this.errorCode = errorCode;</span>
+<span class="nc" id="L29">    }</span>
 
     public String getErrorMessage() {
-<span class="nc" id="L30">        return errorMessage;</span>
+<span class="nc" id="L32">        return errorMessage;</span>
     }
     public void setErrorMessage(String errorMessage) {
-<span class="nc" id="L33">        this.errorMessage = errorMessage;</span>
-<span class="nc" id="L34">    }</span>
+<span class="nc" id="L35">        this.errorMessage = errorMessage;</span>
+<span class="nc" id="L36">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @RestController
 @RequestMapping("/api/prestamo")
 public class PrestamoController {
@@ -22,7 +24,6 @@ public class PrestamoController {
 
     @GetMapping("/{clienteDni}")
     public PrestamoConsultaDto retonarPrestamosCliente(@PathVariable long clienteDni){
-        //hacer un validator !!!
         return prestamoService.pedirConsultaPrestamos(clienteDni);
     }
 }

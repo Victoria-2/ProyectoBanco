@@ -11,5 +11,8 @@ public class PrestamoValidator {
         if (monto < 0){
             throw new IllegalArgumentException("Debe establecer un monto en positivo");
         }
+        if (monto == 0){
+            throw new IllegalArgumentException("Debe establecer cuanto va a pedir");
+        }
     }
 }

@@ -1,6 +1,10 @@
 package ar.utn.frbb.tup.service;
 
+import ar.utn.frbb.tup.controller.CuentaBancariaDto;
 import ar.utn.frbb.tup.model.CuentaBancaria;
+import ar.utn.frbb.tup.model.Prestamo;
+import ar.utn.frbb.tup.model.TipoDeCuenta;
+import ar.utn.frbb.tup.model.TipoMoneda;
 import ar.utn.frbb.tup.persistence.CuentaBancariaDao;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,7 +15,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -19,6 +26,9 @@ import static org.mockito.Mockito.*;
 public class CuentaBancariaServiceTest {
     @Mock
     private CuentaBancariaDao cuentaDao;
+
+    @Mock
+    private ClienteService clienteService;
 
     @InjectMocks
     private CuentaBancariaService cuentaBancariaService;
@@ -31,13 +41,45 @@ public class CuentaBancariaServiceTest {
 
     @Test
     public void actualizarCuentaClienteTest() throws InstantiationException, IllegalAccessException {
+        Prestamo prestamo = new Prestamo();
+        prestamo.setMoneda(TipoMoneda.PESO_ARGENTINO.getDescripcion());
+        prestamo.setNumeroCliente(45423402L);
+        prestamo.setMontoPrestamo(1000.0);
+
         CuentaBancaria cuentaMock = mock(CuentaBancaria.class);
-        when(cuentaDao.find(1234567890)).thenReturn(cuentaMock);
+        List<CuentaBancaria> cuentas = new ArrayList<CuentaBancaria>();
+        cuentas.add(cuentaMock);
+
+        when(clienteService.getCuentasCliente(anyInt())).thenReturn(cuentas);
+        when(cuentaMock.getTipoCuenta()).thenReturn(TipoDeCuenta.CAJA_DE_AHORROS);
+        when(cuentaMock.getMoneda()).thenReturn(TipoMoneda.PESO_ARGENTINO);
         when(cuentaMock.getSaldo()).thenReturn(122.30);
-        //cuentaBancariaService.actualizarCuentaCliente("1234567890",1000.0);
+
+        cuentaBancariaService.actualizarCuentaCliente(prestamo);
 
         verify(cuentaMock).setSaldo(1122.30);
-        verify(cuentaDao).find(1234567890);
-        assertSame(cuentaMock, cuentaDao.find(1234567890));
+    }
+
+    @Test
+    void tipoCuentaEstaSoportadaSuccess(){
+        CuentaBancariaDto cuenta1 = new CuentaBancariaDto();
+        cuenta1.setTipoCuenta(TipoDeCuenta.CAJA_DE_AHORROS.getDescripcion());
+        cuenta1.setMoneda("ARS");
+
+        CuentaBancariaDto cuenta2 = new CuentaBancariaDto();
+        cuenta2.setTipoCuenta(TipoDeCuenta.CAJA_DE_AHORROS.getDescripcion());
+        cuenta2.setMoneda("USD");
+
+        CuentaBancariaDto cuenta3 = new CuentaBancariaDto();
+        cuenta3.setTipoCuenta(TipoDeCuenta.CUENTA_CORRIENTE.getDescripcion());
+        cuenta3.setMoneda("ARS");
+
+        assertDoesNotThrow( () -> cuentaBancariaService.tipoCuentaEstaSoportada(cuenta1) );
+        assertTrue(cuentaBancariaService.tipoCuentaEstaSoportada(cuenta1));
+        assertDoesNotThrow( () -> cuentaBancariaService.tipoCuentaEstaSoportada(cuenta1) );
+        assertTrue(cuentaBancariaService.tipoCuentaEstaSoportada(cuenta2));
+        assertDoesNotThrow( () -> cuentaBancariaService.tipoCuentaEstaSoportada(cuenta1) );
+        assertTrue(cuentaBancariaService.tipoCuentaEstaSoportada(cuenta3));
+
     }
 }
